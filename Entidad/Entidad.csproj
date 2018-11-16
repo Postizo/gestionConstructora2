@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2321F759-E1D6-4920-A24A-6B62759F38D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entidad</RootNamespace>
+    <AssemblyName>Entidad</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Albaranes_ca.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Albaran_li.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aux_PrefCuentas.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Balance.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Certificaciones.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cuentas.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CuentasMeta.cs" />
+    <Compile Include="DbUpdateException.cs" />
+    <Compile Include="D_presuliMeta.cs" />
+    <Compile Include="D_Equipos.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="D_Presuca.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="D_Presuli.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="D_provee.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Empresas.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpresasMetaData.cs" />
+    <Compile Include="Estados.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Est_Financiero.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Facturas_ca.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Facturas_li.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="F_MaestraSubPartidas.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="F_PlanigPartidas.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Gastos_Fijos.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestionConstructora.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Grupos.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GruposMetaData.cs" />
+    <Compile Include="Grupos_Rel.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log_Errores.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ObraMeta.cs" />
+    <Compile Include="Obras.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Obras_Lineas.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Obras_lineasMeta.cs" />
+    <Compile Include="ParteTrabajo.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Presu_Calidad.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Presu_Conta.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Presu_Elementos.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Presu_Elem_Estan.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Presu_Estancias.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Presu_Presu_Ca.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Presu_Presu_li.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Produ_Alcosan.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PropiasInformes.cs" />
+    <Compile Include="Puertas.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subgrupos.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubGruposMeta.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TarifasProvee.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Validaciones.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GestionConstructora.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GestionConstructora.cs</LastGenOutput>
+      <CustomToolNamespace>Entidad</CustomToolNamespace>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

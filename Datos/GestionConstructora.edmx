@@ -1,0 +1,3018 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestionConstructoraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Albaran_li">
+          <Key>
+            <PropertyRef Name="Id_Alb_li" />
+          </Key>
+          <Property Name="Id_Alb_li" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Alb_liSigrid" Type="int" Nullable="false" />
+          <Property Name="Id_Albaran" Type="int" Nullable="false" />
+          <Property Name="Id_producto" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion2" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descuento" Type="float" Nullable="false" />
+          <Property Name="Pre_sindescuento" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Pre" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Cantidad" Type="float" Nullable="false" />
+          <Property Name="Iva" Type="float" Nullable="false" />
+          <Property Name="Cuota" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Base" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Importe" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Cap_sigrid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_grupo" Type="int" Nullable="false" />
+          <Property Name="id_subgrupo" Type="int" />
+          <Property Name="Mano_Obra" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Albaranes_ca">
+          <Key>
+            <PropertyRef Name="Id_Albaran" />
+          </Key>
+          <Property Name="Id_Albaran" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_AlbSigrid" Type="int" Nullable="false" />
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="Ref_Alb" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Su_ref" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Id_Formapago" Type="int" Nullable="false" />
+          <Property Name="Id_proveedor" Type="int" Nullable="false" />
+          <Property Name="Proveedor" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Cif" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Base" Type="numeric" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Cuota" Type="numeric" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="TotImporte" Type="numeric" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionConstructora.dbo.Aux_PrefCuentas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Aux_PrefCuentas">
+          <Key>
+            <PropertyRef Name="Prefijo" />
+            <PropertyRef Name="Cuenta" />
+          </Key>
+          <Property Name="Prefijo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Cuenta" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Balance">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="Orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Informe" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="Id_empresa" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="550" Nullable="false" />
+          <Property Name="Imp_debe" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Imp_Haber" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Cuenta" Type="int" Nullable="false" />
+          <Property Name="Imp_Compara_debe" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Imp_Compara_Haber" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="fecha" Type="datetime" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionConstructora.dbo.Certificaciones' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Certificaciones">
+          <Key>
+            <PropertyRef Name="id_Obra" />
+            <PropertyRef Name="Id_Empresa" />
+            <PropertyRef Name="Mes" />
+            <PropertyRef Name="Año" />
+            <PropertyRef Name="Importe" />
+          </Key>
+          <Property Name="id_Obra" Type="int" Nullable="false" />
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Mes" Type="int" Nullable="false" />
+          <Property Name="Año" Type="int" Nullable="false" />
+          <Property Name="Importe" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="Id_Cuenta" />
+          </Key>
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Cuenta" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="550" Nullable="false" />
+          <Property Name="Id_Grupo" Type="int" Nullable="false" />
+          <Property Name="Id_SubGrupo" Type="int" Nullable="false" />
+          <Property Name="TrataCuenta" Type="bit" Nullable="false" />
+          <Property Name="Id_Cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="D_Equipos">
+          <Key>
+            <PropertyRef Name="Referencia" />
+          </Key>
+          <Property Name="Referencia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="N_Alternativo" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Proveedor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pvp" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="T_programacion" Type="int" Nullable="false" />
+          <Property Name="T_volcado" Type="int" Nullable="false" />
+          <Property Name="T_instalacion" Type="int" Nullable="false" />
+          <Property Name="T_puestamarcha" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comentario" Type="varchar(max)" Nullable="false" />
+          <Property Name="id_proveedor" Type="int" Nullable="false" />
+          <Property Name="Grupo" Type="varchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="D_Presuca">
+          <Key>
+            <PropertyRef Name="id_presu" />
+          </Key>
+          <Property Name="id_presu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CosteProgramador" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="GG" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Beneficio" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="MargenMat" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="m_construdios" Type="int" Nullable="false" />
+          <Property Name="id_Obra" Type="int" Nullable="false" />
+          <Property Name="id_empresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="D_Presuli">
+          <Key>
+            <PropertyRef Name="orden" />
+          </Key>
+          <Property Name="id_presu" Type="int" Nullable="false" />
+          <Property Name="ref" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="unidades" Type="int" Nullable="false" />
+          <Property Name="pvp" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="dte" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Costo" Type="decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="Mobra" Type="int" Nullable="false" />
+          <Property Name="orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grupo" Type="varchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="D_provee">
+          <Key>
+            <PropertyRef Name="id_proveedor" />
+          </Key>
+          <Property Name="id_proveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Proveedor" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="descuento" Type="decimal" Precision="5" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+          </Key>
+          <Property Name="Id_Empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="BBDD_Sigrid" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Servidor_Sigrid" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Usuario_Sigrid" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Pwd_Sigrid" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="BBDD_ContaWin" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Servidor_ContaWin" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Usuario_ContaWin" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Pwd_ContaWin" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Cod_Contable" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Id_Banco" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Est_Financiero">
+          <Key>
+            <PropertyRef Name="Id_Estudio" />
+          </Key>
+          <Property Name="Id_Estudio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fini" Type="datetime" Nullable="false" />
+          <Property Name="Ffin" Type="datetime" Nullable="false" />
+          <Property Name="mts_Construidos" Type="int" Nullable="false" />
+          <Property Name="mts_Utiles" Type="int" Nullable="false" />
+          <Property Name="Compra_Bruto" Type="float" Nullable="false" />
+          <Property Name="Gastos_Adquisicion" Type="float" Nullable="false" />
+          <Property Name="CosteReforma" Type="int" Nullable="false" />
+          <Property Name="Impuestos" Type="float" Nullable="false" />
+          <Property Name="Mantenimiento" Type="float" Nullable="false" />
+          <Property Name="AporCapital" Type="int" Nullable="false" />
+          <Property Name="ImpHipoteca" Type="int" Nullable="false" />
+          <Property Name="TipoInteres" Type="float" Nullable="false" />
+          <Property Name="AñoAmortizacion" Type="int" Nullable="false" />
+          <Property Name="P_Venta" Type="int" Nullable="false" />
+          <Property Name="GastosVenta" Type="float" Nullable="false" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="1500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="F_MaestraSubPartidas">
+          <Key>
+            <PropertyRef Name="Id_Partida" />
+          </Key>
+          <Property Name="Id_PartidaMadre" Type="int" Nullable="false" />
+          <Property Name="Id_Partida" Type="int" Nullable="false" />
+          <Property Name="Denominacion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Color" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionConstructora.dbo.F_PlanigPartidas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="F_PlanigPartidas">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+            <PropertyRef Name="Id_Obra" />
+            <PropertyRef Name="Id_Partida" />
+            <PropertyRef Name="FechaInicio" />
+            <PropertyRef Name="FechaFin" />
+            <PropertyRef Name="Coste" />
+          </Key>
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="Id_Partida" Type="int" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" Nullable="false" />
+          <Property Name="FechaFin" Type="date" Nullable="false" />
+          <Property Name="Coste" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Facturas_ca">
+          <Key>
+            <PropertyRef Name="Id_Factura" />
+          </Key>
+          <Property Name="Id_Factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_FacSigrid" Type="int" Nullable="false" />
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="Ref_Fac" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Su_ref" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Id_Formapago" Type="int" Nullable="false" />
+          <Property Name="Id_proveedor" Type="int" Nullable="false" />
+          <Property Name="Proveedor" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Cif" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Base" Type="numeric" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Cuota" Type="numeric" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="TotImporte" Type="numeric" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="int" Nullable="false" />
+          <Property Name="SujetoPasivo" Type="bit" Nullable="false" />
+          <Property Name="ApunteCompra" Type="int" />
+          <Property Name="FechaPago" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Facturas_li">
+          <Key>
+            <PropertyRef Name="Id_fac_li" />
+          </Key>
+          <Property Name="Id_fac_li" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Fac_liSigrid" Type="int" Nullable="false" />
+          <Property Name="Id_Factura" Type="int" Nullable="false" />
+          <Property Name="Id_producto" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion2" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descuento" Type="float" Nullable="false" />
+          <Property Name="Pre_sindescuento" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Pre" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Cantidad" Type="float" Nullable="false" />
+          <Property Name="Iva" Type="float" Nullable="false" />
+          <Property Name="Cuota" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Base" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Importe" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Cap_sigrid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_grupo" Type="int" Nullable="false" />
+          <Property Name="id_subgrupo" Type="int" />
+          <Property Name="Tipo_Cuenta" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Mano_Obra" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gastos_Fijos">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Concepto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Importe" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grupos">
+          <Key>
+            <PropertyRef Name="Id_Grupo" />
+          </Key>
+          <Property Name="Id_Grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Id_Tipo" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Orden" Type="int" Nullable="false" />
+          <Property Name="Id_TipoCoste" Type="int" Nullable="false" />
+          <Property Name="Cuenta_prefijada" Type="int" Nullable="false" />
+          <Property Name="Zona_imputada" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Grupos_Rel">
+          <Key>
+            <PropertyRef Name="Id_Obra" />
+            <PropertyRef Name="Cod_Sigrid" />
+          </Key>
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Id_Grupo" Type="int" Nullable="false" />
+          <Property Name="Id_Subgrupo" Type="int" Nullable="false" />
+          <Property Name="Cod_Sigrid" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log_Errores">
+          <Key>
+            <PropertyRef Name="orden" />
+          </Key>
+          <Property Name="Id_Proceso" Type="int" Nullable="false" />
+          <Property Name="Proceso" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Id_Item" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Item" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Tipo_error" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Log" Type="varchar" MaxLength="550" Nullable="false" />
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="id_empresa" Type="int" Nullable="false" />
+          <Property Name="NombreObra" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Color" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Obras">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+            <PropertyRef Name="Id_Obra" />
+          </Key>
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="Tipo_Obra" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Id_Sigrid" Type="int" Nullable="false" />
+          <Property Name="Construido" Type="float" Nullable="false" />
+          <Property Name="Importado_presu" Type="bit" Nullable="false" />
+          <Property Name="fecha_Importado" Type="date" Nullable="false" />
+          <Property Name="Grupos_Rela" Type="bit" Nullable="false" />
+          <Property Name="Por_Confirming" Type="float" Nullable="false" />
+          <Property Name="FechaCerti" Type="int" Nullable="false" />
+          <Property Name="Finalizada" Type="bit" Nullable="false" />
+          <Property Name="M_Viviendas" Type="float" Nullable="false" />
+          <Property Name="M_Rasante" Type="float" Nullable="false" />
+          <Property Name="M_ZonasComunes" Type="float" Nullable="false" />
+          <Property Name="iva" Type="bit" />
+          <Property Name="M_Escriturados" Type="int" Nullable="false" />
+          <Property Name="M_Construidos" Type="int" Nullable="false" />
+          <Property Name="M_Utiles" Type="int" Nullable="false" />
+          <Property Name="Ajuste" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Comentario_Ajuste" Type="varchar(max)" Nullable="false" />
+          <Property Name="F_Stado_Planig" Type="int" />
+        </EntityType>
+        <EntityType Name="Obras_Lineas">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="Id_linea" Type="int" Nullable="false" />
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="Id_ObraSigrid" Type="int" Nullable="false" />
+          <Property Name="Id_Estado" Type="int" Nullable="false" />
+          <Property Name="Id_Fase" Type="int" Nullable="false" />
+          <Property Name="Id_TipoCoste" Type="int" Nullable="false" />
+          <Property Name="Capitulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Subcapitulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Grupo" Type="int" Nullable="false" />
+          <Property Name="Id_Subgrupo" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Medidas" Type="float" Nullable="false" />
+          <Property Name="Unidad_Medida" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha_importado" Type="datetime" Nullable="false" />
+          <Property Name="Importe" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_presu" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_P_venta" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_VentaPrevista" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_CostePrevisto" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_Certificado" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_CosteReal" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_Facturado" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_Pagado" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_Albaranes" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_ManoObra" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mano_Obra" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParteTrabajo">
+          <Key>
+            <PropertyRef Name="Id_LineaParte" />
+          </Key>
+          <Property Name="Id_LineaParte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_LineaParteSigrid" Type="int" Nullable="false" />
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="Ref_Parte" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Empleado" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="Horas" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalImporte" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Cap_Sigrid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Grupo" Type="int" Nullable="false" />
+          <Property Name="Id_Subgrupo" Type="int" />
+        </EntityType>
+        <EntityType Name="Presu_Calidad">
+          <Key>
+            <PropertyRef Name="Id_linea" />
+          </Key>
+          <Property Name="Id_linea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_elemento" Type="int" Nullable="false" />
+          <Property Name="Tipo_Calidad" Type="int" Nullable="false" />
+          <Property Name="Calidad" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Presu_Conta">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="id_obra" Type="int" Nullable="false" />
+          <Property Name="id_empresa" Type="int" Nullable="false" />
+          <Property Name="id_Grupo" Type="int" Nullable="false" />
+          <Property Name="Presupuestado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Presu_Elem_Estan">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="Id_estancia" Type="int" Nullable="false" />
+          <Property Name="Id_elementos" Type="int" Nullable="false" />
+          <Property Name="Unidades" Type="int" Nullable="false" />
+          <Property Name="Orden" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Presu_Elementos">
+          <Key>
+            <PropertyRef Name="Id_Elemento" />
+          </Key>
+          <Property Name="Id_Elemento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Presu_Estancias">
+          <Key>
+            <PropertyRef Name="Id_Estancia" />
+          </Key>
+          <Property Name="Id_Estancia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Presu_Presu_Ca">
+          <Key>
+            <PropertyRef Name="Id_Presu" />
+            <PropertyRef Name="Id_Version" />
+          </Key>
+          <Property Name="Id_Presu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Version" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CteHora" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="nPersonas" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="horas_dias" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ndias" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="T_Manoobra" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="M_Materias" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="G_Generales" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Beneficio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="U_Casas" Type="int" />
+        </EntityType>
+        <EntityType Name="Presu_Presu_li">
+          <Key>
+            <PropertyRef Name="Id_linea" />
+          </Key>
+          <Property Name="Id_linea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_version" Type="int" Nullable="false" />
+          <Property Name="Id_Presu" Type="int" Nullable="false" />
+          <Property Name="Id_Estancia" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionConstructora.dbo.Produ_Alcosan' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Produ_Alcosan">
+          <Key>
+            <PropertyRef Name="Marca" />
+            <PropertyRef Name="Ref_Fabricante" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="P_Venta" />
+            <PropertyRef Name="dto1" />
+            <PropertyRef Name="dto2" />
+            <PropertyRef Name="dto3" />
+            <PropertyRef Name="P_Neto" />
+            <PropertyRef Name="Fam" />
+            <PropertyRef Name="Des_Fam" />
+            <PropertyRef Name="Grupo" />
+            <PropertyRef Name="Des_Grupo" />
+            <PropertyRef Name="SubGrupo" />
+            <PropertyRef Name="Des_SubGrupo" />
+          </Key>
+          <Property Name="Marca" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Ref_Fabricante" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="P_Venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="dto1" Type="int" Nullable="false" />
+          <Property Name="dto2" Type="int" Nullable="false" />
+          <Property Name="dto3" Type="int" Nullable="false" />
+          <Property Name="P_Neto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Fam" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Des_Fam" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Grupo" Type="int" Nullable="false" />
+          <Property Name="Des_Grupo" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="SubGrupo" Type="int" Nullable="false" />
+          <Property Name="Des_SubGrupo" Type="varchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionConstructora.dbo.Puertas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Puertas">
+          <Key>
+            <PropertyRef Name="fecha" />
+            <PropertyRef Name="hora" />
+            <PropertyRef Name="id_user" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="apellido" />
+            <PropertyRef Name="Puerta" />
+          </Key>
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="hora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Puerta" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subgrupos">
+          <Key>
+            <PropertyRef Name="Id_Subgrupo" />
+          </Key>
+          <Property Name="Id_Grupo" Type="int" Nullable="false" />
+          <Property Name="Id_Subgrupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Tipo" Type="int" Nullable="false" />
+          <Property Name="Cod" Type="varchar" MaxLength="250" />
+          <Property Name="Orden" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="TarifasProvee">
+          <Key>
+            <PropertyRef Name="Id_Proveedor" />
+            <PropertyRef Name="Codigo" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Precio" />
+          </Key>
+          <Property Name="Id_Proveedor" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="Precio" Type="float" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="3050" />
+        </EntityType>
+        <Association Name="FK_Albaran_li_Albaranes_ca">
+          <End Role="Albaranes_ca" Type="Self.Albaranes_ca" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Albaran_li" Type="Self.Albaran_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Albaranes_ca">
+              <PropertyRef Name="Id_Albaran" />
+            </Principal>
+            <Dependent Role="Albaran_li">
+              <PropertyRef Name="Id_Albaran" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Albaranes_ca_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Albaranes_ca" Type="Self.Albaranes_ca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Albaranes_ca">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Balance_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Balance">
+              <PropertyRef Name="Id_empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuentas_Empresas">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="Cuentas">
+              <PropertyRef Name="Id_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuentas_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Cuentas">
+              <PropertyRef Name="Id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuentas_Subgrupos">
+          <End Role="Subgrupos" Type="Self.Subgrupos" Multiplicity="1" />
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subgrupos">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Principal>
+            <Dependent Role="Cuentas">
+              <PropertyRef Name="Id_SubGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_D_Equipos_D_provee">
+          <End Role="D_provee" Type="Self.D_provee" Multiplicity="1" />
+          <End Role="D_Equipos" Type="Self.D_Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="D_provee">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="D_Equipos">
+              <PropertyRef Name="id_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_D_Presuca_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="D_Presuca" Type="Self.D_Presuca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="D_Presuca">
+              <PropertyRef Name="id_empresa" />
+              <PropertyRef Name="id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_D_Presuli_D_Equipos">
+          <End Role="D_Equipos" Type="Self.D_Equipos" Multiplicity="1" />
+          <End Role="D_Presuli" Type="Self.D_Presuli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="D_Equipos">
+              <PropertyRef Name="Referencia" />
+            </Principal>
+            <Dependent Role="D_Presuli">
+              <PropertyRef Name="ref" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_D_Presuli_D_Presuca">
+          <End Role="D_Presuca" Type="Self.D_Presuca" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="D_Presuli" Type="Self.D_Presuli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="D_Presuca">
+              <PropertyRef Name="id_presu" />
+            </Principal>
+            <Dependent Role="D_Presuli">
+              <PropertyRef Name="id_presu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_F_MaestraSubPartidas_F_MaestraSubPartidas">
+          <End Role="F_MaestraSubPartidas" Type="Self.F_MaestraSubPartidas" Multiplicity="1" />
+          <End Role="F_MaestraSubPartidas1" Type="Self.F_MaestraSubPartidas" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="F_MaestraSubPartidas">
+              <PropertyRef Name="Id_Partida" />
+            </Principal>
+            <Dependent Role="F_MaestraSubPartidas1">
+              <PropertyRef Name="Id_Partida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_F_PlanigPartidas_F_MaestraSubPartidas">
+          <End Role="F_MaestraSubPartidas" Type="Self.F_MaestraSubPartidas" Multiplicity="1" />
+          <End Role="F_PlanigPartidas" Type="Self.F_PlanigPartidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="F_MaestraSubPartidas">
+              <PropertyRef Name="Id_Partida" />
+            </Principal>
+            <Dependent Role="F_PlanigPartidas">
+              <PropertyRef Name="Id_Partida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_ca_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Facturas_ca" Type="Self.Facturas_ca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Facturas_ca">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_li_Facturas_ca">
+          <End Role="Facturas_ca" Type="Self.Facturas_ca" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Facturas_li" Type="Self.Facturas_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facturas_ca">
+              <PropertyRef Name="Id_Factura" />
+            </Principal>
+            <Dependent Role="Facturas_li">
+              <PropertyRef Name="Id_Factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_li_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Facturas_li" Type="Self.Facturas_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Facturas_li">
+              <PropertyRef Name="Id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupos_Rel_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Grupos_Rel" Type="Self.Grupos_Rel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Grupos_Rel">
+              <PropertyRef Name="Id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupos_Rel_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Grupos_Rel" Type="Self.Grupos_Rel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Grupos_Rel">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupos_Rel_Subgrupos">
+          <End Role="Subgrupos" Type="Self.Subgrupos" Multiplicity="1" />
+          <End Role="Grupos_Rel" Type="Self.Grupos_Rel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subgrupos">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Principal>
+            <Dependent Role="Grupos_Rel">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Informe_Cuentas">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="1" />
+          <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="Id_Cuenta" />
+            </Principal>
+            <Dependent Role="Balance">
+              <PropertyRef Name="Cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lineas_Obras_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Obras_Lineas">
+              <PropertyRef Name="Id_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lineas_Obras_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Obras_Lineas">
+              <PropertyRef Name="Id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Obra_Empresas">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Obras_Lineas_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Obras_Lineas">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Obras_Lineas_Subgrupos">
+          <End Role="Subgrupos" Type="Self.Subgrupos" Multiplicity="1" />
+          <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subgrupos">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Principal>
+            <Dependent Role="Obras_Lineas">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParteTrabajo_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="ParteTrabajo" Type="Self.ParteTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="ParteTrabajo">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Calidad_Presu_Elementos">
+          <End Role="Presu_Elementos" Type="Self.Presu_Elementos" Multiplicity="1" />
+          <End Role="Presu_Calidad" Type="Self.Presu_Calidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Elementos">
+              <PropertyRef Name="Id_Elemento" />
+            </Principal>
+            <Dependent Role="Presu_Calidad">
+              <PropertyRef Name="Id_elemento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Conta_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Presu_Conta" Type="Self.Presu_Conta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Presu_Conta">
+              <PropertyRef Name="id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Conta_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Presu_Conta" Type="Self.Presu_Conta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Presu_Conta">
+              <PropertyRef Name="id_empresa" />
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Elem_Estan_Presu_Elementos">
+          <End Role="Presu_Elementos" Type="Self.Presu_Elementos" Multiplicity="1" />
+          <End Role="Presu_Elem_Estan" Type="Self.Presu_Elem_Estan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Elementos">
+              <PropertyRef Name="Id_Elemento" />
+            </Principal>
+            <Dependent Role="Presu_Elem_Estan">
+              <PropertyRef Name="Id_elementos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Elem_Estan_Presu_Estancias">
+          <End Role="Presu_Estancias" Type="Self.Presu_Estancias" Multiplicity="1" />
+          <End Role="Presu_Elem_Estan" Type="Self.Presu_Elem_Estan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Estancias">
+              <PropertyRef Name="Id_Estancia" />
+            </Principal>
+            <Dependent Role="Presu_Elem_Estan">
+              <PropertyRef Name="Id_estancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Presu_li_Presu_Estancias">
+          <End Role="Presu_Estancias" Type="Self.Presu_Estancias" Multiplicity="1" />
+          <End Role="Presu_Presu_li" Type="Self.Presu_Presu_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Estancias">
+              <PropertyRef Name="Id_Estancia" />
+            </Principal>
+            <Dependent Role="Presu_Presu_li">
+              <PropertyRef Name="Id_Estancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Presu_li_Presu_Presu_Ca">
+          <End Role="Presu_Presu_Ca" Type="Self.Presu_Presu_Ca" Multiplicity="1" />
+          <End Role="Presu_Presu_li" Type="Self.Presu_Presu_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Presu_Ca">
+              <PropertyRef Name="Id_Presu" />
+              <PropertyRef Name="Id_Version" />
+            </Principal>
+            <Dependent Role="Presu_Presu_li">
+              <PropertyRef Name="Id_Presu" />
+              <PropertyRef Name="Id_version" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subgrupos_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Subgrupos" Type="Self.Subgrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Subgrupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionConstructoraModelStoreContainer">
+          <EntitySet Name="Albaran_li" EntityType="Self.Albaran_li" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Albaranes_ca" EntityType="Self.Albaranes_ca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Balance" EntityType="Self.Balance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_Equipos" EntityType="Self.D_Equipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_Presuca" EntityType="Self.D_Presuca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_Presuli" EntityType="Self.D_Presuli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_provee" EntityType="Self.D_provee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Est_Financiero" EntityType="Self.Est_Financiero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="F_MaestraSubPartidas" EntityType="Self.F_MaestraSubPartidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facturas_ca" EntityType="Self.Facturas_ca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facturas_li" EntityType="Self.Facturas_li" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gastos_Fijos" EntityType="Self.Gastos_Fijos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupos" EntityType="Self.Grupos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupos_Rel" EntityType="Self.Grupos_Rel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log_Errores" EntityType="Self.Log_Errores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Obras" EntityType="Self.Obras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Obras_Lineas" EntityType="Self.Obras_Lineas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParteTrabajo" EntityType="Self.ParteTrabajo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presu_Calidad" EntityType="Self.Presu_Calidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presu_Conta" EntityType="Self.Presu_Conta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presu_Elem_Estan" EntityType="Self.Presu_Elem_Estan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presu_Elementos" EntityType="Self.Presu_Elementos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presu_Estancias" EntityType="Self.Presu_Estancias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presu_Presu_Ca" EntityType="Self.Presu_Presu_Ca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presu_Presu_li" EntityType="Self.Presu_Presu_li" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subgrupos" EntityType="Self.Subgrupos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Aux_PrefCuentas" EntityType="Self.Aux_PrefCuentas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Aux_PrefCuentas].[Prefijo] AS [Prefijo], 
+    [Aux_PrefCuentas].[Cuenta] AS [Cuenta]
+    FROM [dbo].[Aux_PrefCuentas] AS [Aux_PrefCuentas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Certificaciones" EntityType="Self.Certificaciones" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Certificaciones].[id_Obra] AS [id_Obra], 
+    [Certificaciones].[Id_Empresa] AS [Id_Empresa], 
+    [Certificaciones].[Mes] AS [Mes], 
+    [Certificaciones].[Año] AS [Año], 
+    [Certificaciones].[Importe] AS [Importe]
+    FROM [dbo].[Certificaciones] AS [Certificaciones]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="F_PlanigPartidas" EntityType="Self.F_PlanigPartidas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [F_PlanigPartidas].[Id_Empresa] AS [Id_Empresa], 
+    [F_PlanigPartidas].[Id_Obra] AS [Id_Obra], 
+    [F_PlanigPartidas].[Id_Partida] AS [Id_Partida], 
+    [F_PlanigPartidas].[FechaInicio] AS [FechaInicio], 
+    [F_PlanigPartidas].[FechaFin] AS [FechaFin], 
+    [F_PlanigPartidas].[Coste] AS [Coste]
+    FROM [dbo].[F_PlanigPartidas] AS [F_PlanigPartidas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Produ_Alcosan" EntityType="Self.Produ_Alcosan" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Produ_Alcosan].[Marca] AS [Marca], 
+    [Produ_Alcosan].[Ref_Fabricante] AS [Ref_Fabricante], 
+    [Produ_Alcosan].[Nombre] AS [Nombre], 
+    [Produ_Alcosan].[P_Venta] AS [P_Venta], 
+    [Produ_Alcosan].[dto1] AS [dto1], 
+    [Produ_Alcosan].[dto2] AS [dto2], 
+    [Produ_Alcosan].[dto3] AS [dto3], 
+    [Produ_Alcosan].[P_Neto] AS [P_Neto], 
+    [Produ_Alcosan].[Fam] AS [Fam], 
+    [Produ_Alcosan].[Des_Fam] AS [Des_Fam], 
+    [Produ_Alcosan].[Grupo] AS [Grupo], 
+    [Produ_Alcosan].[Des_Grupo] AS [Des_Grupo], 
+    [Produ_Alcosan].[SubGrupo] AS [SubGrupo], 
+    [Produ_Alcosan].[Des_SubGrupo] AS [Des_SubGrupo]
+    FROM [dbo].[Produ_Alcosan] AS [Produ_Alcosan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Puertas" EntityType="Self.Puertas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Puertas].[fecha] AS [fecha], 
+    [Puertas].[hora] AS [hora], 
+    [Puertas].[id_user] AS [id_user], 
+    [Puertas].[nombre] AS [nombre], 
+    [Puertas].[apellido] AS [apellido], 
+    [Puertas].[Puerta] AS [Puerta]
+    FROM [dbo].[Puertas] AS [Puertas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TarifasProvee" EntityType="Self.TarifasProvee" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TarifasProvee].[Id_Proveedor] AS [Id_Proveedor], 
+    [TarifasProvee].[Codigo] AS [Codigo], 
+    [TarifasProvee].[Nombre] AS [Nombre], 
+    [TarifasProvee].[Precio] AS [Precio], 
+    [TarifasProvee].[Url] AS [Url]
+    FROM [dbo].[TarifasProvee] AS [TarifasProvee]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Albaran_li_Albaranes_ca" Association="Self.FK_Albaran_li_Albaranes_ca">
+            <End Role="Albaranes_ca" EntitySet="Albaranes_ca" />
+            <End Role="Albaran_li" EntitySet="Albaran_li" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Albaranes_ca_Obras" Association="Self.FK_Albaranes_ca_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Albaranes_ca" EntitySet="Albaranes_ca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Balance_Obras" Association="Self.FK_Balance_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Balance" EntitySet="Balance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuentas_Empresas" Association="Self.FK_Cuentas_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuentas_Grupos" Association="Self.FK_Cuentas_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuentas_Subgrupos" Association="Self.FK_Cuentas_Subgrupos">
+            <End Role="Subgrupos" EntitySet="Subgrupos" />
+            <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_D_Equipos_D_provee" Association="Self.FK_D_Equipos_D_provee">
+            <End Role="D_provee" EntitySet="D_provee" />
+            <End Role="D_Equipos" EntitySet="D_Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_D_Presuca_Obras" Association="Self.FK_D_Presuca_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="D_Presuca" EntitySet="D_Presuca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_D_Presuli_D_Equipos" Association="Self.FK_D_Presuli_D_Equipos">
+            <End Role="D_Equipos" EntitySet="D_Equipos" />
+            <End Role="D_Presuli" EntitySet="D_Presuli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_D_Presuli_D_Presuca" Association="Self.FK_D_Presuli_D_Presuca">
+            <End Role="D_Presuca" EntitySet="D_Presuca" />
+            <End Role="D_Presuli" EntitySet="D_Presuli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_F_MaestraSubPartidas_F_MaestraSubPartidas" Association="Self.FK_F_MaestraSubPartidas_F_MaestraSubPartidas">
+            <End Role="F_MaestraSubPartidas" EntitySet="F_MaestraSubPartidas" />
+            <End Role="F_MaestraSubPartidas1" EntitySet="F_MaestraSubPartidas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_F_PlanigPartidas_F_MaestraSubPartidas" Association="Self.FK_F_PlanigPartidas_F_MaestraSubPartidas">
+            <End Role="F_MaestraSubPartidas" EntitySet="F_MaestraSubPartidas" />
+            <End Role="F_PlanigPartidas" EntitySet="F_PlanigPartidas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_ca_Obras" Association="Self.FK_Facturas_ca_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Facturas_ca" EntitySet="Facturas_ca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_li_Facturas_ca" Association="Self.FK_Facturas_li_Facturas_ca">
+            <End Role="Facturas_ca" EntitySet="Facturas_ca" />
+            <End Role="Facturas_li" EntitySet="Facturas_li" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_li_Grupos" Association="Self.FK_Facturas_li_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Facturas_li" EntitySet="Facturas_li" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupos_Rel_Grupos" Association="Self.FK_Grupos_Rel_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Grupos_Rel" EntitySet="Grupos_Rel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupos_Rel_Obras" Association="Self.FK_Grupos_Rel_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Grupos_Rel" EntitySet="Grupos_Rel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupos_Rel_Subgrupos" Association="Self.FK_Grupos_Rel_Subgrupos">
+            <End Role="Subgrupos" EntitySet="Subgrupos" />
+            <End Role="Grupos_Rel" EntitySet="Grupos_Rel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Informe_Cuentas" Association="Self.FK_Informe_Cuentas">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="Balance" EntitySet="Balance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lineas_Obras_Estados" Association="Self.FK_Lineas_Obras_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Obras_Lineas" EntitySet="Obras_Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lineas_Obras_Grupos" Association="Self.FK_Lineas_Obras_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Obras_Lineas" EntitySet="Obras_Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obra_Empresas" Association="Self.FK_Obra_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="Obras" EntitySet="Obras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obras_Lineas_Obras" Association="Self.FK_Obras_Lineas_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Obras_Lineas" EntitySet="Obras_Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obras_Lineas_Subgrupos" Association="Self.FK_Obras_Lineas_Subgrupos">
+            <End Role="Subgrupos" EntitySet="Subgrupos" />
+            <End Role="Obras_Lineas" EntitySet="Obras_Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParteTrabajo_Obras" Association="Self.FK_ParteTrabajo_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="ParteTrabajo" EntitySet="ParteTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Calidad_Presu_Elementos" Association="Self.FK_Presu_Calidad_Presu_Elementos">
+            <End Role="Presu_Elementos" EntitySet="Presu_Elementos" />
+            <End Role="Presu_Calidad" EntitySet="Presu_Calidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Conta_Grupos" Association="Self.FK_Presu_Conta_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Presu_Conta" EntitySet="Presu_Conta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Conta_Obras" Association="Self.FK_Presu_Conta_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Presu_Conta" EntitySet="Presu_Conta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Elem_Estan_Presu_Elementos" Association="Self.FK_Presu_Elem_Estan_Presu_Elementos">
+            <End Role="Presu_Elementos" EntitySet="Presu_Elementos" />
+            <End Role="Presu_Elem_Estan" EntitySet="Presu_Elem_Estan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Elem_Estan_Presu_Estancias" Association="Self.FK_Presu_Elem_Estan_Presu_Estancias">
+            <End Role="Presu_Estancias" EntitySet="Presu_Estancias" />
+            <End Role="Presu_Elem_Estan" EntitySet="Presu_Elem_Estan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Presu_li_Presu_Estancias" Association="Self.FK_Presu_Presu_li_Presu_Estancias">
+            <End Role="Presu_Estancias" EntitySet="Presu_Estancias" />
+            <End Role="Presu_Presu_li" EntitySet="Presu_Presu_li" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Presu_li_Presu_Presu_Ca" Association="Self.FK_Presu_Presu_li_Presu_Presu_Ca">
+            <End Role="Presu_Presu_Ca" EntitySet="Presu_Presu_Ca" />
+            <End Role="Presu_Presu_li" EntitySet="Presu_Presu_li" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subgrupos_Grupos" Association="Self.FK_Subgrupos_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Subgrupos" EntitySet="Subgrupos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionConstructoraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Albaran_li">
+          <Key>
+            <PropertyRef Name="Id_Alb_li" />
+          </Key>
+          <Property Name="Id_Alb_li" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Alb_liSigrid" Type="Int32" Nullable="false" />
+          <Property Name="Id_Albaran" Type="Int32" Nullable="false" />
+          <Property Name="Id_producto" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descuento" Type="Double" Nullable="false" />
+          <Property Name="Pre_sindescuento" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Pre" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Cantidad" Type="Double" Nullable="false" />
+          <Property Name="Iva" Type="Double" Nullable="false" />
+          <Property Name="Cuota" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Base" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Importe" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Cap_sigrid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_grupo" Type="Int32" Nullable="false" />
+          <Property Name="id_subgrupo" Type="Int32" />
+          <Property Name="Mano_Obra" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Albaranes_ca" Relationship="Self.FK_Albaran_li_Albaranes_ca" FromRole="Albaran_li" ToRole="Albaranes_ca" />
+        </EntityType>
+        <EntityType Name="Albaranes_ca">
+          <Key>
+            <PropertyRef Name="Id_Albaran" />
+          </Key>
+          <Property Name="Id_Albaran" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_AlbSigrid" Type="Int32" Nullable="false" />
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Ref_Alb" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Su_ref" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id_Formapago" Type="Int32" Nullable="false" />
+          <Property Name="Id_proveedor" Type="Int32" Nullable="false" />
+          <Property Name="Proveedor" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cif" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Base" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Cuota" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="TotImporte" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Albaran_li" Relationship="Self.FK_Albaran_li_Albaranes_ca" FromRole="Albaranes_ca" ToRole="Albaran_li" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_Albaranes_ca_Obras" FromRole="Albaranes_ca" ToRole="Obras" />
+        </EntityType>
+        <EntityType Name="Balance">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="Orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Informe" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Id_empresa" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="550" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imp_debe" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Imp_Haber" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Cuenta" Type="Int32" Nullable="false" />
+          <Property Name="Imp_Compara_debe" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Imp_Compara_Haber" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_Balance_Obras" FromRole="Balance" ToRole="Obras" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.FK_Informe_Cuentas" FromRole="Balance" ToRole="Cuentas" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="Id_Cuenta" />
+          </Key>
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Cuenta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="550" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Id_SubGrupo" Type="Int32" Nullable="false" />
+          <Property Name="TrataCuenta" Type="Boolean" Nullable="false" />
+          <Property Name="Id_Cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Balance" Relationship="Self.FK_Informe_Cuentas" FromRole="Cuentas" ToRole="Balance" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK_Cuentas_Empresas" FromRole="Cuentas" ToRole="Empresas" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK_Cuentas_Grupos" FromRole="Cuentas" ToRole="Grupos" />
+          <NavigationProperty Name="Subgrupos" Relationship="Self.FK_Cuentas_Subgrupos" FromRole="Cuentas" ToRole="Subgrupos" />
+        </EntityType>
+        <EntityType Name="D_Equipos">
+          <Key>
+            <PropertyRef Name="Referencia" />
+          </Key>
+          <Property Name="Referencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="N_Alternativo" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pvp" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="T_programacion" Type="Int32" Nullable="false" />
+          <Property Name="T_volcado" Type="Int32" Nullable="false" />
+          <Property Name="T_instalacion" Type="Int32" Nullable="false" />
+          <Property Name="T_puestamarcha" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_proveedor" Type="Int32" Nullable="false" />
+          <Property Name="Grupo" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="D_provee" Relationship="Self.FK_D_Equipos_D_provee" FromRole="D_Equipos" ToRole="D_provee" />
+          <NavigationProperty Name="D_Presuli" Relationship="Self.FK_D_Presuli_D_Equipos" FromRole="D_Equipos" ToRole="D_Presuli" />
+        </EntityType>
+        <EntityType Name="D_Presuca">
+          <Key>
+            <PropertyRef Name="id_presu" />
+          </Key>
+          <Property Name="id_presu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CosteProgramador" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="GG" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Beneficio" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="MargenMat" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="m_construdios" Type="Int32" Nullable="false" />
+          <Property Name="id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="id_empresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_D_Presuca_Obras" FromRole="D_Presuca" ToRole="Obras" />
+          <NavigationProperty Name="D_Presuli" Relationship="Self.FK_D_Presuli_D_Presuca" FromRole="D_Presuca" ToRole="D_Presuli" />
+        </EntityType>
+        <EntityType Name="D_Presuli">
+          <Key>
+            <PropertyRef Name="orden" />
+          </Key>
+          <Property Name="id_presu" Type="Int32" Nullable="false" />
+          <Property Name="ref" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unidades" Type="Int32" Nullable="false" />
+          <Property Name="pvp" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="dte" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Costo" Type="Decimal" Precision="10" Scale="3" Nullable="false" />
+          <Property Name="Mobra" Type="Int32" Nullable="false" />
+          <Property Name="orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grupo" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="D_Equipos" Relationship="Self.FK_D_Presuli_D_Equipos" FromRole="D_Presuli" ToRole="D_Equipos" />
+          <NavigationProperty Name="D_Presuca" Relationship="Self.FK_D_Presuli_D_Presuca" FromRole="D_Presuli" ToRole="D_Presuca" />
+        </EntityType>
+        <EntityType Name="D_provee">
+          <Key>
+            <PropertyRef Name="id_proveedor" />
+          </Key>
+          <Property Name="id_proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Proveedor" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descuento" Type="Decimal" Precision="5" Scale="3" Nullable="false" />
+          <NavigationProperty Name="D_Equipos" Relationship="Self.FK_D_Equipos_D_provee" FromRole="D_provee" ToRole="D_Equipos" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+          </Key>
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BBDD_Sigrid" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Servidor_Sigrid" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usuario_Sigrid" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pwd_Sigrid" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BBDD_ContaWin" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Servidor_ContaWin" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usuario_ContaWin" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pwd_ContaWin" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cod_Contable" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Banco" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.FK_Cuentas_Empresas" FromRole="Empresas" ToRole="Cuentas" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_Obra_Empresas" FromRole="Empresas" ToRole="Obras" />
+        </EntityType>
+        <EntityType Name="Est_Financiero">
+          <Key>
+            <PropertyRef Name="Id_Estudio" />
+          </Key>
+          <Property Name="Id_Estudio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fini" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Ffin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mts_Construidos" Type="Int32" Nullable="false" />
+          <Property Name="mts_Utiles" Type="Int32" Nullable="false" />
+          <Property Name="Compra_Bruto" Type="Double" Nullable="false" />
+          <Property Name="Gastos_Adquisicion" Type="Double" Nullable="false" />
+          <Property Name="CosteReforma" Type="Int32" Nullable="false" />
+          <Property Name="Impuestos" Type="Double" Nullable="false" />
+          <Property Name="Mantenimiento" Type="Double" Nullable="false" />
+          <Property Name="AporCapital" Type="Int32" Nullable="false" />
+          <Property Name="ImpHipoteca" Type="Int32" Nullable="false" />
+          <Property Name="TipoInteres" Type="Double" Nullable="false" />
+          <Property Name="AñoAmortizacion" Type="Int32" Nullable="false" />
+          <Property Name="P_Venta" Type="Int32" Nullable="false" />
+          <Property Name="GastosVenta" Type="Double" Nullable="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Obras_Lineas" Relationship="Self.FK_Lineas_Obras_Estados" FromRole="Estados" ToRole="Obras_Lineas" />
+        </EntityType>
+        <EntityType Name="F_MaestraSubPartidas">
+          <Key>
+            <PropertyRef Name="Id_Partida" />
+          </Key>
+          <Property Name="Id_PartidaMadre" Type="Int32" Nullable="false" />
+          <Property Name="Id_Partida" Type="Int32" Nullable="false" />
+          <Property Name="Denominacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Color" Type="Double" Nullable="false" />
+          <NavigationProperty Name="F_MaestraSubPartidas1" Relationship="Self.FK_F_MaestraSubPartidas_F_MaestraSubPartidas" FromRole="F_MaestraSubPartidas" ToRole="F_MaestraSubPartidas1" />
+          <NavigationProperty Name="F_MaestraSubPartidas2" Relationship="Self.FK_F_MaestraSubPartidas_F_MaestraSubPartidas" FromRole="F_MaestraSubPartidas1" ToRole="F_MaestraSubPartidas" />
+          <NavigationProperty Name="F_PlanigPartidas" Relationship="Self.FK_F_PlanigPartidas_F_MaestraSubPartidas" FromRole="F_MaestraSubPartidas" ToRole="F_PlanigPartidas" />
+        </EntityType>
+        <EntityType Name="Facturas_ca">
+          <Key>
+            <PropertyRef Name="Id_Factura" />
+          </Key>
+          <Property Name="Id_Factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_FacSigrid" Type="Int32" Nullable="false" />
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Ref_Fac" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Su_ref" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id_Formapago" Type="Int32" Nullable="false" />
+          <Property Name="Id_proveedor" Type="Int32" Nullable="false" />
+          <Property Name="Proveedor" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cif" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Base" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Cuota" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="TotImporte" Type="Decimal" Precision="20" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="Int32" Nullable="false" />
+          <Property Name="SujetoPasivo" Type="Boolean" Nullable="false" />
+          <Property Name="ApunteCompra" Type="Int32" />
+          <Property Name="FechaPago" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_Facturas_ca_Obras" FromRole="Facturas_ca" ToRole="Obras" />
+          <NavigationProperty Name="Facturas_li" Relationship="Self.FK_Facturas_li_Facturas_ca" FromRole="Facturas_ca" ToRole="Facturas_li" />
+        </EntityType>
+        <EntityType Name="Facturas_li">
+          <Key>
+            <PropertyRef Name="Id_fac_li" />
+          </Key>
+          <Property Name="Id_fac_li" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Fac_liSigrid" Type="Int32" Nullable="false" />
+          <Property Name="Id_Factura" Type="Int32" Nullable="false" />
+          <Property Name="Id_producto" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descuento" Type="Double" Nullable="false" />
+          <Property Name="Pre_sindescuento" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Pre" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Cantidad" Type="Double" Nullable="false" />
+          <Property Name="Iva" Type="Double" Nullable="false" />
+          <Property Name="Cuota" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Base" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Importe" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="Cap_sigrid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_grupo" Type="Int32" Nullable="false" />
+          <Property Name="id_subgrupo" Type="Int32" />
+          <Property Name="Tipo_Cuenta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mano_Obra" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Facturas_ca" Relationship="Self.FK_Facturas_li_Facturas_ca" FromRole="Facturas_li" ToRole="Facturas_ca" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK_Facturas_li_Grupos" FromRole="Facturas_li" ToRole="Grupos" />
+        </EntityType>
+        <EntityType Name="Gastos_Fijos">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Concepto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Importe" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Grupos">
+          <Key>
+            <PropertyRef Name="Id_Grupo" />
+          </Key>
+          <Property Name="Id_Grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Tipo" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" />
+          <Property Name="Id_TipoCoste" Type="Int32" Nullable="false" />
+          <Property Name="Cuenta_prefijada" Type="Int32" Nullable="false" />
+          <Property Name="Zona_imputada" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.FK_Cuentas_Grupos" FromRole="Grupos" ToRole="Cuentas" />
+          <NavigationProperty Name="Facturas_li" Relationship="Self.FK_Facturas_li_Grupos" FromRole="Grupos" ToRole="Facturas_li" />
+          <NavigationProperty Name="Grupos_Rel" Relationship="Self.FK_Grupos_Rel_Grupos" FromRole="Grupos" ToRole="Grupos_Rel" />
+          <NavigationProperty Name="Obras_Lineas" Relationship="Self.FK_Lineas_Obras_Grupos" FromRole="Grupos" ToRole="Obras_Lineas" />
+          <NavigationProperty Name="Presu_Conta" Relationship="Self.FK_Presu_Conta_Grupos" FromRole="Grupos" ToRole="Presu_Conta" />
+          <NavigationProperty Name="Subgrupos" Relationship="Self.FK_Subgrupos_Grupos" FromRole="Grupos" ToRole="Subgrupos" />
+        </EntityType>
+        <EntityType Name="Grupos_Rel">
+          <Key>
+            <PropertyRef Name="Id_Obra" />
+            <PropertyRef Name="Cod_Sigrid" />
+          </Key>
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Id_Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Id_Subgrupo" Type="Int32" Nullable="false" />
+          <Property Name="Cod_Sigrid" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK_Grupos_Rel_Grupos" FromRole="Grupos_Rel" ToRole="Grupos" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_Grupos_Rel_Obras" FromRole="Grupos_Rel" ToRole="Obras" />
+          <NavigationProperty Name="Subgrupos" Relationship="Self.FK_Grupos_Rel_Subgrupos" FromRole="Grupos_Rel" ToRole="Subgrupos" />
+        </EntityType>
+        <EntityType Name="Log_Errores">
+          <Key>
+            <PropertyRef Name="orden" />
+          </Key>
+          <Property Name="Id_Proceso" Type="Int32" Nullable="false" />
+          <Property Name="Proceso" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Item" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Item" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo_error" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Log" Type="String" MaxLength="550" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="id_empresa" Type="Int32" Nullable="false" />
+          <Property Name="NombreObra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Obras">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+            <PropertyRef Name="Id_Obra" />
+          </Key>
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Tipo_Obra" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Sigrid" Type="Int32" Nullable="false" />
+          <Property Name="Construido" Type="Double" Nullable="false" />
+          <Property Name="Importado_presu" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_Importado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Grupos_Rela" Type="Boolean" Nullable="false" />
+          <Property Name="Por_Confirming" Type="Double" Nullable="false" />
+          <Property Name="FechaCerti" Type="Int32" Nullable="false" />
+          <Property Name="Finalizada" Type="Boolean" Nullable="false" />
+          <Property Name="M_Viviendas" Type="Double" Nullable="false" />
+          <Property Name="M_Rasante" Type="Double" Nullable="false" />
+          <Property Name="M_ZonasComunes" Type="Double" Nullable="false" />
+          <Property Name="iva" Type="Boolean" />
+          <Property Name="M_Escriturados" Type="Int32" Nullable="false" />
+          <Property Name="M_Construidos" Type="Int32" Nullable="false" />
+          <Property Name="M_Utiles" Type="Int32" Nullable="false" />
+          <Property Name="Ajuste" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Comentario_Ajuste" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="F_Stado_Planig" Type="Int32" />
+          <NavigationProperty Name="Albaranes_ca" Relationship="Self.FK_Albaranes_ca_Obras" FromRole="Obras" ToRole="Albaranes_ca" />
+          <NavigationProperty Name="Balance" Relationship="Self.FK_Balance_Obras" FromRole="Obras" ToRole="Balance" />
+          <NavigationProperty Name="D_Presuca" Relationship="Self.FK_D_Presuca_Obras" FromRole="Obras" ToRole="D_Presuca" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK_Obra_Empresas" FromRole="Obras" ToRole="Empresas" />
+          <NavigationProperty Name="Facturas_ca" Relationship="Self.FK_Facturas_ca_Obras" FromRole="Obras" ToRole="Facturas_ca" />
+          <NavigationProperty Name="Grupos_Rel" Relationship="Self.FK_Grupos_Rel_Obras" FromRole="Obras" ToRole="Grupos_Rel" />
+          <NavigationProperty Name="Obras_Lineas" Relationship="Self.FK_Obras_Lineas_Obras" FromRole="Obras" ToRole="Obras_Lineas" />
+          <NavigationProperty Name="ParteTrabajo" Relationship="Self.FK_ParteTrabajo_Obras" FromRole="Obras" ToRole="ParteTrabajo" />
+          <NavigationProperty Name="Presu_Conta" Relationship="Self.FK_Presu_Conta_Obras" FromRole="Obras" ToRole="Presu_Conta" />
+        </EntityType>
+        <EntityType Name="Obras_Lineas">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="Id_linea" Type="Int32" Nullable="false" />
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Id_ObraSigrid" Type="Int32" Nullable="false" />
+          <Property Name="Id_Estado" Type="Int32" Nullable="false" />
+          <Property Name="Id_Fase" Type="Int32" Nullable="false" />
+          <Property Name="Id_TipoCoste" Type="Int32" Nullable="false" />
+          <Property Name="Capitulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Subcapitulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Id_Subgrupo" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Medidas" Type="Double" Nullable="false" />
+          <Property Name="Unidad_Medida" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_importado" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Importe" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_presu" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_P_venta" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_VentaPrevista" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_CostePrevisto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_Certificado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_CosteReal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_Facturado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_Pagado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_Albaranes" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Importe_ManoObra" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mano_Obra" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK_Lineas_Obras_Estados" FromRole="Obras_Lineas" ToRole="Estados" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK_Lineas_Obras_Grupos" FromRole="Obras_Lineas" ToRole="Grupos" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_Obras_Lineas_Obras" FromRole="Obras_Lineas" ToRole="Obras" />
+          <NavigationProperty Name="Subgrupos" Relationship="Self.FK_Obras_Lineas_Subgrupos" FromRole="Obras_Lineas" ToRole="Subgrupos" />
+        </EntityType>
+        <EntityType Name="ParteTrabajo">
+          <Key>
+            <PropertyRef Name="Id_LineaParte" />
+          </Key>
+          <Property Name="Id_LineaParte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_LineaParteSigrid" Type="Int32" Nullable="false" />
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Ref_Parte" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Empleado" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Horas" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalImporte" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Cap_Sigrid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Id_Subgrupo" Type="Int32" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_ParteTrabajo_Obras" FromRole="ParteTrabajo" ToRole="Obras" />
+        </EntityType>
+        <EntityType Name="Presu_Calidad">
+          <Key>
+            <PropertyRef Name="Id_linea" />
+          </Key>
+          <Property Name="Id_linea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_elemento" Type="Int32" Nullable="false" />
+          <Property Name="Tipo_Calidad" Type="Int32" Nullable="false" />
+          <Property Name="Calidad" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Presu_Elementos" Relationship="Self.FK_Presu_Calidad_Presu_Elementos" FromRole="Presu_Calidad" ToRole="Presu_Elementos" />
+        </EntityType>
+        <EntityType Name="Presu_Conta">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="id_obra" Type="Int32" Nullable="false" />
+          <Property Name="id_empresa" Type="Int32" Nullable="false" />
+          <Property Name="id_Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Presupuestado" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK_Presu_Conta_Grupos" FromRole="Presu_Conta" ToRole="Grupos" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_Presu_Conta_Obras" FromRole="Presu_Conta" ToRole="Obras" />
+        </EntityType>
+        <EntityType Name="Presu_Elem_Estan">
+          <Key>
+            <PropertyRef Name="Orden" />
+          </Key>
+          <Property Name="Id_estancia" Type="Int32" Nullable="false" />
+          <Property Name="Id_elementos" Type="Int32" Nullable="false" />
+          <Property Name="Unidades" Type="Int32" Nullable="false" />
+          <Property Name="Orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Presu_Elementos" Relationship="Self.FK_Presu_Elem_Estan_Presu_Elementos" FromRole="Presu_Elem_Estan" ToRole="Presu_Elementos" />
+          <NavigationProperty Name="Presu_Estancias" Relationship="Self.FK_Presu_Elem_Estan_Presu_Estancias" FromRole="Presu_Elem_Estan" ToRole="Presu_Estancias" />
+        </EntityType>
+        <EntityType Name="Presu_Elementos">
+          <Key>
+            <PropertyRef Name="Id_Elemento" />
+          </Key>
+          <Property Name="Id_Elemento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Presu_Calidad" Relationship="Self.FK_Presu_Calidad_Presu_Elementos" FromRole="Presu_Elementos" ToRole="Presu_Calidad" />
+          <NavigationProperty Name="Presu_Elem_Estan" Relationship="Self.FK_Presu_Elem_Estan_Presu_Elementos" FromRole="Presu_Elementos" ToRole="Presu_Elem_Estan" />
+        </EntityType>
+        <EntityType Name="Presu_Estancias">
+          <Key>
+            <PropertyRef Name="Id_Estancia" />
+          </Key>
+          <Property Name="Id_Estancia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Presu_Elem_Estan" Relationship="Self.FK_Presu_Elem_Estan_Presu_Estancias" FromRole="Presu_Estancias" ToRole="Presu_Elem_Estan" />
+          <NavigationProperty Name="Presu_Presu_li" Relationship="Self.FK_Presu_Presu_li_Presu_Estancias" FromRole="Presu_Estancias" ToRole="Presu_Presu_li" />
+        </EntityType>
+        <EntityType Name="Presu_Presu_Ca">
+          <Key>
+            <PropertyRef Name="Id_Presu" />
+            <PropertyRef Name="Id_Version" />
+          </Key>
+          <Property Name="Id_Presu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Version" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CteHora" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="nPersonas" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="horas_dias" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ndias" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="T_Manoobra" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="M_Materias" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="G_Generales" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Beneficio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="U_Casas" Type="Int32" />
+          <NavigationProperty Name="Presu_Presu_li" Relationship="Self.FK_Presu_Presu_li_Presu_Presu_Ca" FromRole="Presu_Presu_Ca" ToRole="Presu_Presu_li" />
+        </EntityType>
+        <EntityType Name="Presu_Presu_li">
+          <Key>
+            <PropertyRef Name="Id_linea" />
+          </Key>
+          <Property Name="Id_linea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_version" Type="Int32" Nullable="false" />
+          <Property Name="Id_Presu" Type="Int32" Nullable="false" />
+          <Property Name="Id_Estancia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Presu_Estancias" Relationship="Self.FK_Presu_Presu_li_Presu_Estancias" FromRole="Presu_Presu_li" ToRole="Presu_Estancias" />
+          <NavigationProperty Name="Presu_Presu_Ca" Relationship="Self.FK_Presu_Presu_li_Presu_Presu_Ca" FromRole="Presu_Presu_li" ToRole="Presu_Presu_Ca" />
+        </EntityType>
+        <EntityType Name="Subgrupos">
+          <Key>
+            <PropertyRef Name="Id_Subgrupo" />
+          </Key>
+          <Property Name="Id_Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Id_Subgrupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
+          <Property Name="Cod" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Orden" Type="Int32" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.FK_Cuentas_Subgrupos" FromRole="Subgrupos" ToRole="Cuentas" />
+          <NavigationProperty Name="Grupos" Relationship="Self.FK_Subgrupos_Grupos" FromRole="Subgrupos" ToRole="Grupos" />
+          <NavigationProperty Name="Grupos_Rel" Relationship="Self.FK_Grupos_Rel_Subgrupos" FromRole="Subgrupos" ToRole="Grupos_Rel" />
+          <NavigationProperty Name="Obras_Lineas" Relationship="Self.FK_Obras_Lineas_Subgrupos" FromRole="Subgrupos" ToRole="Obras_Lineas" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Aux_PrefCuentas">
+          <Key>
+            <PropertyRef Name="Prefijo" />
+            <PropertyRef Name="Cuenta" />
+          </Key>
+          <Property Name="Prefijo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cuenta" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Certificaciones">
+          <Key>
+            <PropertyRef Name="id_Obra" />
+            <PropertyRef Name="Id_Empresa" />
+            <PropertyRef Name="Mes" />
+            <PropertyRef Name="Año" />
+            <PropertyRef Name="Importe" />
+          </Key>
+          <Property Name="id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Mes" Type="Int32" Nullable="false" />
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Importe" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="F_PlanigPartidas">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+            <PropertyRef Name="Id_Obra" />
+            <PropertyRef Name="Id_Partida" />
+            <PropertyRef Name="FechaInicio" />
+            <PropertyRef Name="FechaFin" />
+            <PropertyRef Name="Coste" />
+          </Key>
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Id_Partida" Type="Int32" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Coste" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="F_MaestraSubPartidas" Relationship="Self.FK_F_PlanigPartidas_F_MaestraSubPartidas" FromRole="F_PlanigPartidas" ToRole="F_MaestraSubPartidas" />
+        </EntityType>
+        <EntityType Name="Produ_Alcosan">
+          <Key>
+            <PropertyRef Name="Marca" />
+            <PropertyRef Name="Ref_Fabricante" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="P_Venta" />
+            <PropertyRef Name="dto1" />
+            <PropertyRef Name="dto2" />
+            <PropertyRef Name="dto3" />
+            <PropertyRef Name="P_Neto" />
+            <PropertyRef Name="Fam" />
+            <PropertyRef Name="Des_Fam" />
+            <PropertyRef Name="Grupo" />
+            <PropertyRef Name="Des_Grupo" />
+            <PropertyRef Name="SubGrupo" />
+            <PropertyRef Name="Des_SubGrupo" />
+          </Key>
+          <Property Name="Marca" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ref_Fabricante" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_Venta" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="dto1" Type="Int32" Nullable="false" />
+          <Property Name="dto2" Type="Int32" Nullable="false" />
+          <Property Name="dto3" Type="Int32" Nullable="false" />
+          <Property Name="P_Neto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Fam" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Des_Fam" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Des_Grupo" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubGrupo" Type="Int32" Nullable="false" />
+          <Property Name="Des_SubGrupo" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Puertas">
+          <Key>
+            <PropertyRef Name="fecha" />
+            <PropertyRef Name="hora" />
+            <PropertyRef Name="id_user" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="apellido" />
+            <PropertyRef Name="Puerta" />
+          </Key>
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Puerta" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TarifasProvee">
+          <Key>
+            <PropertyRef Name="Id_Proveedor" />
+            <PropertyRef Name="Codigo" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Precio" />
+          </Key>
+          <Property Name="Id_Proveedor" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Precio" Type="Double" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="3050" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Albaran_li_Albaranes_ca">
+          <End Role="Albaranes_ca" Type="Self.Albaranes_ca" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Albaran_li" Type="Self.Albaran_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Albaranes_ca">
+              <PropertyRef Name="Id_Albaran" />
+            </Principal>
+            <Dependent Role="Albaran_li">
+              <PropertyRef Name="Id_Albaran" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Albaranes_ca_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Albaranes_ca" Type="Self.Albaranes_ca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Albaranes_ca">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Balance_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Balance">
+              <PropertyRef Name="Id_empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Informe_Cuentas">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="1" />
+          <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="Id_Cuenta" />
+            </Principal>
+            <Dependent Role="Balance">
+              <PropertyRef Name="Cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuentas_Empresas">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="Cuentas">
+              <PropertyRef Name="Id_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuentas_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Cuentas">
+              <PropertyRef Name="Id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuentas_Subgrupos">
+          <End Role="Subgrupos" Type="Self.Subgrupos" Multiplicity="1" />
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subgrupos">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Principal>
+            <Dependent Role="Cuentas">
+              <PropertyRef Name="Id_SubGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_D_Equipos_D_provee">
+          <End Role="D_provee" Type="Self.D_provee" Multiplicity="1" />
+          <End Role="D_Equipos" Type="Self.D_Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="D_provee">
+              <PropertyRef Name="id_proveedor" />
+            </Principal>
+            <Dependent Role="D_Equipos">
+              <PropertyRef Name="id_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_D_Presuli_D_Equipos">
+          <End Role="D_Equipos" Type="Self.D_Equipos" Multiplicity="1" />
+          <End Role="D_Presuli" Type="Self.D_Presuli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="D_Equipos">
+              <PropertyRef Name="Referencia" />
+            </Principal>
+            <Dependent Role="D_Presuli">
+              <PropertyRef Name="ref" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_D_Presuca_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="D_Presuca" Type="Self.D_Presuca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="D_Presuca">
+              <PropertyRef Name="id_empresa" />
+              <PropertyRef Name="id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_D_Presuli_D_Presuca">
+          <End Role="D_Presuca" Type="Self.D_Presuca" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="D_Presuli" Type="Self.D_Presuli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="D_Presuca">
+              <PropertyRef Name="id_presu" />
+            </Principal>
+            <Dependent Role="D_Presuli">
+              <PropertyRef Name="id_presu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Obra_Empresas">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lineas_Obras_Estados">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
+          <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Obras_Lineas">
+              <PropertyRef Name="Id_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_F_MaestraSubPartidas_F_MaestraSubPartidas">
+          <End Role="F_MaestraSubPartidas" Type="Self.F_MaestraSubPartidas" Multiplicity="1" />
+          <End Role="F_MaestraSubPartidas1" Type="Self.F_MaestraSubPartidas" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="F_MaestraSubPartidas">
+              <PropertyRef Name="Id_Partida" />
+            </Principal>
+            <Dependent Role="F_MaestraSubPartidas1">
+              <PropertyRef Name="Id_Partida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_F_PlanigPartidas_F_MaestraSubPartidas">
+          <End Role="F_MaestraSubPartidas" Type="Self.F_MaestraSubPartidas" Multiplicity="1" />
+          <End Role="F_PlanigPartidas" Type="Self.F_PlanigPartidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="F_MaestraSubPartidas">
+              <PropertyRef Name="Id_Partida" />
+            </Principal>
+            <Dependent Role="F_PlanigPartidas">
+              <PropertyRef Name="Id_Partida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_ca_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Facturas_ca" Type="Self.Facturas_ca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Facturas_ca">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_li_Facturas_ca">
+          <End Role="Facturas_ca" Type="Self.Facturas_ca" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Facturas_li" Type="Self.Facturas_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facturas_ca">
+              <PropertyRef Name="Id_Factura" />
+            </Principal>
+            <Dependent Role="Facturas_li">
+              <PropertyRef Name="Id_Factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_li_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Facturas_li" Type="Self.Facturas_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Facturas_li">
+              <PropertyRef Name="Id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupos_Rel_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Grupos_Rel" Type="Self.Grupos_Rel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Grupos_Rel">
+              <PropertyRef Name="Id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lineas_Obras_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Obras_Lineas">
+              <PropertyRef Name="Id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Conta_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Presu_Conta" Type="Self.Presu_Conta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Presu_Conta">
+              <PropertyRef Name="id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subgrupos_Grupos">
+          <End Role="Grupos" Type="Self.Grupos" Multiplicity="1" />
+          <End Role="Subgrupos" Type="Self.Subgrupos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Principal>
+            <Dependent Role="Subgrupos">
+              <PropertyRef Name="Id_Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupos_Rel_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Grupos_Rel" Type="Self.Grupos_Rel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Grupos_Rel">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupos_Rel_Subgrupos">
+          <End Role="Subgrupos" Type="Self.Subgrupos" Multiplicity="1" />
+          <End Role="Grupos_Rel" Type="Self.Grupos_Rel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subgrupos">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Principal>
+            <Dependent Role="Grupos_Rel">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Obras_Lineas_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Obras_Lineas">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParteTrabajo_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="ParteTrabajo" Type="Self.ParteTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="ParteTrabajo">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Conta_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Presu_Conta" Type="Self.Presu_Conta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Presu_Conta">
+              <PropertyRef Name="id_empresa" />
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Obras_Lineas_Subgrupos">
+          <End Role="Subgrupos" Type="Self.Subgrupos" Multiplicity="1" />
+          <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subgrupos">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Principal>
+            <Dependent Role="Obras_Lineas">
+              <PropertyRef Name="Id_Subgrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Calidad_Presu_Elementos">
+          <End Role="Presu_Elementos" Type="Self.Presu_Elementos" Multiplicity="1" />
+          <End Role="Presu_Calidad" Type="Self.Presu_Calidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Elementos">
+              <PropertyRef Name="Id_Elemento" />
+            </Principal>
+            <Dependent Role="Presu_Calidad">
+              <PropertyRef Name="Id_elemento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Elem_Estan_Presu_Elementos">
+          <End Role="Presu_Elementos" Type="Self.Presu_Elementos" Multiplicity="1" />
+          <End Role="Presu_Elem_Estan" Type="Self.Presu_Elem_Estan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Elementos">
+              <PropertyRef Name="Id_Elemento" />
+            </Principal>
+            <Dependent Role="Presu_Elem_Estan">
+              <PropertyRef Name="Id_elementos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Elem_Estan_Presu_Estancias">
+          <End Role="Presu_Estancias" Type="Self.Presu_Estancias" Multiplicity="1" />
+          <End Role="Presu_Elem_Estan" Type="Self.Presu_Elem_Estan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Estancias">
+              <PropertyRef Name="Id_Estancia" />
+            </Principal>
+            <Dependent Role="Presu_Elem_Estan">
+              <PropertyRef Name="Id_estancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Presu_li_Presu_Estancias">
+          <End Role="Presu_Estancias" Type="Self.Presu_Estancias" Multiplicity="1" />
+          <End Role="Presu_Presu_li" Type="Self.Presu_Presu_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Estancias">
+              <PropertyRef Name="Id_Estancia" />
+            </Principal>
+            <Dependent Role="Presu_Presu_li">
+              <PropertyRef Name="Id_Estancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Presu_Presu_li_Presu_Presu_Ca">
+          <End Role="Presu_Presu_Ca" Type="Self.Presu_Presu_Ca" Multiplicity="1" />
+          <End Role="Presu_Presu_li" Type="Self.Presu_Presu_li" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presu_Presu_Ca">
+              <PropertyRef Name="Id_Presu" />
+              <PropertyRef Name="Id_Version" />
+            </Principal>
+            <Dependent Role="Presu_Presu_li">
+              <PropertyRef Name="Id_Presu" />
+              <PropertyRef Name="Id_version" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionConstructoraEntities25" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Albaran_li" EntityType="Self.Albaran_li" />
+          <EntitySet Name="Albaranes_ca" EntityType="Self.Albaranes_ca" />
+          <EntitySet Name="Balance" EntityType="Self.Balance" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
+          <EntitySet Name="D_Equipos" EntityType="Self.D_Equipos" />
+          <EntitySet Name="D_Presuca" EntityType="Self.D_Presuca" />
+          <EntitySet Name="D_Presuli" EntityType="Self.D_Presuli" />
+          <EntitySet Name="D_provee" EntityType="Self.D_provee" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" />
+          <EntitySet Name="Est_Financiero" EntityType="Self.Est_Financiero" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" />
+          <EntitySet Name="F_MaestraSubPartidas" EntityType="Self.F_MaestraSubPartidas" />
+          <EntitySet Name="Facturas_ca" EntityType="Self.Facturas_ca" />
+          <EntitySet Name="Facturas_li" EntityType="Self.Facturas_li" />
+          <EntitySet Name="Gastos_Fijos" EntityType="Self.Gastos_Fijos" />
+          <EntitySet Name="Grupos" EntityType="Self.Grupos" />
+          <EntitySet Name="Grupos_Rel" EntityType="Self.Grupos_Rel" />
+          <EntitySet Name="Log_Errores" EntityType="Self.Log_Errores" />
+          <EntitySet Name="Obras" EntityType="Self.Obras" />
+          <EntitySet Name="Obras_Lineas" EntityType="Self.Obras_Lineas" />
+          <EntitySet Name="ParteTrabajo" EntityType="Self.ParteTrabajo" />
+          <EntitySet Name="Presu_Calidad" EntityType="Self.Presu_Calidad" />
+          <EntitySet Name="Presu_Conta" EntityType="Self.Presu_Conta" />
+          <EntitySet Name="Presu_Elem_Estan" EntityType="Self.Presu_Elem_Estan" />
+          <EntitySet Name="Presu_Elementos" EntityType="Self.Presu_Elementos" />
+          <EntitySet Name="Presu_Estancias" EntityType="Self.Presu_Estancias" />
+          <EntitySet Name="Presu_Presu_Ca" EntityType="Self.Presu_Presu_Ca" />
+          <EntitySet Name="Presu_Presu_li" EntityType="Self.Presu_Presu_li" />
+          <EntitySet Name="Subgrupos" EntityType="Self.Subgrupos" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Aux_PrefCuentas" EntityType="Self.Aux_PrefCuentas" />
+          <EntitySet Name="Certificaciones" EntityType="Self.Certificaciones" />
+          <EntitySet Name="F_PlanigPartidas" EntityType="Self.F_PlanigPartidas" />
+          <EntitySet Name="Produ_Alcosan" EntityType="Self.Produ_Alcosan" />
+          <EntitySet Name="Puertas" EntityType="Self.Puertas" />
+          <EntitySet Name="TarifasProvee" EntityType="Self.TarifasProvee" />
+          <AssociationSet Name="FK_Albaran_li_Albaranes_ca" Association="Self.FK_Albaran_li_Albaranes_ca">
+            <End Role="Albaranes_ca" EntitySet="Albaranes_ca" />
+            <End Role="Albaran_li" EntitySet="Albaran_li" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Albaranes_ca_Obras" Association="Self.FK_Albaranes_ca_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Albaranes_ca" EntitySet="Albaranes_ca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Balance_Obras" Association="Self.FK_Balance_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Balance" EntitySet="Balance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Informe_Cuentas" Association="Self.FK_Informe_Cuentas">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="Balance" EntitySet="Balance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuentas_Empresas" Association="Self.FK_Cuentas_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuentas_Grupos" Association="Self.FK_Cuentas_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuentas_Subgrupos" Association="Self.FK_Cuentas_Subgrupos">
+            <End Role="Subgrupos" EntitySet="Subgrupos" />
+            <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_D_Equipos_D_provee" Association="Self.FK_D_Equipos_D_provee">
+            <End Role="D_provee" EntitySet="D_provee" />
+            <End Role="D_Equipos" EntitySet="D_Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_D_Presuli_D_Equipos" Association="Self.FK_D_Presuli_D_Equipos">
+            <End Role="D_Equipos" EntitySet="D_Equipos" />
+            <End Role="D_Presuli" EntitySet="D_Presuli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_D_Presuca_Obras" Association="Self.FK_D_Presuca_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="D_Presuca" EntitySet="D_Presuca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_D_Presuli_D_Presuca" Association="Self.FK_D_Presuli_D_Presuca">
+            <End Role="D_Presuca" EntitySet="D_Presuca" />
+            <End Role="D_Presuli" EntitySet="D_Presuli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obra_Empresas" Association="Self.FK_Obra_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="Obras" EntitySet="Obras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lineas_Obras_Estados" Association="Self.FK_Lineas_Obras_Estados">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Obras_Lineas" EntitySet="Obras_Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_F_MaestraSubPartidas_F_MaestraSubPartidas" Association="Self.FK_F_MaestraSubPartidas_F_MaestraSubPartidas">
+            <End Role="F_MaestraSubPartidas" EntitySet="F_MaestraSubPartidas" />
+            <End Role="F_MaestraSubPartidas1" EntitySet="F_MaestraSubPartidas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_F_PlanigPartidas_F_MaestraSubPartidas" Association="Self.FK_F_PlanigPartidas_F_MaestraSubPartidas">
+            <End Role="F_MaestraSubPartidas" EntitySet="F_MaestraSubPartidas" />
+            <End Role="F_PlanigPartidas" EntitySet="F_PlanigPartidas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_ca_Obras" Association="Self.FK_Facturas_ca_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Facturas_ca" EntitySet="Facturas_ca" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_li_Facturas_ca" Association="Self.FK_Facturas_li_Facturas_ca">
+            <End Role="Facturas_ca" EntitySet="Facturas_ca" />
+            <End Role="Facturas_li" EntitySet="Facturas_li" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_li_Grupos" Association="Self.FK_Facturas_li_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Facturas_li" EntitySet="Facturas_li" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupos_Rel_Grupos" Association="Self.FK_Grupos_Rel_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Grupos_Rel" EntitySet="Grupos_Rel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lineas_Obras_Grupos" Association="Self.FK_Lineas_Obras_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Obras_Lineas" EntitySet="Obras_Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Conta_Grupos" Association="Self.FK_Presu_Conta_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Presu_Conta" EntitySet="Presu_Conta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subgrupos_Grupos" Association="Self.FK_Subgrupos_Grupos">
+            <End Role="Grupos" EntitySet="Grupos" />
+            <End Role="Subgrupos" EntitySet="Subgrupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupos_Rel_Obras" Association="Self.FK_Grupos_Rel_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Grupos_Rel" EntitySet="Grupos_Rel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupos_Rel_Subgrupos" Association="Self.FK_Grupos_Rel_Subgrupos">
+            <End Role="Subgrupos" EntitySet="Subgrupos" />
+            <End Role="Grupos_Rel" EntitySet="Grupos_Rel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obras_Lineas_Obras" Association="Self.FK_Obras_Lineas_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Obras_Lineas" EntitySet="Obras_Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParteTrabajo_Obras" Association="Self.FK_ParteTrabajo_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="ParteTrabajo" EntitySet="ParteTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Conta_Obras" Association="Self.FK_Presu_Conta_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Presu_Conta" EntitySet="Presu_Conta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Obras_Lineas_Subgrupos" Association="Self.FK_Obras_Lineas_Subgrupos">
+            <End Role="Subgrupos" EntitySet="Subgrupos" />
+            <End Role="Obras_Lineas" EntitySet="Obras_Lineas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Calidad_Presu_Elementos" Association="Self.FK_Presu_Calidad_Presu_Elementos">
+            <End Role="Presu_Elementos" EntitySet="Presu_Elementos" />
+            <End Role="Presu_Calidad" EntitySet="Presu_Calidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Elem_Estan_Presu_Elementos" Association="Self.FK_Presu_Elem_Estan_Presu_Elementos">
+            <End Role="Presu_Elementos" EntitySet="Presu_Elementos" />
+            <End Role="Presu_Elem_Estan" EntitySet="Presu_Elem_Estan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Elem_Estan_Presu_Estancias" Association="Self.FK_Presu_Elem_Estan_Presu_Estancias">
+            <End Role="Presu_Estancias" EntitySet="Presu_Estancias" />
+            <End Role="Presu_Elem_Estan" EntitySet="Presu_Elem_Estan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Presu_li_Presu_Estancias" Association="Self.FK_Presu_Presu_li_Presu_Estancias">
+            <End Role="Presu_Estancias" EntitySet="Presu_Estancias" />
+            <End Role="Presu_Presu_li" EntitySet="Presu_Presu_li" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Presu_Presu_li_Presu_Presu_Ca" Association="Self.FK_Presu_Presu_li_Presu_Presu_Ca">
+            <End Role="Presu_Presu_Ca" EntitySet="Presu_Presu_Ca" />
+            <End Role="Presu_Presu_li" EntitySet="Presu_Presu_li" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionConstructoraModelStoreContainer" CdmEntityContainer="GestionConstructoraEntities25">
+          <EntitySetMapping Name="Albaran_li">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Albaran_li">
+              <MappingFragment StoreEntitySet="Albaran_li">
+                <ScalarProperty Name="Id_Alb_li" ColumnName="Id_Alb_li" />
+                <ScalarProperty Name="Id_Alb_liSigrid" ColumnName="Id_Alb_liSigrid" />
+                <ScalarProperty Name="Id_Albaran" ColumnName="Id_Albaran" />
+                <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Descripcion2" ColumnName="Descripcion2" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Pre_sindescuento" ColumnName="Pre_sindescuento" />
+                <ScalarProperty Name="Pre" ColumnName="Pre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Iva" ColumnName="Iva" />
+                <ScalarProperty Name="Cuota" ColumnName="Cuota" />
+                <ScalarProperty Name="Base" ColumnName="Base" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Cap_sigrid" ColumnName="Cap_sigrid" />
+                <ScalarProperty Name="Id_grupo" ColumnName="Id_grupo" />
+                <ScalarProperty Name="id_subgrupo" ColumnName="id_subgrupo" />
+                <ScalarProperty Name="Mano_Obra" ColumnName="Mano_Obra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Albaranes_ca">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Albaranes_ca">
+              <MappingFragment StoreEntitySet="Albaranes_ca">
+                <ScalarProperty Name="Id_Albaran" ColumnName="Id_Albaran" />
+                <ScalarProperty Name="Id_AlbSigrid" ColumnName="Id_AlbSigrid" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="Ref_Alb" ColumnName="Ref_Alb" />
+                <ScalarProperty Name="Su_ref" ColumnName="Su_ref" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Id_Formapago" ColumnName="Id_Formapago" />
+                <ScalarProperty Name="Id_proveedor" ColumnName="Id_proveedor" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Cif" ColumnName="Cif" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Base" ColumnName="Base" />
+                <ScalarProperty Name="Cuota" ColumnName="Cuota" />
+                <ScalarProperty Name="TotImporte" ColumnName="TotImporte" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Balance">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Balance">
+              <MappingFragment StoreEntitySet="Balance">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Id_Informe" ColumnName="Id_Informe" />
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="Id_empresa" ColumnName="Id_empresa" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Imp_debe" ColumnName="Imp_debe" />
+                <ScalarProperty Name="Imp_Haber" ColumnName="Imp_Haber" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="Imp_Compara_debe" ColumnName="Imp_Compara_debe" />
+                <ScalarProperty Name="Imp_Compara_Haber" ColumnName="Imp_Compara_Haber" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuentas">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Cuentas">
+              <MappingFragment StoreEntitySet="Cuentas">
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id_Grupo" ColumnName="Id_Grupo" />
+                <ScalarProperty Name="Id_SubGrupo" ColumnName="Id_SubGrupo" />
+                <ScalarProperty Name="TrataCuenta" ColumnName="TrataCuenta" />
+                <ScalarProperty Name="Id_Cuenta" ColumnName="Id_Cuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_Equipos">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.D_Equipos">
+              <MappingFragment StoreEntitySet="D_Equipos">
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="N_Alternativo" ColumnName="N_Alternativo" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Pvp" ColumnName="Pvp" />
+                <ScalarProperty Name="T_programacion" ColumnName="T_programacion" />
+                <ScalarProperty Name="T_volcado" ColumnName="T_volcado" />
+                <ScalarProperty Name="T_instalacion" ColumnName="T_instalacion" />
+                <ScalarProperty Name="T_puestamarcha" ColumnName="T_puestamarcha" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_Presuca">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.D_Presuca">
+              <MappingFragment StoreEntitySet="D_Presuca">
+                <ScalarProperty Name="id_presu" ColumnName="id_presu" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CosteProgramador" ColumnName="CosteProgramador" />
+                <ScalarProperty Name="GG" ColumnName="GG" />
+                <ScalarProperty Name="Beneficio" ColumnName="Beneficio" />
+                <ScalarProperty Name="MargenMat" ColumnName="MargenMat" />
+                <ScalarProperty Name="m_construdios" ColumnName="m_construdios" />
+                <ScalarProperty Name="id_Obra" ColumnName="id_Obra" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_Presuli">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.D_Presuli">
+              <MappingFragment StoreEntitySet="D_Presuli">
+                <ScalarProperty Name="id_presu" ColumnName="id_presu" />
+                <ScalarProperty Name="ref" ColumnName="ref" />
+                <ScalarProperty Name="unidades" ColumnName="unidades" />
+                <ScalarProperty Name="pvp" ColumnName="pvp" />
+                <ScalarProperty Name="dte" ColumnName="dte" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Mobra" ColumnName="Mobra" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_provee">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.D_provee">
+              <MappingFragment StoreEntitySet="D_provee">
+                <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresas">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Empresas">
+              <MappingFragment StoreEntitySet="Empresas">
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="BBDD_Sigrid" ColumnName="BBDD_Sigrid" />
+                <ScalarProperty Name="Servidor_Sigrid" ColumnName="Servidor_Sigrid" />
+                <ScalarProperty Name="Usuario_Sigrid" ColumnName="Usuario_Sigrid" />
+                <ScalarProperty Name="Pwd_Sigrid" ColumnName="Pwd_Sigrid" />
+                <ScalarProperty Name="BBDD_ContaWin" ColumnName="BBDD_ContaWin" />
+                <ScalarProperty Name="Servidor_ContaWin" ColumnName="Servidor_ContaWin" />
+                <ScalarProperty Name="Usuario_ContaWin" ColumnName="Usuario_ContaWin" />
+                <ScalarProperty Name="Pwd_ContaWin" ColumnName="Pwd_ContaWin" />
+                <ScalarProperty Name="Cod_Contable" ColumnName="Cod_Contable" />
+                <ScalarProperty Name="Id_Banco" ColumnName="Id_Banco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Est_Financiero">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Est_Financiero">
+              <MappingFragment StoreEntitySet="Est_Financiero">
+                <ScalarProperty Name="Id_Estudio" ColumnName="Id_Estudio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Fini" ColumnName="Fini" />
+                <ScalarProperty Name="Ffin" ColumnName="Ffin" />
+                <ScalarProperty Name="mts_Construidos" ColumnName="mts_Construidos" />
+                <ScalarProperty Name="mts_Utiles" ColumnName="mts_Utiles" />
+                <ScalarProperty Name="Compra_Bruto" ColumnName="Compra_Bruto" />
+                <ScalarProperty Name="Gastos_Adquisicion" ColumnName="Gastos_Adquisicion" />
+                <ScalarProperty Name="CosteReforma" ColumnName="CosteReforma" />
+                <ScalarProperty Name="Impuestos" ColumnName="Impuestos" />
+                <ScalarProperty Name="Mantenimiento" ColumnName="Mantenimiento" />
+                <ScalarProperty Name="AporCapital" ColumnName="AporCapital" />
+                <ScalarProperty Name="ImpHipoteca" ColumnName="ImpHipoteca" />
+                <ScalarProperty Name="TipoInteres" ColumnName="TipoInteres" />
+                <ScalarProperty Name="AñoAmortizacion" ColumnName="AñoAmortizacion" />
+                <ScalarProperty Name="P_Venta" ColumnName="P_Venta" />
+                <ScalarProperty Name="GastosVenta" ColumnName="GastosVenta" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_MaestraSubPartidas">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.F_MaestraSubPartidas">
+              <MappingFragment StoreEntitySet="F_MaestraSubPartidas">
+                <ScalarProperty Name="Id_PartidaMadre" ColumnName="Id_PartidaMadre" />
+                <ScalarProperty Name="Id_Partida" ColumnName="Id_Partida" />
+                <ScalarProperty Name="Denominacion" ColumnName="Denominacion" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facturas_ca">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Facturas_ca">
+              <MappingFragment StoreEntitySet="Facturas_ca">
+                <ScalarProperty Name="Id_Factura" ColumnName="Id_Factura" />
+                <ScalarProperty Name="Id_FacSigrid" ColumnName="Id_FacSigrid" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="Ref_Fac" ColumnName="Ref_Fac" />
+                <ScalarProperty Name="Su_ref" ColumnName="Su_ref" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Id_Formapago" ColumnName="Id_Formapago" />
+                <ScalarProperty Name="Id_proveedor" ColumnName="Id_proveedor" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Cif" ColumnName="Cif" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Base" ColumnName="Base" />
+                <ScalarProperty Name="Cuota" ColumnName="Cuota" />
+                <ScalarProperty Name="TotImporte" ColumnName="TotImporte" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="SujetoPasivo" ColumnName="SujetoPasivo" />
+                <ScalarProperty Name="ApunteCompra" ColumnName="ApunteCompra" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facturas_li">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Facturas_li">
+              <MappingFragment StoreEntitySet="Facturas_li">
+                <ScalarProperty Name="Id_fac_li" ColumnName="Id_fac_li" />
+                <ScalarProperty Name="Id_Fac_liSigrid" ColumnName="Id_Fac_liSigrid" />
+                <ScalarProperty Name="Id_Factura" ColumnName="Id_Factura" />
+                <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Descripcion2" ColumnName="Descripcion2" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Pre_sindescuento" ColumnName="Pre_sindescuento" />
+                <ScalarProperty Name="Pre" ColumnName="Pre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Iva" ColumnName="Iva" />
+                <ScalarProperty Name="Cuota" ColumnName="Cuota" />
+                <ScalarProperty Name="Base" ColumnName="Base" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Cap_sigrid" ColumnName="Cap_sigrid" />
+                <ScalarProperty Name="Id_grupo" ColumnName="Id_grupo" />
+                <ScalarProperty Name="id_subgrupo" ColumnName="id_subgrupo" />
+                <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
+                <ScalarProperty Name="Mano_Obra" ColumnName="Mano_Obra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gastos_Fijos">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Gastos_Fijos">
+              <MappingFragment StoreEntitySet="Gastos_Fijos">
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupos">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Grupos">
+              <MappingFragment StoreEntitySet="Grupos">
+                <ScalarProperty Name="Id_Grupo" ColumnName="Id_Grupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id_Tipo" ColumnName="Id_Tipo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Id_TipoCoste" ColumnName="Id_TipoCoste" />
+                <ScalarProperty Name="Cuenta_prefijada" ColumnName="Cuenta_prefijada" />
+                <ScalarProperty Name="Zona_imputada" ColumnName="Zona_imputada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupos_Rel">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Grupos_Rel">
+              <MappingFragment StoreEntitySet="Grupos_Rel">
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Grupo" ColumnName="Id_Grupo" />
+                <ScalarProperty Name="Id_Subgrupo" ColumnName="Id_Subgrupo" />
+                <ScalarProperty Name="Cod_Sigrid" ColumnName="Cod_Sigrid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log_Errores">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Log_Errores">
+              <MappingFragment StoreEntitySet="Log_Errores">
+                <ScalarProperty Name="Id_Proceso" ColumnName="Id_Proceso" />
+                <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+                <ScalarProperty Name="Id_Item" ColumnName="Id_Item" />
+                <ScalarProperty Name="Item" ColumnName="Item" />
+                <ScalarProperty Name="Tipo_error" ColumnName="Tipo_error" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="id_Log" ColumnName="id_Log" />
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="NombreObra" ColumnName="NombreObra" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Obras">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Obras">
+              <MappingFragment StoreEntitySet="Obras">
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="Tipo_Obra" ColumnName="Tipo_Obra" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id_Sigrid" ColumnName="Id_Sigrid" />
+                <ScalarProperty Name="Construido" ColumnName="Construido" />
+                <ScalarProperty Name="Importado_presu" ColumnName="Importado_presu" />
+                <ScalarProperty Name="fecha_Importado" ColumnName="fecha_Importado" />
+                <ScalarProperty Name="Grupos_Rela" ColumnName="Grupos_Rela" />
+                <ScalarProperty Name="Por_Confirming" ColumnName="Por_Confirming" />
+                <ScalarProperty Name="FechaCerti" ColumnName="FechaCerti" />
+                <ScalarProperty Name="Finalizada" ColumnName="Finalizada" />
+                <ScalarProperty Name="M_Viviendas" ColumnName="M_Viviendas" />
+                <ScalarProperty Name="M_Rasante" ColumnName="M_Rasante" />
+                <ScalarProperty Name="M_ZonasComunes" ColumnName="M_ZonasComunes" />
+                <ScalarProperty Name="iva" ColumnName="iva" />
+                <ScalarProperty Name="M_Escriturados" ColumnName="M_Escriturados" />
+                <ScalarProperty Name="M_Construidos" ColumnName="M_Construidos" />
+                <ScalarProperty Name="M_Utiles" ColumnName="M_Utiles" />
+                <ScalarProperty Name="Ajuste" ColumnName="Ajuste" />
+                <ScalarProperty Name="Comentario_Ajuste" ColumnName="Comentario_Ajuste" />
+                <ScalarProperty Name="F_Stado_Planig" ColumnName="F_Stado_Planig" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Obras_Lineas">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Obras_Lineas">
+              <MappingFragment StoreEntitySet="Obras_Lineas">
+                <ScalarProperty Name="Id_linea" ColumnName="Id_linea" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="Id_ObraSigrid" ColumnName="Id_ObraSigrid" />
+                <ScalarProperty Name="Id_Estado" ColumnName="Id_Estado" />
+                <ScalarProperty Name="Id_Fase" ColumnName="Id_Fase" />
+                <ScalarProperty Name="Id_TipoCoste" ColumnName="Id_TipoCoste" />
+                <ScalarProperty Name="Capitulo" ColumnName="Capitulo" />
+                <ScalarProperty Name="Subcapitulo" ColumnName="Subcapitulo" />
+                <ScalarProperty Name="Id_Grupo" ColumnName="Id_Grupo" />
+                <ScalarProperty Name="Id_Subgrupo" ColumnName="Id_Subgrupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Medidas" ColumnName="Medidas" />
+                <ScalarProperty Name="Unidad_Medida" ColumnName="Unidad_Medida" />
+                <ScalarProperty Name="Fecha_importado" ColumnName="Fecha_importado" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Importe_presu" ColumnName="Importe_presu" />
+                <ScalarProperty Name="Importe_P_venta" ColumnName="Importe_P_venta" />
+                <ScalarProperty Name="Importe_VentaPrevista" ColumnName="Importe_VentaPrevista" />
+                <ScalarProperty Name="Importe_CostePrevisto" ColumnName="Importe_CostePrevisto" />
+                <ScalarProperty Name="Importe_Certificado" ColumnName="Importe_Certificado" />
+                <ScalarProperty Name="Importe_CosteReal" ColumnName="Importe_CosteReal" />
+                <ScalarProperty Name="Importe_Facturado" ColumnName="Importe_Facturado" />
+                <ScalarProperty Name="Importe_Pagado" ColumnName="Importe_Pagado" />
+                <ScalarProperty Name="Importe_Albaranes" ColumnName="Importe_Albaranes" />
+                <ScalarProperty Name="Importe_ManoObra" ColumnName="Importe_ManoObra" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Mano_Obra" ColumnName="Mano_Obra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParteTrabajo">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.ParteTrabajo">
+              <MappingFragment StoreEntitySet="ParteTrabajo">
+                <ScalarProperty Name="Id_LineaParte" ColumnName="Id_LineaParte" />
+                <ScalarProperty Name="id_LineaParteSigrid" ColumnName="id_LineaParteSigrid" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="Ref_Parte" ColumnName="Ref_Parte" />
+                <ScalarProperty Name="Empleado" ColumnName="Empleado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="Horas" ColumnName="Horas" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="TotalImporte" ColumnName="TotalImporte" />
+                <ScalarProperty Name="Cap_Sigrid" ColumnName="Cap_Sigrid" />
+                <ScalarProperty Name="Id_Grupo" ColumnName="Id_Grupo" />
+                <ScalarProperty Name="Id_Subgrupo" ColumnName="Id_Subgrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presu_Calidad">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Presu_Calidad">
+              <MappingFragment StoreEntitySet="Presu_Calidad">
+                <ScalarProperty Name="Id_linea" ColumnName="Id_linea" />
+                <ScalarProperty Name="Id_elemento" ColumnName="Id_elemento" />
+                <ScalarProperty Name="Tipo_Calidad" ColumnName="Tipo_Calidad" />
+                <ScalarProperty Name="Calidad" ColumnName="Calidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presu_Conta">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Presu_Conta">
+              <MappingFragment StoreEntitySet="Presu_Conta">
+                <ScalarProperty Name="id_obra" ColumnName="id_obra" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="id_Grupo" ColumnName="id_Grupo" />
+                <ScalarProperty Name="Presupuestado" ColumnName="Presupuestado" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presu_Elem_Estan">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Presu_Elem_Estan">
+              <MappingFragment StoreEntitySet="Presu_Elem_Estan">
+                <ScalarProperty Name="Id_estancia" ColumnName="Id_estancia" />
+                <ScalarProperty Name="Id_elementos" ColumnName="Id_elementos" />
+                <ScalarProperty Name="Unidades" ColumnName="Unidades" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presu_Elementos">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Presu_Elementos">
+              <MappingFragment StoreEntitySet="Presu_Elementos">
+                <ScalarProperty Name="Id_Elemento" ColumnName="Id_Elemento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presu_Estancias">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Presu_Estancias">
+              <MappingFragment StoreEntitySet="Presu_Estancias">
+                <ScalarProperty Name="Id_Estancia" ColumnName="Id_Estancia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presu_Presu_Ca">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Presu_Presu_Ca">
+              <MappingFragment StoreEntitySet="Presu_Presu_Ca">
+                <ScalarProperty Name="Id_Presu" ColumnName="Id_Presu" />
+                <ScalarProperty Name="Id_Version" ColumnName="Id_Version" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CteHora" ColumnName="CteHora" />
+                <ScalarProperty Name="nPersonas" ColumnName="nPersonas" />
+                <ScalarProperty Name="horas_dias" ColumnName="horas_dias" />
+                <ScalarProperty Name="ndias" ColumnName="ndias" />
+                <ScalarProperty Name="T_Manoobra" ColumnName="T_Manoobra" />
+                <ScalarProperty Name="M_Materias" ColumnName="M_Materias" />
+                <ScalarProperty Name="G_Generales" ColumnName="G_Generales" />
+                <ScalarProperty Name="Beneficio" ColumnName="Beneficio" />
+                <ScalarProperty Name="U_Casas" ColumnName="U_Casas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presu_Presu_li">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Presu_Presu_li">
+              <MappingFragment StoreEntitySet="Presu_Presu_li">
+                <ScalarProperty Name="Id_linea" ColumnName="Id_linea" />
+                <ScalarProperty Name="Id_version" ColumnName="Id_version" />
+                <ScalarProperty Name="Id_Presu" ColumnName="Id_Presu" />
+                <ScalarProperty Name="Id_Estancia" ColumnName="Id_Estancia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subgrupos">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Subgrupos">
+              <MappingFragment StoreEntitySet="Subgrupos">
+                <ScalarProperty Name="Id_Grupo" ColumnName="Id_Grupo" />
+                <ScalarProperty Name="Id_Subgrupo" ColumnName="Id_Subgrupo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aux_PrefCuentas">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Aux_PrefCuentas">
+              <MappingFragment StoreEntitySet="Aux_PrefCuentas">
+                <ScalarProperty Name="Prefijo" ColumnName="Prefijo" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Certificaciones">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Certificaciones">
+              <MappingFragment StoreEntitySet="Certificaciones">
+                <ScalarProperty Name="id_Obra" ColumnName="id_Obra" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Mes" ColumnName="Mes" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_PlanigPartidas">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.F_PlanigPartidas">
+              <MappingFragment StoreEntitySet="F_PlanigPartidas">
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="Id_Partida" ColumnName="Id_Partida" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="Coste" ColumnName="Coste" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produ_Alcosan">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Produ_Alcosan">
+              <MappingFragment StoreEntitySet="Produ_Alcosan">
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Ref_Fabricante" ColumnName="Ref_Fabricante" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="P_Venta" ColumnName="P_Venta" />
+                <ScalarProperty Name="dto1" ColumnName="dto1" />
+                <ScalarProperty Name="dto2" ColumnName="dto2" />
+                <ScalarProperty Name="dto3" ColumnName="dto3" />
+                <ScalarProperty Name="P_Neto" ColumnName="P_Neto" />
+                <ScalarProperty Name="Fam" ColumnName="Fam" />
+                <ScalarProperty Name="Des_Fam" ColumnName="Des_Fam" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="Des_Grupo" ColumnName="Des_Grupo" />
+                <ScalarProperty Name="SubGrupo" ColumnName="SubGrupo" />
+                <ScalarProperty Name="Des_SubGrupo" ColumnName="Des_SubGrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puertas">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Puertas">
+              <MappingFragment StoreEntitySet="Puertas">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="Puerta" ColumnName="Puerta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TarifasProvee">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.TarifasProvee">
+              <MappingFragment StoreEntitySet="TarifasProvee">
+                <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

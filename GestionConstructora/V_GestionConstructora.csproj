@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{679A36C2-A59B-4626-9029-D3A5CFFE4E1E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GestionConstructora</RootNamespace>
+    <AssemblyName>GestionConstructora</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>\\roma\APLICACIONES\Gestion\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>161</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>GestionConstructora.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>762A47F1943A06BF3EB9B32F5225D202FC3B7154</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>V_GestionConstructora_ClaveTemporal.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ai.Control, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Downloads\Ai\Ai\Control\bin\Debug\Ai.Control.dll</HintPath>
+    </Reference>
+    <Reference Include="Ai.Renderer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Downloads\Ai\Ai\Control\bin\Debug\Ai.Renderer.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Datos\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\Datos\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.2015.Runtime.12.0.2.2402\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.2015.Runtime.12.0.2.2402\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.2015.Runtime.12.0.2.2402\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeFile1.cs" />
+    <Compile Include="Formularios Informes\R_Balance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios Informes\R_Balance.Designer.cs">
+      <DependentUpon>R_Balance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios Informes\R_InformePresu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios Informes\R_InformePresu.Designer.cs">
+      <DependentUpon>R_InformePresu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios Informes\R_InformeTecnico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios Informes\R_InformeTecnico.Designer.cs">
+      <DependentUpon>R_InformeTecnico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_AñadirCuentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_AñadirCuentas.Designer.cs">
+      <DependentUpon>Form_AñadirCuentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Balance2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Balance2.Designer.cs">
+      <DependentUpon>Form_Balance2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_BalanEmpresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_BalanEmpresas.Designer.cs">
+      <DependentUpon>Form_BalanEmpresas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Buscador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Buscador.Designer.cs">
+      <DependentUpon>Form_Buscador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Caja.Designer.cs">
+      <DependentUpon>Form_Caja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_BalanceTot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_BalanceTot.Designer.cs">
+      <DependentUpon>Form_BalanceTot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_CambioEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_CambioEmpresa.Designer.cs">
+      <DependentUpon>Form_CambioEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_CuadroGasto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_CuadroGasto.Designer.cs">
+      <DependentUpon>Form_CuadroGasto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Cuentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Cuentas.Designer.cs">
+      <DependentUpon>Form_Cuentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Dequipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Dequipos.Designer.cs">
+      <DependentUpon>Form_Dequipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Dpresu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Dpresu.Designer.cs">
+      <DependentUpon>Form_Dpresu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Empresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Empresas.Designer.cs">
+      <DependentUpon>Form_Empresas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Facturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Facturas.Designer.cs">
+      <DependentUpon>Form_Facturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Financiero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Financiero.Designer.cs">
+      <DependentUpon>Form_Financiero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_DpresuElegir .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_DpresuElegir .Designer.cs">
+      <DependentUpon>Form_DpresuElegir .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_ImportarTarifas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_ImportarTarifas.Designer.cs">
+      <DependentUpon>Form_ImportarTarifas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Obrasmetros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Obrasmetros.Designer.cs">
+      <DependentUpon>Form_Obrasmetros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_ParametrosFactu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_ParametrosFactu.Designer.cs">
+      <DependentUpon>Form_ParametrosFactu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_FacturasCapitulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_FacturasCapitulos.Designer.cs">
+      <DependentUpon>Form_FacturasCapitulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Grupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Grupos.Designer.cs">
+      <DependentUpon>Form_Grupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Grupos_Rel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Grupos_Rel.Designer.cs">
+      <DependentUpon>Form_Grupos_Rel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Obras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Obras.Designer.cs">
+      <DependentUpon>Form_Obras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_ComparaObras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_ComparaObras.Designer.cs">
+      <DependentUpon>Form_ComparaObras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_CostesObra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_CostesObra.Designer.cs">
+      <DependentUpon>Form_CostesObra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_PartidasFactu_Det.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_PartidasFactu_Det.Designer.cs">
+      <DependentUpon>Form_PartidasFactu_Det.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_PresuConta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_PresuConta.Designer.cs">
+      <DependentUpon>Form_PresuConta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_FinancieroElegir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_FinancieroElegir.Designer.cs">
+      <DependentUpon>Form_FinancieroElegir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_PresupuestoOficial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_PresupuestoOficial.Designer.cs">
+      <DependentUpon>Form_PresupuestoOficial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_PresupuestoElegir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_PresupuestoElegir.Designer.cs">
+      <DependentUpon>Form_PresupuestoElegir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Presu_mantenimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Presu_mantenimiento.Designer.cs">
+      <DependentUpon>Form_Presu_mantenimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Presupuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Presupuesto.Designer.cs">
+      <DependentUpon>Form_Presupuesto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Provedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Provedores.Designer.cs">
+      <DependentUpon>Form_Provedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_SaldoProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_SaldoProveedores.Designer.cs">
+      <DependentUpon>Form_SaldoProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Segumiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Segumiento.Designer.cs">
+      <DependentUpon>Form_Segumiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_SubGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_SubGrupos.Designer.cs">
+      <DependentUpon>Form_SubGrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_ListaObras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_ListaObras.designer.cs">
+      <DependentUpon>Form_ListaObras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Tesoreria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Tesoreria.Designer.cs">
+      <DependentUpon>Form_Tesoreria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\MDMI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\MDMI.Designer.cs">
+      <DependentUpon>MDMI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ObraDetallecs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ObraDetallecs.designer.cs">
+      <DependentUpon>ObraDetallecs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_PartidasFactu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_PartidasFactu.Designer.cs">
+      <DependentUpon>Form_PartidasFactu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_PresuElemen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_PresuElemen.Designer.cs">
+      <DependentUpon>Form_PresuElemen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Publico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Publico.Designer.cs">
+      <DependentUpon>Publico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_FacturaDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_FacturaDetalle.Designer.cs">
+      <DependentUpon>Form_FacturaDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_Puertas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Puertas.Designer.cs">
+      <DependentUpon>Form_Puertas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_AjusteGasto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_AjusteGasto.Designer.cs">
+      <DependentUpon>Form_AjusteGasto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios Informes\R_Balance.resx">
+      <DependentUpon>R_Balance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios Informes\R_InformePresu.resx">
+      <DependentUpon>R_InformePresu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios Informes\R_InformeTecnico.resx">
+      <DependentUpon>R_InformeTecnico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_AñadirCuentas.resx">
+      <DependentUpon>Form_AñadirCuentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Balance2.resx">
+      <DependentUpon>Form_Balance2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_BalanEmpresas.resx">
+      <DependentUpon>Form_BalanEmpresas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Buscador.resx">
+      <DependentUpon>Form_Buscador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Caja.resx">
+      <DependentUpon>Form_Caja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_BalanceTot.resx">
+      <DependentUpon>Form_BalanceTot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_CambioEmpresa.resx">
+      <DependentUpon>Form_CambioEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_CuadroGasto.resx">
+      <DependentUpon>Form_CuadroGasto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Cuentas.resx">
+      <DependentUpon>Form_Cuentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Dequipos.resx">
+      <DependentUpon>Form_Dequipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Dpresu.resx">
+      <DependentUpon>Form_Dpresu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Empresas.resx">
+      <DependentUpon>Form_Empresas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Facturas.resx">
+      <DependentUpon>Form_Facturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Financiero.resx">
+      <DependentUpon>Form_Financiero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_DpresuElegir .resx">
+      <DependentUpon>Form_DpresuElegir .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_ImportarTarifas.resx">
+      <DependentUpon>Form_ImportarTarifas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Obrasmetros.resx">
+      <DependentUpon>Form_Obrasmetros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_ParametrosFactu.resx">
+      <DependentUpon>Form_ParametrosFactu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_FacturasCapitulos.resx">
+      <DependentUpon>Form_FacturasCapitulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Grupos.resx">
+      <DependentUpon>Form_Grupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Grupos_Rel.resx">
+      <DependentUpon>Form_Grupos_Rel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Obras.resx">
+      <DependentUpon>Form_Obras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_ComparaObras.resx">
+      <DependentUpon>Form_ComparaObras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_CostesObra.resx">
+      <DependentUpon>Form_CostesObra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_PartidasFactu_Det.resx">
+      <DependentUpon>Form_PartidasFactu_Det.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_PresuConta.resx">
+      <DependentUpon>Form_PresuConta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_FinancieroElegir.resx">
+      <DependentUpon>Form_FinancieroElegir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_PresupuestoOficial.resx">
+      <DependentUpon>Form_PresupuestoOficial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_PresupuestoElegir.resx">
+      <DependentUpon>Form_PresupuestoElegir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Presu_mantenimiento.resx">
+      <DependentUpon>Form_Presu_mantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Presupuesto.resx">
+      <DependentUpon>Form_Presupuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Provedores.resx">
+      <DependentUpon>Form_Provedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_SaldoProveedores.resx">
+      <DependentUpon>Form_SaldoProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Segumiento.resx">
+      <DependentUpon>Form_Segumiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_SubGrupos.resx">
+      <DependentUpon>Form_SubGrupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_ListaObras.resx">
+      <DependentUpon>Form_ListaObras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Tesoreria.resx">
+      <DependentUpon>Form_Tesoreria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\MDMI.resx">
+      <DependentUpon>MDMI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_FacturaDetalle.resx">
+      <DependentUpon>Form_FacturaDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ObraDetallecs.resx">
+      <DependentUpon>ObraDetallecs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_PartidasFactu.resx">
+      <DependentUpon>Form_PartidasFactu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_PresuElemen.resx">
+      <DependentUpon>Form_PresuElemen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Publico.resx">
+      <DependentUpon>Publico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Puertas.resx">
+      <DependentUpon>Form_Puertas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_AjusteGasto.resx">
+      <DependentUpon>Form_AjusteGasto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Informes\I_Balance.rdlc" />
+    <EmbeddedResource Include="Informes\I_Presu.rdlc" />
+    <EmbeddedResource Include="Informes\I_Tecnico1.rdlc" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Entidad.D_Presuca.datasource" />
+    <None Include="Properties\DataSources\Entidad.D_Presuli.datasource" />
+    <None Include="Properties\DataSources\Entidad.ResumenTipos.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="V_GestionConstructora_ClaveTemporal.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TreeListView\TreeListView2002.csproj">
+      <Project>{098a3804-59b9-4a83-8d4c-99954d4a8653}</Project>
+      <Name>TreeListView2002</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ContaWIN\ContaWIN.vbproj">
+      <Project>{703d2872-eee9-4225-8d51-68d6be4ba82d}</Project>
+      <Name>ContaWIN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidad\Entidad.csproj">
+      <Project>{2321f759-e1d6-4920-a24a-6b62759f38d0}</Project>
+      <Name>Entidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{f72fc279-7cff-4d7a-8846-fddb08a4d6a3}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\cancelar.png" />
+    <Content Include="Resources\comprobado%281%29.png" />
+    <Content Include="Resources\editar.png" />
+    <None Include="Resources\refresh-button.png" />
+    <None Include="Resources\participacion%282%29.png" />
+    <None Include="Resources\participacion%281%29.png" />
+    <None Include="Resources\participacion.png" />
+    <None Include="Resources\Image1.bmp" />
+    <None Include="Resources\Icon1.ico" />
+    <Content Include="Resources\mas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
