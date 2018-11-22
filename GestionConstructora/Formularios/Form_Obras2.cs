@@ -138,7 +138,7 @@ namespace GestionConstructora
         public void CargaPanel(Obras Obr)
         {
             txtnombre.Text = Obr.Nombre;
-            txtidobra.Text = Convert.ToString(Obr.Id_Empresa);
+            txtidobra.Text = Convert.ToString(Obr.Id_Obra);
             txt_idsigrid.Text = Convert.ToString(Obr.Id_Sigrid);
             txtm_construido.Text = Convert.ToString(Obr.Construido);
 

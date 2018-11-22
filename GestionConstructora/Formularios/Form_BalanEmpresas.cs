@@ -751,10 +751,10 @@ namespace GestionConstructora
                 }
                 foreach (Obras Obr in ObrselecLocal)
                 {
-                    List<Obras> lisobr = new List<Obras>();                    
-                    lisobr.Add(Obr);
-                    Form_Caja.Cosas_CW(Obr, id_infr);
+                    List<Obras> lisobr = new List<Obras>();
+                    lisobr.Add(Obr);                    
                     BalanceCN.Añadir(CalculoCN.Creacion_Informe(id_infrlocal.ToString(), EmpresasCN.Listar(Obr.Id_Empresa), lisobr, true, 0, DateTime.Today));
+                    Form_Caja.Cosas_CW(Obr, id_infrlocal);
                 }
                 dgresumen.DataSource = null;
                 Form_Balance2.Mostrar_Inform2(ObrselecLocal, false, dt, dgresumen, id_infrlocal);
@@ -770,7 +770,7 @@ namespace GestionConstructora
                 DataTable dta = new DataTable();
                 foreach (DataGridViewRow Row in dgobraspart.SelectedRows)
                 {
-                    Obrselec.Add(ObraCN.Listar(Convert.ToInt32(Row.Cells["Id_Obras"].Value), Convert.ToInt32(Row.Cells["Id_empres"].Value)));
+                    Obrselec.Add(Obraspart.Where(p => p.Id_Obra == Convert.ToInt32(Row.Cells["Id_Obras"].Value)).Where(p => p.Id_Empresa == Convert.ToInt32(Row.Cells["Id_empres"].Value)).ToList()[0]);
                 }
                 Form_Balance2.Mostrar_Inform2(Obrselec, false, dta, dgresumen, id_infr);
                 Soloverpresu(true);
