@@ -751,8 +751,9 @@ namespace GestionConstructora
                 }
                 foreach (Obras Obr in ObrselecLocal)
                 {
-                    List<Obras> lisobr = new List<Obras>();
+                    List<Obras> lisobr = new List<Obras>();                    
                     lisobr.Add(Obr);
+                    Form_Caja.Cosas_CW(Obr, id_infr);
                     BalanceCN.Añadir(CalculoCN.Creacion_Informe(id_infrlocal.ToString(), EmpresasCN.Listar(Obr.Id_Empresa), lisobr, true, 0, DateTime.Today));
                 }
                 dgresumen.DataSource = null;
