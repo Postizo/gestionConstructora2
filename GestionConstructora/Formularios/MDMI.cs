@@ -35,7 +35,7 @@ namespace GestionConstructora
 
         private void obrasToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form_Obras f = new Form_Obras(EMPreSeleccionada);
+            Form_Obras2 f = new Form_Obras2(EMPreSeleccionada);
             f.MdiParent = this;
             f.Show();
             f.FormClosed += new FormClosedEventHandler(f_FormClosed);

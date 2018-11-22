@@ -13,13 +13,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GestionConstructora
 {
-    public partial class Form_Obras : Form
+    public partial class Form_Obras2 : Form
     {
         int i = -1;
         int estado = 0;
         string Tipo = "Propia";
         Empresas Emp = new Empresas();
-        public Form_Obras(Empresas Empresa)
+        public Form_Obras2(Empresas Empresa)
         {
             Emp = Empresa;
             InitializeComponent();
@@ -277,9 +277,9 @@ namespace GestionConstructora
         private void button2_Click(object sender, EventArgs e)
         {
             ListaObras f = new ListaObras();
-            f.MdiParent = this;
+           // f.MdiParent = this;
             f.ShowDialog();
-           f.FormClosed += new FormClosedEventHandler(f_FormClosed);
+         //  f.FormClosed += new FormClosedEventHandler(f_FormClosed);
         }
     }
 }

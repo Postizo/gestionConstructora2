@@ -47,6 +47,7 @@ namespace Negocio
             Obr.Id_Empresa  = Id_empresa;
             Obr.Id_Obra = Id_Obra;
             Obr.Id_Sigrid = id_sigrid;
+            Obr.Importado_presu = true;
             Obr.Nombre = nombre;
             Obr.Tipo_Obra = tipo;
             Obr.Construido = m_construido;

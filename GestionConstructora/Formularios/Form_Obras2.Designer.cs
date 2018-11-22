@@ -1,6 +1,6 @@
 ﻿namespace GestionConstructora
 {
-    partial class Form_Obras
+    partial class Form_Obras2
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Obras));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Obras2));
             this.llegenda = new System.Windows.Forms.Label();
             this.lnombre = new System.Windows.Forms.Label();
             this.txtnombre = new System.Windows.Forms.TextBox();

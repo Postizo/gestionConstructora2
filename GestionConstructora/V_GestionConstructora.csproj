@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>161</ApplicationRevision>
+    <ApplicationRevision>163</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -227,6 +227,12 @@
     <Compile Include="Formularios\Form_ImportarTarifas.Designer.cs">
       <DependentUpon>Form_ImportarTarifas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Form_Obras2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_Obras2.Designer.cs">
+      <DependentUpon>Form_Obras2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Form_Obrasmetros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,12 +262,6 @@
     </Compile>
     <Compile Include="Formularios\Form_Grupos_Rel.Designer.cs">
       <DependentUpon>Form_Grupos_Rel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Form_Obras.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\Form_Obras.Designer.cs">
-      <DependentUpon>Form_Obras.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Form_ComparaObras.cs">
       <SubType>Form</SubType>
@@ -460,6 +460,9 @@
     <EmbeddedResource Include="Formularios\Form_ImportarTarifas.resx">
       <DependentUpon>Form_ImportarTarifas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_Obras2.resx">
+      <DependentUpon>Form_Obras2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Form_Obrasmetros.resx">
       <DependentUpon>Form_Obrasmetros.cs</DependentUpon>
     </EmbeddedResource>
@@ -474,9 +477,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Form_Grupos_Rel.resx">
       <DependentUpon>Form_Grupos_Rel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\Form_Obras.resx">
-      <DependentUpon>Form_Obras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Form_ComparaObras.resx">
       <DependentUpon>Form_ComparaObras.cs</DependentUpon>
