@@ -131,7 +131,7 @@
     <Compile Include="Formularios Informes\R_InformeTecnico.Designer.cs">
       <DependentUpon>R_InformeTecnico.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\ejempo1.cs" />
+    <Compile Include="Formularios\Clssass1.cs" />
     <Compile Include="Formularios\Form_AñadirCuentas.cs">
       <SubType>Form</SubType>
     </Compile>

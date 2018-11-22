@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestionConstructora.Formularios
 {
-    class ejempo1
+    class Clssass1
     {
     }
 }
