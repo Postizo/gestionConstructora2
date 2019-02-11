@@ -18,7 +18,7 @@ namespace GestionConstructora
         List<FacturasDetalles> Albaranes;
         List<FacturasDetalles> Partetrabajo;
         int fase;
-
+        
         Obras OBR = new Obras();
         public Form_PartidasFactu(Obras obr, int id_grupo, int? id_subgrupo,int fas)
         {

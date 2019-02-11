@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidad;
 using Negocio;
+using System.Reflection;
 
 namespace GestionConstructora
 {
@@ -109,6 +110,9 @@ namespace GestionConstructora
 
         public void DiseñoGrid()
         {
+            typeof(DataGridView).InvokeMember("DoubleBuffered", BindingFlags.NonPublic |
+               BindingFlags.Instance | BindingFlags.SetProperty, null,
+               dgcuentas, new object[] { true });
             dgcuentas.AutoGenerateColumns = false;
             dgcuentas.EnableHeadersVisualStyles = false;
             dgcuentas.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;

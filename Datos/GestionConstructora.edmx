@@ -76,6 +76,19 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.Aux_PrefCuentas' no 
           <Property Name="Imp_Compara_Haber" Type="numeric" Precision="10" Scale="2" />
           <Property Name="fecha" Type="datetime" />
         </EntityType>
+        <EntityType Name="Balance_Fijos">
+          <Key>
+            <PropertyRef Name="Id_Gasto" />
+          </Key>
+          <Property Name="Id_Gasto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_empresa" Type="int" Nullable="false" />
+          <Property Name="id_Obra" Type="int" Nullable="false" />
+          <Property Name="Concepto" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="id_TipoCoste" Type="int" Nullable="false" />
+          <Property Name="Importe" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Año" Type="int" Nullable="false" />
+          <Property Name="Comentario" Type="varchar(max)" Nullable="false" />
+        </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'GestionConstructora.dbo.Certificaciones' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="Certificaciones">
@@ -122,6 +135,14 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.Certificaciones' no 
           <Property Name="Comentario" Type="varchar(max)" Nullable="false" />
           <Property Name="id_proveedor" Type="int" Nullable="false" />
           <Property Name="Grupo" Type="varchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="D_Familias">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="Orden" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="D_Presuca">
           <Key>
@@ -199,6 +220,40 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.Certificaciones' no 
           <Property Name="GastosVenta" Type="float" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="1500" Nullable="false" />
         </EntityType>
+        <EntityType Name="Est_Tesoreria">
+          <Key>
+            <PropertyRef Name="Id_tesoreria" />
+          </Key>
+          <Property Name="Id_tesoreria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="ffin" Type="date" Nullable="false" />
+          <Property Name="finicioprevisto" Type="date" Nullable="false" />
+          <Property Name="tipointeres" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CompraTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="principal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="pte" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ptereforma" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Realizado" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="id_empresa" Type="int" Nullable="false" />
+          <Property Name="id_obra" Type="int" Nullable="false" />
+          <Property Name="Comentario" Type="varchar(max)" Nullable="false" />
+          <Property Name="Plazo" Type="int" Nullable="false" />
+          <Property Name="fventa" Type="date" Nullable="false" />
+          <Property Name="Venta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Fcompra" Type="date" Nullable="false" />
+          <Property Name="Carencia" Type="int" />
+        </EntityType>
+        <EntityType Name="Est_TesoreriaMes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tesoreria" Type="int" Nullable="false" />
+          <Property Name="mes" Type="int" Nullable="false" />
+          <Property Name="año" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="importe" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="Estados">
           <Key>
             <PropertyRef Name="Id" />
@@ -206,9 +261,14 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.Certificaciones' no 
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionConstructora.dbo.F_MaestraSubPartidas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="F_MaestraSubPartidas">
           <Key>
+            <PropertyRef Name="Id_PartidaMadre" />
             <PropertyRef Name="Id_Partida" />
+            <PropertyRef Name="Denominacion" />
+            <PropertyRef Name="Color" />
           </Key>
           <Property Name="Id_PartidaMadre" Type="int" Nullable="false" />
           <Property Name="Id_Partida" Type="int" Nullable="false" />
@@ -225,6 +285,7 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.F_PlanigPartidas' no
             <PropertyRef Name="FechaInicio" />
             <PropertyRef Name="FechaFin" />
             <PropertyRef Name="Coste" />
+            <PropertyRef Name="DiasEjecucion" />
           </Key>
           <Property Name="Id_Empresa" Type="int" Nullable="false" />
           <Property Name="Id_Obra" Type="int" Nullable="false" />
@@ -232,6 +293,53 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.F_PlanigPartidas' no
           <Property Name="FechaInicio" Type="date" Nullable="false" />
           <Property Name="FechaFin" Type="date" Nullable="false" />
           <Property Name="Coste" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DiasEjecucion" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionConstructora.dbo.F_Renta_MarKara' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="F_Renta_MarKara">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+            <PropertyRef Name="Id_Obra" />
+            <PropertyRef Name="M_Compra_Escritura" />
+            <PropertyRef Name="M_Hipoteca_Fecha" />
+            <PropertyRef Name="C_Coste_Final_Compra" />
+            <PropertyRef Name="M_Otros_Costes" />
+            <PropertyRef Name="M_Coste_Reforma" />
+            <PropertyRef Name="C_Total_Coste" />
+            <PropertyRef Name="C_Fondos_Propios_Fecha" />
+            <PropertyRef Name="M_Mtr_Construidos" />
+            <PropertyRef Name="M_Presu_Reform" />
+            <PropertyRef Name="C_Coste_Reforma_Mtr" />
+            <PropertyRef Name="M_Precio_Obj_Venta" />
+            <PropertyRef Name="M_Mtr_Catrstro" />
+            <PropertyRef Name="M_Mtr_Idealista" />
+            <PropertyRef Name="C_Mtr_Venta" />
+            <PropertyRef Name="C_Beneficio_Previsto" />
+            <PropertyRef Name="C_Fondo_Propio_Previsto" />
+            <PropertyRef Name="C_Renta_Fondo_Propio" />
+            <PropertyRef Name="C_Renta_Contable" />
+          </Key>
+          <Property Name="Id_Empresa" Type="int" Nullable="false" />
+          <Property Name="Id_Obra" Type="int" Nullable="false" />
+          <Property Name="M_Compra_Escritura" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Hipoteca_Fecha" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Coste_Final_Compra" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Otros_Costes" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Coste_Reforma" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Total_Coste" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Fondos_Propios_Fecha" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Mtr_Construidos" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Presu_Reform" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Coste_Reforma_Mtr" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Precio_Obj_Venta" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Mtr_Catrstro" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Mtr_Idealista" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Mtr_Venta" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Beneficio_Previsto" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Fondo_Propio_Previsto" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Renta_Fondo_Propio" Type="decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Renta_Contable" Type="decimal" Precision="11" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Facturas_ca">
           <Key>
@@ -359,6 +467,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.F_PlanigPartidas' no
           <Property Name="Ajuste" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Comentario_Ajuste" Type="varchar(max)" Nullable="false" />
           <Property Name="F_Stado_Planig" Type="int" />
+          <Property Name="ValorVenta" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Cobrado2017" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Gastos2017" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="Obras_Lineas">
           <Key>
@@ -584,7 +695,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Albaranes_ca_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Albaranes_ca" Type="Self.Albaranes_ca" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -597,8 +710,24 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Balance_Obras">
+        <Association Name="FK_Balance_Fijos_Balance_Fijos">
           <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Balance_Fijos" Type="Self.Balance_Fijos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Balance_Fijos">
+              <PropertyRef Name="Id_empresa" />
+              <PropertyRef Name="id_Obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Balance_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -660,7 +789,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_D_Presuca_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="D_Presuca" Type="Self.D_Presuca" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -699,32 +830,38 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_F_MaestraSubPartidas_F_MaestraSubPartidas">
-          <End Role="F_MaestraSubPartidas" Type="Self.F_MaestraSubPartidas" Multiplicity="1" />
-          <End Role="F_MaestraSubPartidas1" Type="Self.F_MaestraSubPartidas" Multiplicity="0..1" />
+        <Association Name="FK_Est_Tesoreria_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Est_Tesoreria" Type="Self.Est_Tesoreria" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="F_MaestraSubPartidas">
-              <PropertyRef Name="Id_Partida" />
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
             </Principal>
-            <Dependent Role="F_MaestraSubPartidas1">
-              <PropertyRef Name="Id_Partida" />
+            <Dependent Role="Est_Tesoreria">
+              <PropertyRef Name="id_empresa" />
+              <PropertyRef Name="id_obra" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_F_PlanigPartidas_F_MaestraSubPartidas">
-          <End Role="F_MaestraSubPartidas" Type="Self.F_MaestraSubPartidas" Multiplicity="1" />
-          <End Role="F_PlanigPartidas" Type="Self.F_PlanigPartidas" Multiplicity="*" />
+        <Association Name="FK_Est_TesoreriaMes_Est_Tesoreria">
+          <End Role="Est_Tesoreria" Type="Self.Est_Tesoreria" Multiplicity="1" />
+          <End Role="Est_TesoreriaMes" Type="Self.Est_TesoreriaMes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="F_MaestraSubPartidas">
-              <PropertyRef Name="Id_Partida" />
+            <Principal Role="Est_Tesoreria">
+              <PropertyRef Name="Id_tesoreria" />
             </Principal>
-            <Dependent Role="F_PlanigPartidas">
-              <PropertyRef Name="Id_Partida" />
+            <Dependent Role="Est_TesoreriaMes">
+              <PropertyRef Name="id_tesoreria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Facturas_ca_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Facturas_ca" Type="Self.Facturas_ca" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -776,7 +913,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupos_Rel_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Grupos_Rel" Type="Self.Grupos_Rel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -850,7 +989,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Obras_Lineas_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -876,7 +1017,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ParteTrabajo_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ParteTrabajo" Type="Self.ParteTrabajo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -995,15 +1138,18 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <EntitySet Name="Albaran_li" EntityType="Self.Albaran_li" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Albaranes_ca" EntityType="Self.Albaranes_ca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Balance" EntityType="Self.Balance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Balance_Fijos" EntityType="Self.Balance_Fijos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuentas" EntityType="Self.Cuentas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="D_Equipos" EntityType="Self.D_Equipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="D_Familias" EntityType="Self.D_Familias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="D_Presuca" EntityType="Self.D_Presuca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="D_Presuli" EntityType="Self.D_Presuli" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="D_provee" EntityType="Self.D_provee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Est_Financiero" EntityType="Self.Est_Financiero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Est_Tesoreria" EntityType="Self.Est_Tesoreria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Est_TesoreriaMes" EntityType="Self.Est_TesoreriaMes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="F_MaestraSubPartidas" EntityType="Self.F_MaestraSubPartidas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Facturas_ca" EntityType="Self.Facturas_ca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Facturas_li" EntityType="Self.Facturas_li" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gastos_Fijos" EntityType="Self.Gastos_Fijos" Schema="dbo" store:Type="Tables" />
@@ -1037,6 +1183,14 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
     [Certificaciones].[Importe] AS [Importe]
     FROM [dbo].[Certificaciones] AS [Certificaciones]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="F_MaestraSubPartidas" EntityType="Self.F_MaestraSubPartidas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [F_MaestraSubPartidas].[Id_PartidaMadre] AS [Id_PartidaMadre], 
+    [F_MaestraSubPartidas].[Id_Partida] AS [Id_Partida], 
+    [F_MaestraSubPartidas].[Denominacion] AS [Denominacion], 
+    [F_MaestraSubPartidas].[Color] AS [Color]
+    FROM [dbo].[F_MaestraSubPartidas] AS [F_MaestraSubPartidas]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="F_PlanigPartidas" EntityType="Self.F_PlanigPartidas" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [F_PlanigPartidas].[Id_Empresa] AS [Id_Empresa], 
@@ -1044,8 +1198,33 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
     [F_PlanigPartidas].[Id_Partida] AS [Id_Partida], 
     [F_PlanigPartidas].[FechaInicio] AS [FechaInicio], 
     [F_PlanigPartidas].[FechaFin] AS [FechaFin], 
-    [F_PlanigPartidas].[Coste] AS [Coste]
+    [F_PlanigPartidas].[Coste] AS [Coste], 
+    [F_PlanigPartidas].[DiasEjecucion] AS [DiasEjecucion]
     FROM [dbo].[F_PlanigPartidas] AS [F_PlanigPartidas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="F_Renta_MarKara" EntityType="Self.F_Renta_MarKara" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [F_Renta_MarKara].[Id_Empresa] AS [Id_Empresa], 
+    [F_Renta_MarKara].[Id_Obra] AS [Id_Obra], 
+    [F_Renta_MarKara].[M_Compra_Escritura] AS [M_Compra_Escritura], 
+    [F_Renta_MarKara].[M_Hipoteca_Fecha] AS [M_Hipoteca_Fecha], 
+    [F_Renta_MarKara].[C_Coste_Final_Compra] AS [C_Coste_Final_Compra], 
+    [F_Renta_MarKara].[M_Otros_Costes] AS [M_Otros_Costes], 
+    [F_Renta_MarKara].[M_Coste_Reforma] AS [M_Coste_Reforma], 
+    [F_Renta_MarKara].[C_Total_Coste] AS [C_Total_Coste], 
+    [F_Renta_MarKara].[C_Fondos_Propios_Fecha] AS [C_Fondos_Propios_Fecha], 
+    [F_Renta_MarKara].[M_Mtr_Construidos] AS [M_Mtr_Construidos], 
+    [F_Renta_MarKara].[M_Presu_Reform] AS [M_Presu_Reform], 
+    [F_Renta_MarKara].[C_Coste_Reforma_Mtr] AS [C_Coste_Reforma_Mtr], 
+    [F_Renta_MarKara].[M_Precio_Obj_Venta] AS [M_Precio_Obj_Venta], 
+    [F_Renta_MarKara].[M_Mtr_Catrstro] AS [M_Mtr_Catrstro], 
+    [F_Renta_MarKara].[M_Mtr_Idealista] AS [M_Mtr_Idealista], 
+    [F_Renta_MarKara].[C_Mtr_Venta] AS [C_Mtr_Venta], 
+    [F_Renta_MarKara].[C_Beneficio_Previsto] AS [C_Beneficio_Previsto], 
+    [F_Renta_MarKara].[C_Fondo_Propio_Previsto] AS [C_Fondo_Propio_Previsto], 
+    [F_Renta_MarKara].[C_Renta_Fondo_Propio] AS [C_Renta_Fondo_Propio], 
+    [F_Renta_MarKara].[C_Renta_Contable] AS [C_Renta_Contable]
+    FROM [dbo].[F_Renta_MarKara] AS [F_Renta_MarKara]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Produ_Alcosan" EntityType="Self.Produ_Alcosan" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1092,6 +1271,10 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             <End Role="Obras" EntitySet="Obras" />
             <End Role="Albaranes_ca" EntitySet="Albaranes_ca" />
           </AssociationSet>
+          <AssociationSet Name="FK_Balance_Fijos_Balance_Fijos" Association="Self.FK_Balance_Fijos_Balance_Fijos">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Balance_Fijos" EntitySet="Balance_Fijos" />
+          </AssociationSet>
           <AssociationSet Name="FK_Balance_Obras" Association="Self.FK_Balance_Obras">
             <End Role="Obras" EntitySet="Obras" />
             <End Role="Balance" EntitySet="Balance" />
@@ -1124,13 +1307,13 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             <End Role="D_Presuca" EntitySet="D_Presuca" />
             <End Role="D_Presuli" EntitySet="D_Presuli" />
           </AssociationSet>
-          <AssociationSet Name="FK_F_MaestraSubPartidas_F_MaestraSubPartidas" Association="Self.FK_F_MaestraSubPartidas_F_MaestraSubPartidas">
-            <End Role="F_MaestraSubPartidas" EntitySet="F_MaestraSubPartidas" />
-            <End Role="F_MaestraSubPartidas1" EntitySet="F_MaestraSubPartidas" />
+          <AssociationSet Name="FK_Est_Tesoreria_Obras" Association="Self.FK_Est_Tesoreria_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Est_Tesoreria" EntitySet="Est_Tesoreria" />
           </AssociationSet>
-          <AssociationSet Name="FK_F_PlanigPartidas_F_MaestraSubPartidas" Association="Self.FK_F_PlanigPartidas_F_MaestraSubPartidas">
-            <End Role="F_MaestraSubPartidas" EntitySet="F_MaestraSubPartidas" />
-            <End Role="F_PlanigPartidas" EntitySet="F_PlanigPartidas" />
+          <AssociationSet Name="FK_Est_TesoreriaMes_Est_Tesoreria" Association="Self.FK_Est_TesoreriaMes_Est_Tesoreria">
+            <End Role="Est_Tesoreria" EntitySet="Est_Tesoreria" />
+            <End Role="Est_TesoreriaMes" EntitySet="Est_TesoreriaMes" />
           </AssociationSet>
           <AssociationSet Name="FK_Facturas_ca_Obras" Association="Self.FK_Facturas_ca_Obras">
             <End Role="Obras" EntitySet="Obras" />
@@ -1288,6 +1471,20 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <NavigationProperty Name="Obras" Relationship="Self.FK_Balance_Obras" FromRole="Balance" ToRole="Obras" />
           <NavigationProperty Name="Cuentas" Relationship="Self.FK_Informe_Cuentas" FromRole="Balance" ToRole="Cuentas" />
         </EntityType>
+        <EntityType Name="Balance_Fijos">
+          <Key>
+            <PropertyRef Name="Id_Gasto" />
+          </Key>
+          <Property Name="Id_Gasto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_empresa" Type="Int32" Nullable="false" />
+          <Property Name="id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="Concepto" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_TipoCoste" Type="Int32" Nullable="false" />
+          <Property Name="Importe" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Año" Type="Int32" Nullable="false" />
+          <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_Balance_Fijos_Balance_Fijos" FromRole="Balance_Fijos" ToRole="Obras" />
+        </EntityType>
         <EntityType Name="Cuentas">
           <Key>
             <PropertyRef Name="Id_Cuenta" />
@@ -1324,6 +1521,14 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <Property Name="Grupo" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="D_provee" Relationship="Self.FK_D_Equipos_D_provee" FromRole="D_Equipos" ToRole="D_provee" />
           <NavigationProperty Name="D_Presuli" Relationship="Self.FK_D_Presuli_D_Equipos" FromRole="D_Equipos" ToRole="D_Presuli" />
+        </EntityType>
+        <EntityType Name="D_Familias">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Orden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="D_Presuca">
           <Key>
@@ -1408,6 +1613,43 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <Property Name="GastosVenta" Type="Double" Nullable="false" />
           <Property Name="Comentarios" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="Est_Tesoreria">
+          <Key>
+            <PropertyRef Name="Id_tesoreria" />
+          </Key>
+          <Property Name="Id_tesoreria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="350" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ffin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="finicioprevisto" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tipointeres" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CompraTotal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="principal" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="pte" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ptereforma" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Realizado" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="id_empresa" Type="Int32" Nullable="false" />
+          <Property Name="id_obra" Type="Int32" Nullable="false" />
+          <Property Name="Comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Plazo" Type="Int32" Nullable="false" />
+          <Property Name="fventa" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Venta" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Fcompra" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Carencia" Type="Int32" />
+          <NavigationProperty Name="Obras" Relationship="Self.FK_Est_Tesoreria_Obras" FromRole="Est_Tesoreria" ToRole="Obras" />
+          <NavigationProperty Name="Est_TesoreriaMes" Relationship="Self.FK_Est_TesoreriaMes_Est_Tesoreria" FromRole="Est_Tesoreria" ToRole="Est_TesoreriaMes" />
+        </EntityType>
+        <EntityType Name="Est_TesoreriaMes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tesoreria" Type="Int32" Nullable="false" />
+          <Property Name="mes" Type="Int32" Nullable="false" />
+          <Property Name="año" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="importe" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Est_Tesoreria" Relationship="Self.FK_Est_TesoreriaMes_Est_Tesoreria" FromRole="Est_TesoreriaMes" ToRole="Est_Tesoreria" />
+        </EntityType>
         <EntityType Name="Estados">
           <Key>
             <PropertyRef Name="Id" />
@@ -1415,18 +1657,6 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Obras_Lineas" Relationship="Self.FK_Lineas_Obras_Estados" FromRole="Estados" ToRole="Obras_Lineas" />
-        </EntityType>
-        <EntityType Name="F_MaestraSubPartidas">
-          <Key>
-            <PropertyRef Name="Id_Partida" />
-          </Key>
-          <Property Name="Id_PartidaMadre" Type="Int32" Nullable="false" />
-          <Property Name="Id_Partida" Type="Int32" Nullable="false" />
-          <Property Name="Denominacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Color" Type="Double" Nullable="false" />
-          <NavigationProperty Name="F_MaestraSubPartidas1" Relationship="Self.FK_F_MaestraSubPartidas_F_MaestraSubPartidas" FromRole="F_MaestraSubPartidas" ToRole="F_MaestraSubPartidas1" />
-          <NavigationProperty Name="F_MaestraSubPartidas2" Relationship="Self.FK_F_MaestraSubPartidas_F_MaestraSubPartidas" FromRole="F_MaestraSubPartidas1" ToRole="F_MaestraSubPartidas" />
-          <NavigationProperty Name="F_PlanigPartidas" Relationship="Self.FK_F_PlanigPartidas_F_MaestraSubPartidas" FromRole="F_MaestraSubPartidas" ToRole="F_PlanigPartidas" />
         </EntityType>
         <EntityType Name="Facturas_ca">
           <Key>
@@ -1567,10 +1797,15 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <Property Name="Ajuste" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="Comentario_Ajuste" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="F_Stado_Planig" Type="Int32" />
+          <Property Name="ValorVenta" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Cobrado2017" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Gastos2017" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Albaranes_ca" Relationship="Self.FK_Albaranes_ca_Obras" FromRole="Obras" ToRole="Albaranes_ca" />
           <NavigationProperty Name="Balance" Relationship="Self.FK_Balance_Obras" FromRole="Obras" ToRole="Balance" />
+          <NavigationProperty Name="Balance_Fijos" Relationship="Self.FK_Balance_Fijos_Balance_Fijos" FromRole="Obras" ToRole="Balance_Fijos" />
           <NavigationProperty Name="D_Presuca" Relationship="Self.FK_D_Presuca_Obras" FromRole="Obras" ToRole="D_Presuca" />
           <NavigationProperty Name="Empresas" Relationship="Self.FK_Obra_Empresas" FromRole="Obras" ToRole="Empresas" />
+          <NavigationProperty Name="Est_Tesoreria" Relationship="Self.FK_Est_Tesoreria_Obras" FromRole="Obras" ToRole="Est_Tesoreria" />
           <NavigationProperty Name="Facturas_ca" Relationship="Self.FK_Facturas_ca_Obras" FromRole="Obras" ToRole="Facturas_ca" />
           <NavigationProperty Name="Grupos_Rel" Relationship="Self.FK_Grupos_Rel_Obras" FromRole="Obras" ToRole="Grupos_Rel" />
           <NavigationProperty Name="Obras_Lineas" Relationship="Self.FK_Obras_Lineas_Obras" FromRole="Obras" ToRole="Obras_Lineas" />
@@ -1762,6 +1997,18 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <Property Name="Año" Type="Int32" Nullable="false" />
           <Property Name="Importe" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="F_MaestraSubPartidas">
+          <Key>
+            <PropertyRef Name="Id_PartidaMadre" />
+            <PropertyRef Name="Id_Partida" />
+            <PropertyRef Name="Denominacion" />
+            <PropertyRef Name="Color" />
+          </Key>
+          <Property Name="Id_PartidaMadre" Type="Int32" Nullable="false" />
+          <Property Name="Id_Partida" Type="Int32" Nullable="false" />
+          <Property Name="Denominacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Color" Type="Double" Nullable="false" />
+        </EntityType>
         <EntityType Name="F_PlanigPartidas">
           <Key>
             <PropertyRef Name="Id_Empresa" />
@@ -1770,6 +2017,7 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             <PropertyRef Name="FechaInicio" />
             <PropertyRef Name="FechaFin" />
             <PropertyRef Name="Coste" />
+            <PropertyRef Name="DiasEjecucion" />
           </Key>
           <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
           <Property Name="Id_Obra" Type="Int32" Nullable="false" />
@@ -1777,7 +2025,51 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Coste" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <NavigationProperty Name="F_MaestraSubPartidas" Relationship="Self.FK_F_PlanigPartidas_F_MaestraSubPartidas" FromRole="F_PlanigPartidas" ToRole="F_MaestraSubPartidas" />
+          <Property Name="DiasEjecucion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="F_Renta_MarKara">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+            <PropertyRef Name="Id_Obra" />
+            <PropertyRef Name="M_Compra_Escritura" />
+            <PropertyRef Name="M_Hipoteca_Fecha" />
+            <PropertyRef Name="C_Coste_Final_Compra" />
+            <PropertyRef Name="M_Otros_Costes" />
+            <PropertyRef Name="M_Coste_Reforma" />
+            <PropertyRef Name="C_Total_Coste" />
+            <PropertyRef Name="C_Fondos_Propios_Fecha" />
+            <PropertyRef Name="M_Mtr_Construidos" />
+            <PropertyRef Name="M_Presu_Reform" />
+            <PropertyRef Name="C_Coste_Reforma_Mtr" />
+            <PropertyRef Name="M_Precio_Obj_Venta" />
+            <PropertyRef Name="M_Mtr_Catrstro" />
+            <PropertyRef Name="M_Mtr_Idealista" />
+            <PropertyRef Name="C_Mtr_Venta" />
+            <PropertyRef Name="C_Beneficio_Previsto" />
+            <PropertyRef Name="C_Fondo_Propio_Previsto" />
+            <PropertyRef Name="C_Renta_Fondo_Propio" />
+            <PropertyRef Name="C_Renta_Contable" />
+          </Key>
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" />
+          <Property Name="Id_Obra" Type="Int32" Nullable="false" />
+          <Property Name="M_Compra_Escritura" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Hipoteca_Fecha" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Coste_Final_Compra" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Otros_Costes" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Coste_Reforma" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Total_Coste" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Fondos_Propios_Fecha" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Mtr_Construidos" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Presu_Reform" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Coste_Reforma_Mtr" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Precio_Obj_Venta" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Mtr_Catrstro" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="M_Mtr_Idealista" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Mtr_Venta" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Beneficio_Previsto" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Fondo_Propio_Previsto" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Renta_Fondo_Propio" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
+          <Property Name="C_Renta_Contable" Type="Decimal" Precision="11" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Produ_Alcosan">
           <Key>
@@ -1855,7 +2147,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Albaranes_ca_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Albaranes_ca" Type="Self.Albaranes_ca" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -1869,7 +2163,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Balance_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -1891,6 +2187,20 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             </Principal>
             <Dependent Role="Balance">
               <PropertyRef Name="Cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Balance_Fijos_Balance_Fijos">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Balance_Fijos" Type="Self.Balance_Fijos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Balance_Fijos">
+              <PropertyRef Name="Id_empresa" />
+              <PropertyRef Name="id_Obra" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1955,7 +2265,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_D_Presuca_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="D_Presuca" Type="Self.D_Presuca" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -1994,6 +2306,34 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Est_Tesoreria_Obras">
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Est_Tesoreria" Type="Self.Est_Tesoreria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obras">
+              <PropertyRef Name="Id_Empresa" />
+              <PropertyRef Name="Id_Obra" />
+            </Principal>
+            <Dependent Role="Est_Tesoreria">
+              <PropertyRef Name="id_empresa" />
+              <PropertyRef Name="id_obra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Est_TesoreriaMes_Est_Tesoreria">
+          <End Role="Est_Tesoreria" Type="Self.Est_Tesoreria" Multiplicity="1" />
+          <End Role="Est_TesoreriaMes" Type="Self.Est_TesoreriaMes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Est_Tesoreria">
+              <PropertyRef Name="Id_tesoreria" />
+            </Principal>
+            <Dependent Role="Est_TesoreriaMes">
+              <PropertyRef Name="id_tesoreria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Lineas_Obras_Estados">
           <End Role="Estados" Type="Self.Estados" Multiplicity="1" />
           <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
@@ -2006,32 +2346,10 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_F_MaestraSubPartidas_F_MaestraSubPartidas">
-          <End Role="F_MaestraSubPartidas" Type="Self.F_MaestraSubPartidas" Multiplicity="1" />
-          <End Role="F_MaestraSubPartidas1" Type="Self.F_MaestraSubPartidas" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="F_MaestraSubPartidas">
-              <PropertyRef Name="Id_Partida" />
-            </Principal>
-            <Dependent Role="F_MaestraSubPartidas1">
-              <PropertyRef Name="Id_Partida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_F_PlanigPartidas_F_MaestraSubPartidas">
-          <End Role="F_MaestraSubPartidas" Type="Self.F_MaestraSubPartidas" Multiplicity="1" />
-          <End Role="F_PlanigPartidas" Type="Self.F_PlanigPartidas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="F_MaestraSubPartidas">
-              <PropertyRef Name="Id_Partida" />
-            </Principal>
-            <Dependent Role="F_PlanigPartidas">
-              <PropertyRef Name="Id_Partida" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Facturas_ca_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Facturas_ca" Type="Self.Facturas_ca" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -2119,7 +2437,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Grupos_Rel_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Grupos_Rel" Type="Self.Grupos_Rel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -2145,7 +2465,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Obras_Lineas_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Obras_Lineas" Type="Self.Obras_Lineas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -2159,7 +2481,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ParteTrabajo_Obras">
-          <End Role="Obras" Type="Self.Obras" Multiplicity="1" />
+          <End Role="Obras" Type="Self.Obras" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ParteTrabajo" Type="Self.ParteTrabajo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obras">
@@ -2262,19 +2586,22 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GestionConstructoraEntities25" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GestionConstructoraEntities38" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Albaran_li" EntityType="Self.Albaran_li" />
           <EntitySet Name="Albaranes_ca" EntityType="Self.Albaranes_ca" />
           <EntitySet Name="Balance" EntityType="Self.Balance" />
+          <EntitySet Name="Balance_Fijos" EntityType="Self.Balance_Fijos" />
           <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
           <EntitySet Name="D_Equipos" EntityType="Self.D_Equipos" />
+          <EntitySet Name="D_Familias" EntityType="Self.D_Familias" />
           <EntitySet Name="D_Presuca" EntityType="Self.D_Presuca" />
           <EntitySet Name="D_Presuli" EntityType="Self.D_Presuli" />
           <EntitySet Name="D_provee" EntityType="Self.D_provee" />
           <EntitySet Name="Empresas" EntityType="Self.Empresas" />
           <EntitySet Name="Est_Financiero" EntityType="Self.Est_Financiero" />
+          <EntitySet Name="Est_Tesoreria" EntityType="Self.Est_Tesoreria" />
+          <EntitySet Name="Est_TesoreriaMes" EntityType="Self.Est_TesoreriaMes" />
           <EntitySet Name="Estados" EntityType="Self.Estados" />
-          <EntitySet Name="F_MaestraSubPartidas" EntityType="Self.F_MaestraSubPartidas" />
           <EntitySet Name="Facturas_ca" EntityType="Self.Facturas_ca" />
           <EntitySet Name="Facturas_li" EntityType="Self.Facturas_li" />
           <EntitySet Name="Gastos_Fijos" EntityType="Self.Gastos_Fijos" />
@@ -2295,7 +2622,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Aux_PrefCuentas" EntityType="Self.Aux_PrefCuentas" />
           <EntitySet Name="Certificaciones" EntityType="Self.Certificaciones" />
+          <EntitySet Name="F_MaestraSubPartidas" EntityType="Self.F_MaestraSubPartidas" />
           <EntitySet Name="F_PlanigPartidas" EntityType="Self.F_PlanigPartidas" />
+          <EntitySet Name="F_Renta_MarKara" EntityType="Self.F_Renta_MarKara" />
           <EntitySet Name="Produ_Alcosan" EntityType="Self.Produ_Alcosan" />
           <EntitySet Name="Puertas" EntityType="Self.Puertas" />
           <EntitySet Name="TarifasProvee" EntityType="Self.TarifasProvee" />
@@ -2314,6 +2643,10 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
           <AssociationSet Name="FK_Informe_Cuentas" Association="Self.FK_Informe_Cuentas">
             <End Role="Cuentas" EntitySet="Cuentas" />
             <End Role="Balance" EntitySet="Balance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Balance_Fijos_Balance_Fijos" Association="Self.FK_Balance_Fijos_Balance_Fijos">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Balance_Fijos" EntitySet="Balance_Fijos" />
           </AssociationSet>
           <AssociationSet Name="FK_Cuentas_Empresas" Association="Self.FK_Cuentas_Empresas">
             <End Role="Empresas" EntitySet="Empresas" />
@@ -2347,17 +2680,17 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
             <End Role="Empresas" EntitySet="Empresas" />
             <End Role="Obras" EntitySet="Obras" />
           </AssociationSet>
+          <AssociationSet Name="FK_Est_Tesoreria_Obras" Association="Self.FK_Est_Tesoreria_Obras">
+            <End Role="Obras" EntitySet="Obras" />
+            <End Role="Est_Tesoreria" EntitySet="Est_Tesoreria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Est_TesoreriaMes_Est_Tesoreria" Association="Self.FK_Est_TesoreriaMes_Est_Tesoreria">
+            <End Role="Est_Tesoreria" EntitySet="Est_Tesoreria" />
+            <End Role="Est_TesoreriaMes" EntitySet="Est_TesoreriaMes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Lineas_Obras_Estados" Association="Self.FK_Lineas_Obras_Estados">
             <End Role="Estados" EntitySet="Estados" />
             <End Role="Obras_Lineas" EntitySet="Obras_Lineas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_F_MaestraSubPartidas_F_MaestraSubPartidas" Association="Self.FK_F_MaestraSubPartidas_F_MaestraSubPartidas">
-            <End Role="F_MaestraSubPartidas" EntitySet="F_MaestraSubPartidas" />
-            <End Role="F_MaestraSubPartidas1" EntitySet="F_MaestraSubPartidas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_F_PlanigPartidas_F_MaestraSubPartidas" Association="Self.FK_F_PlanigPartidas_F_MaestraSubPartidas">
-            <End Role="F_MaestraSubPartidas" EntitySet="F_MaestraSubPartidas" />
-            <End Role="F_PlanigPartidas" EntitySet="F_PlanigPartidas" />
           </AssociationSet>
           <AssociationSet Name="FK_Facturas_ca_Obras" Association="Self.FK_Facturas_ca_Obras">
             <End Role="Obras" EntitySet="Obras" />
@@ -2437,7 +2770,7 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GestionConstructoraModelStoreContainer" CdmEntityContainer="GestionConstructoraEntities25">
+        <EntityContainerMapping StorageEntityContainer="GestionConstructoraModelStoreContainer" CdmEntityContainer="GestionConstructoraEntities38">
           <EntitySetMapping Name="Albaran_li">
             <EntityTypeMapping TypeName="GestionConstructoraModel.Albaran_li">
               <MappingFragment StoreEntitySet="Albaran_li">
@@ -2502,6 +2835,20 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Balance_Fijos">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Balance_Fijos">
+              <MappingFragment StoreEntitySet="Balance_Fijos">
+                <ScalarProperty Name="Id_Gasto" ColumnName="Id_Gasto" />
+                <ScalarProperty Name="Id_empresa" ColumnName="Id_empresa" />
+                <ScalarProperty Name="id_Obra" ColumnName="id_Obra" />
+                <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+                <ScalarProperty Name="id_TipoCoste" ColumnName="id_TipoCoste" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cuentas">
             <EntityTypeMapping TypeName="GestionConstructoraModel.Cuentas">
               <MappingFragment StoreEntitySet="Cuentas">
@@ -2532,6 +2879,15 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="id_proveedor" ColumnName="id_proveedor" />
                 <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D_Familias">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.D_Familias">
+              <MappingFragment StoreEntitySet="D_Familias">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2616,21 +2972,47 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Est_Tesoreria">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Est_Tesoreria">
+              <MappingFragment StoreEntitySet="Est_Tesoreria">
+                <ScalarProperty Name="Id_tesoreria" ColumnName="Id_tesoreria" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ffin" ColumnName="ffin" />
+                <ScalarProperty Name="finicioprevisto" ColumnName="finicioprevisto" />
+                <ScalarProperty Name="tipointeres" ColumnName="tipointeres" />
+                <ScalarProperty Name="CompraTotal" ColumnName="CompraTotal" />
+                <ScalarProperty Name="principal" ColumnName="principal" />
+                <ScalarProperty Name="pte" ColumnName="pte" />
+                <ScalarProperty Name="ptereforma" ColumnName="ptereforma" />
+                <ScalarProperty Name="Realizado" ColumnName="Realizado" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="id_obra" ColumnName="id_obra" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Plazo" ColumnName="Plazo" />
+                <ScalarProperty Name="fventa" ColumnName="fventa" />
+                <ScalarProperty Name="Venta" ColumnName="Venta" />
+                <ScalarProperty Name="Fcompra" ColumnName="Fcompra" />
+                <ScalarProperty Name="Carencia" ColumnName="Carencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Est_TesoreriaMes">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.Est_TesoreriaMes">
+              <MappingFragment StoreEntitySet="Est_TesoreriaMes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_tesoreria" ColumnName="id_tesoreria" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="año" ColumnName="año" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Estados">
             <EntityTypeMapping TypeName="GestionConstructoraModel.Estados">
               <MappingFragment StoreEntitySet="Estados">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="F_MaestraSubPartidas">
-            <EntityTypeMapping TypeName="GestionConstructoraModel.F_MaestraSubPartidas">
-              <MappingFragment StoreEntitySet="F_MaestraSubPartidas">
-                <ScalarProperty Name="Id_PartidaMadre" ColumnName="Id_PartidaMadre" />
-                <ScalarProperty Name="Id_Partida" ColumnName="Id_Partida" />
-                <ScalarProperty Name="Denominacion" ColumnName="Denominacion" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2763,6 +3145,9 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
                 <ScalarProperty Name="Ajuste" ColumnName="Ajuste" />
                 <ScalarProperty Name="Comentario_Ajuste" ColumnName="Comentario_Ajuste" />
                 <ScalarProperty Name="F_Stado_Planig" ColumnName="F_Stado_Planig" />
+                <ScalarProperty Name="ValorVenta" ColumnName="ValorVenta" />
+                <ScalarProperty Name="Cobrado2017" ColumnName="Cobrado2017" />
+                <ScalarProperty Name="Gastos2017" ColumnName="Gastos2017" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2937,6 +3322,16 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="F_MaestraSubPartidas">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.F_MaestraSubPartidas">
+              <MappingFragment StoreEntitySet="F_MaestraSubPartidas">
+                <ScalarProperty Name="Id_PartidaMadre" ColumnName="Id_PartidaMadre" />
+                <ScalarProperty Name="Id_Partida" ColumnName="Id_Partida" />
+                <ScalarProperty Name="Denominacion" ColumnName="Denominacion" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="F_PlanigPartidas">
             <EntityTypeMapping TypeName="GestionConstructoraModel.F_PlanigPartidas">
               <MappingFragment StoreEntitySet="F_PlanigPartidas">
@@ -2946,6 +3341,33 @@ advertencia 6002: La tabla o vista 'GestionConstructora.dbo.TarifasProvee' no ti
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
                 <ScalarProperty Name="Coste" ColumnName="Coste" />
+                <ScalarProperty Name="DiasEjecucion" ColumnName="DiasEjecucion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_Renta_MarKara">
+            <EntityTypeMapping TypeName="GestionConstructoraModel.F_Renta_MarKara">
+              <MappingFragment StoreEntitySet="F_Renta_MarKara">
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Id_Obra" ColumnName="Id_Obra" />
+                <ScalarProperty Name="M_Compra_Escritura" ColumnName="M_Compra_Escritura" />
+                <ScalarProperty Name="M_Hipoteca_Fecha" ColumnName="M_Hipoteca_Fecha" />
+                <ScalarProperty Name="C_Coste_Final_Compra" ColumnName="C_Coste_Final_Compra" />
+                <ScalarProperty Name="M_Otros_Costes" ColumnName="M_Otros_Costes" />
+                <ScalarProperty Name="M_Coste_Reforma" ColumnName="M_Coste_Reforma" />
+                <ScalarProperty Name="C_Total_Coste" ColumnName="C_Total_Coste" />
+                <ScalarProperty Name="C_Fondos_Propios_Fecha" ColumnName="C_Fondos_Propios_Fecha" />
+                <ScalarProperty Name="M_Mtr_Construidos" ColumnName="M_Mtr_Construidos" />
+                <ScalarProperty Name="M_Presu_Reform" ColumnName="M_Presu_Reform" />
+                <ScalarProperty Name="C_Coste_Reforma_Mtr" ColumnName="C_Coste_Reforma_Mtr" />
+                <ScalarProperty Name="M_Precio_Obj_Venta" ColumnName="M_Precio_Obj_Venta" />
+                <ScalarProperty Name="M_Mtr_Catrstro" ColumnName="M_Mtr_Catrstro" />
+                <ScalarProperty Name="M_Mtr_Idealista" ColumnName="M_Mtr_Idealista" />
+                <ScalarProperty Name="C_Mtr_Venta" ColumnName="C_Mtr_Venta" />
+                <ScalarProperty Name="C_Beneficio_Previsto" ColumnName="C_Beneficio_Previsto" />
+                <ScalarProperty Name="C_Fondo_Propio_Previsto" ColumnName="C_Fondo_Propio_Previsto" />
+                <ScalarProperty Name="C_Renta_Fondo_Propio" ColumnName="C_Renta_Fondo_Propio" />
+                <ScalarProperty Name="C_Renta_Contable" ColumnName="C_Renta_Contable" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

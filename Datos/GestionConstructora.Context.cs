@@ -28,15 +28,18 @@ namespace Datos
         public virtual DbSet<Albaran_li> Albaran_li { get; set; }
         public virtual DbSet<Albaranes_ca> Albaranes_ca { get; set; }
         public virtual DbSet<Balance> Balance { get; set; }
+        public virtual DbSet<Balance_Fijos> Balance_Fijos { get; set; }
         public virtual DbSet<Cuentas> Cuentas { get; set; }
         public virtual DbSet<D_Equipos> D_Equipos { get; set; }
+        public virtual DbSet<D_Familias> D_Familias { get; set; }
         public virtual DbSet<D_Presuca> D_Presuca { get; set; }
         public virtual DbSet<D_Presuli> D_Presuli { get; set; }
         public virtual DbSet<D_provee> D_provee { get; set; }
         public virtual DbSet<Empresas> Empresas { get; set; }
         public virtual DbSet<Est_Financiero> Est_Financiero { get; set; }
+        public virtual DbSet<Est_Tesoreria> Est_Tesoreria { get; set; }
+        public virtual DbSet<Est_TesoreriaMes> Est_TesoreriaMes { get; set; }
         public virtual DbSet<Estados> Estados { get; set; }
-        public virtual DbSet<F_MaestraSubPartidas> F_MaestraSubPartidas { get; set; }
         public virtual DbSet<Facturas_ca> Facturas_ca { get; set; }
         public virtual DbSet<Facturas_li> Facturas_li { get; set; }
         public virtual DbSet<Gastos_Fijos> Gastos_Fijos { get; set; }
@@ -57,7 +60,9 @@ namespace Datos
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Aux_PrefCuentas> Aux_PrefCuentas { get; set; }
         public virtual DbSet<Certificaciones> Certificaciones { get; set; }
+        public virtual DbSet<F_MaestraSubPartidas> F_MaestraSubPartidas { get; set; }
         public virtual DbSet<F_PlanigPartidas> F_PlanigPartidas { get; set; }
+        public virtual DbSet<F_Renta_MarKara> F_Renta_MarKara { get; set; }
         public virtual DbSet<Produ_Alcosan> Produ_Alcosan { get; set; }
         public virtual DbSet<Puertas> Puertas { get; set; }
         public virtual DbSet<TarifasProvee> TarifasProvee { get; set; }

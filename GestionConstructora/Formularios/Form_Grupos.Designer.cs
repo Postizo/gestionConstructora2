@@ -38,15 +38,17 @@
             this.txtsubrgrupo = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.bttañadirsubgrupo = new System.Windows.Forms.Button();
-            this.bttborrarsubgrupo = new System.Windows.Forms.Button();
             this.pbotones = new System.Windows.Forms.FlowLayoutPanel();
             this.bttagregar = new System.Windows.Forms.Button();
             this.btteditar = new System.Windows.Forms.Button();
-            this.bttborrar = new System.Windows.Forms.Button();
             this.pdatos = new System.Windows.Forms.FlowLayoutPanel();
             this.llegenda = new System.Windows.Forms.Label();
             this.lnombre = new System.Windows.Forms.Label();
             this.txtnombre = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.prbtipos = new System.Windows.Forms.FlowLayoutPanel();
+            this.Rbingresos = new System.Windows.Forms.RadioButton();
+            this.rbgastos = new System.Windows.Forms.RadioButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.bttañadir = new System.Windows.Forms.Button();
             this.bttver = new System.Windows.Forms.Button();
@@ -61,21 +63,18 @@
             this.Id_grupos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Grupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.rbgastos = new System.Windows.Forms.RadioButton();
-            this.Rbingresos = new System.Windows.Forms.RadioButton();
-            this.prbtipos = new System.Windows.Forms.FlowLayoutPanel();
+            this.rbgastocontribuciondirecta = new System.Windows.Forms.RadioButton();
             this.pcontenedor.SuspendLayout();
             this.psubgrupos.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.pbotones.SuspendLayout();
             this.pdatos.SuspendLayout();
+            this.prbtipos.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgsubgrupos)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dggrupos)).BeginInit();
-            this.prbtipos.SuspendLayout();
             this.SuspendLayout();
             // 
             // pcontenedor
@@ -125,7 +124,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(316, 20);
             this.label3.TabIndex = 24;
-            this.label3.Text = "MODIFICA SUBGRUPOS";
+            this.label3.Text = " SUBGRUPOS";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -138,7 +137,7 @@
             this.label4.Padding = new System.Windows.Forms.Padding(2, 5, 2, 2);
             this.label4.Size = new System.Drawing.Size(316, 24);
             this.label4.TabIndex = 22;
-            this.label4.Text = "Nombre Subgrupo";
+            this.label4.Text = "AGREGAR NUEVO Nombre Subgrupo";
             // 
             // txtsubrgrupo
             // 
@@ -153,10 +152,9 @@
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.bttañadirsubgrupo);
-            this.flowLayoutPanel2.Controls.Add(this.bttborrarsubgrupo);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 76);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(175, 82);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(82, 82);
             this.flowLayoutPanel2.TabIndex = 23;
             // 
             // bttañadirsubgrupo
@@ -170,21 +168,10 @@
             this.bttañadirsubgrupo.UseVisualStyleBackColor = true;
             this.bttañadirsubgrupo.Click += new System.EventHandler(this.bttAñadirsubgrupo_Click);
             // 
-            // bttborrarsubgrupo
-            // 
-            this.bttborrarsubgrupo.Image = global::GestionConstructora.Properties.Resources.cancelar;
-            this.bttborrarsubgrupo.Location = new System.Drawing.Point(84, 3);
-            this.bttborrarsubgrupo.Name = "bttborrarsubgrupo";
-            this.bttborrarsubgrupo.Size = new System.Drawing.Size(75, 75);
-            this.bttborrarsubgrupo.TabIndex = 2;
-            this.bttborrarsubgrupo.UseVisualStyleBackColor = true;
-            this.bttborrarsubgrupo.Click += new System.EventHandler(this.bttborrar_subgrupos);
-            // 
             // pbotones
             // 
             this.pbotones.Controls.Add(this.bttagregar);
             this.pbotones.Controls.Add(this.btteditar);
-            this.pbotones.Controls.Add(this.bttborrar);
             this.pbotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbotones.Location = new System.Drawing.Point(3, 505);
             this.pbotones.Name = "pbotones";
@@ -212,16 +199,6 @@
             this.btteditar.UseVisualStyleBackColor = true;
             this.btteditar.Click += new System.EventHandler(this.btteditar_Click);
             // 
-            // bttborrar
-            // 
-            this.bttborrar.Image = global::GestionConstructora.Properties.Resources.cancelar;
-            this.bttborrar.Location = new System.Drawing.Point(165, 3);
-            this.bttborrar.Name = "bttborrar";
-            this.bttborrar.Size = new System.Drawing.Size(75, 75);
-            this.bttborrar.TabIndex = 2;
-            this.bttborrar.UseVisualStyleBackColor = true;
-            this.bttborrar.Click += new System.EventHandler(this.bttborrar_Click);
-            // 
             // pdatos
             // 
             this.pdatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -246,7 +223,7 @@
             this.llegenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.llegenda.Location = new System.Drawing.Point(3, 0);
             this.llegenda.Name = "llegenda";
-            this.llegenda.Size = new System.Drawing.Size(310, 20);
+            this.llegenda.Size = new System.Drawing.Size(381, 20);
             this.llegenda.TabIndex = 0;
             this.llegenda.Text = "label1";
             this.llegenda.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -260,7 +237,7 @@
             this.lnombre.Margin = new System.Windows.Forms.Padding(1);
             this.lnombre.Name = "lnombre";
             this.lnombre.Padding = new System.Windows.Forms.Padding(2, 10, 2, 2);
-            this.lnombre.Size = new System.Drawing.Size(314, 25);
+            this.lnombre.Size = new System.Drawing.Size(385, 25);
             this.lnombre.TabIndex = 8;
             this.lnombre.Text = "Nombre";
             // 
@@ -270,8 +247,63 @@
             this.txtnombre.Location = new System.Drawing.Point(1, 48);
             this.txtnombre.Margin = new System.Windows.Forms.Padding(1);
             this.txtnombre.Name = "txtnombre";
-            this.txtnombre.Size = new System.Drawing.Size(314, 23);
+            this.txtnombre.Size = new System.Drawing.Size(385, 23);
             this.txtnombre.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1, 73);
+            this.label2.Margin = new System.Windows.Forms.Padding(1);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(2, 5, 2, 2);
+            this.label2.Size = new System.Drawing.Size(385, 20);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Tipo";
+            // 
+            // prbtipos
+            // 
+            this.prbtipos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.prbtipos.Controls.Add(this.Rbingresos);
+            this.prbtipos.Controls.Add(this.rbgastos);
+            this.prbtipos.Controls.Add(this.rbgastocontribuciondirecta);
+            this.prbtipos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.prbtipos.Location = new System.Drawing.Point(1, 95);
+            this.prbtipos.Margin = new System.Windows.Forms.Padding(1);
+            this.prbtipos.Name = "prbtipos";
+            this.prbtipos.Padding = new System.Windows.Forms.Padding(2);
+            this.prbtipos.Size = new System.Drawing.Size(385, 30);
+            this.prbtipos.TabIndex = 11;
+            // 
+            // Rbingresos
+            // 
+            this.Rbingresos.AutoSize = true;
+            this.Rbingresos.Checked = true;
+            this.Rbingresos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rbingresos.ForeColor = System.Drawing.Color.Green;
+            this.Rbingresos.Location = new System.Drawing.Point(5, 5);
+            this.Rbingresos.Name = "Rbingresos";
+            this.Rbingresos.Size = new System.Drawing.Size(78, 20);
+            this.Rbingresos.TabIndex = 5;
+            this.Rbingresos.TabStop = true;
+            this.Rbingresos.Text = "Ingresos";
+            this.Rbingresos.UseVisualStyleBackColor = true;
+            this.Rbingresos.CheckedChanged += new System.EventHandler(this.Rbingresos_CheckedChanged);
+            // 
+            // rbgastos
+            // 
+            this.rbgastos.AutoSize = true;
+            this.rbgastos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbgastos.ForeColor = System.Drawing.Color.Red;
+            this.rbgastos.Location = new System.Drawing.Point(89, 5);
+            this.rbgastos.Name = "rbgastos";
+            this.rbgastos.Size = new System.Drawing.Size(69, 20);
+            this.rbgastos.TabIndex = 4;
+            this.rbgastos.Text = "Gastos";
+            this.rbgastos.UseVisualStyleBackColor = true;
+            this.rbgastos.CheckedChanged += new System.EventHandler(this.rbgastos_CheckedChanged);
             // 
             // flowLayoutPanel1
             // 
@@ -461,59 +493,18 @@
             this.tip.Name = "tip";
             this.tip.ReadOnly = true;
             // 
-            // label2
+            // rbgastocontribuciondirecta
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1, 73);
-            this.label2.Margin = new System.Windows.Forms.Padding(1);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(2, 5, 2, 2);
-            this.label2.Size = new System.Drawing.Size(314, 20);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Tipo";
-            // 
-            // rbgastos
-            // 
-            this.rbgastos.AutoSize = true;
-            this.rbgastos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbgastos.ForeColor = System.Drawing.Color.Red;
-            this.rbgastos.Location = new System.Drawing.Point(89, 5);
-            this.rbgastos.Name = "rbgastos";
-            this.rbgastos.Size = new System.Drawing.Size(69, 20);
-            this.rbgastos.TabIndex = 4;
-            this.rbgastos.Text = "Gastos";
-            this.rbgastos.UseVisualStyleBackColor = true;
-           
-            // 
-            // Rbingresos
-            // 
-            this.Rbingresos.AutoSize = true;
-            this.Rbingresos.Checked = true;
-            this.Rbingresos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rbingresos.ForeColor = System.Drawing.Color.Green;
-            this.Rbingresos.Location = new System.Drawing.Point(5, 5);
-            this.Rbingresos.Name = "Rbingresos";
-            this.Rbingresos.Size = new System.Drawing.Size(78, 20);
-            this.Rbingresos.TabIndex = 5;
-            this.Rbingresos.TabStop = true;
-            this.Rbingresos.Text = "Ingresos";
-            this.Rbingresos.UseVisualStyleBackColor = true;
-           
-            // 
-            // prbtipos
-            // 
-            this.prbtipos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.prbtipos.Controls.Add(this.Rbingresos);
-            this.prbtipos.Controls.Add(this.rbgastos);
-            this.prbtipos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.prbtipos.Location = new System.Drawing.Point(1, 95);
-            this.prbtipos.Margin = new System.Windows.Forms.Padding(1);
-            this.prbtipos.Name = "prbtipos";
-            this.prbtipos.Padding = new System.Windows.Forms.Padding(2);
-            this.prbtipos.Size = new System.Drawing.Size(314, 30);
-            this.prbtipos.TabIndex = 11;
+            this.rbgastocontribuciondirecta.AutoSize = true;
+            this.rbgastocontribuciondirecta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbgastocontribuciondirecta.ForeColor = System.Drawing.Color.Red;
+            this.rbgastocontribuciondirecta.Location = new System.Drawing.Point(164, 5);
+            this.rbgastocontribuciondirecta.Name = "rbgastocontribuciondirecta";
+            this.rbgastocontribuciondirecta.Size = new System.Drawing.Size(192, 20);
+            this.rbgastocontribuciondirecta.TabIndex = 6;
+            this.rbgastocontribuciondirecta.Text = "Gastos Contribucion Directa";
+            this.rbgastocontribuciondirecta.UseVisualStyleBackColor = true;
+            this.rbgastocontribuciondirecta.CheckedChanged += new System.EventHandler(this.rbgastocontribuciondirecta_CheckedChanged);
             // 
             // Form_Grupos
             // 
@@ -532,6 +523,8 @@
             this.pbotones.ResumeLayout(false);
             this.pdatos.ResumeLayout(false);
             this.pdatos.PerformLayout();
+            this.prbtipos.ResumeLayout(false);
+            this.prbtipos.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -539,8 +532,6 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dggrupos)).EndInit();
-            this.prbtipos.ResumeLayout(false);
-            this.prbtipos.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -554,7 +545,6 @@
         private System.Windows.Forms.FlowLayoutPanel pbotones;
         private System.Windows.Forms.Button bttagregar;
         private System.Windows.Forms.Button btteditar;
-        private System.Windows.Forms.Button bttborrar;
         private System.Windows.Forms.Label llegenda;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button bttañadir;
@@ -575,12 +565,12 @@
         private System.Windows.Forms.TextBox txtsubrgrupo;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button bttañadirsubgrupo;
-        private System.Windows.Forms.Button bttborrarsubgrupo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FlowLayoutPanel prbtipos;
         private System.Windows.Forms.RadioButton Rbingresos;
         private System.Windows.Forms.RadioButton rbgastos;
+        private System.Windows.Forms.RadioButton rbgastocontribuciondirecta;
     }
 }
 

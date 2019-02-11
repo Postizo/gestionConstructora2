@@ -412,6 +412,71 @@ namespace Negocio
 
 
         #endregion
+        #region "FAMILIAS"
+        public static D_Familias ListarFamilias(int id_familia)
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            D_Familias Familia = db.D_Familias.SingleOrDefault<D_Familias>(p => p.id == id_familia);
+          
+            return Familia;
+        }
+
+        public static List<D_Familias> ListarFamilias()
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            List<D_Familias> Familias = db.D_Familias.OrderBy(p => p.Orden).ToList();
+            foreach (D_Familias fam in Familias)
+            {
+                fam.Nombre = fam.Orden + "- " + fam.Nombre;
+            }
+            return Familias;
+
+        }
+        public static D_Familias ModificarFamilias(int id_familia,string Nombre, string Orden)
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            D_Familias Familia = db.D_Familias.SingleOrDefault<D_Familias>(p => p.id == id_familia);
+            if (Familia != null)
+            {
+                Familia.Nombre = Nombre;
+                Familia.Orden = Orden;
+                db.SaveChanges();
+                return Familia;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static D_Familias AñadirFamilia(string nombre, string Orden)
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            D_Familias Familia = db.D_Familias.SingleOrDefault<D_Familias>(p => p.Nombre.Trim() == nombre.Trim());
+            if (Familia == null)
+            {
+                Familia = new D_Familias();
+                Familia.Nombre = nombre;
+                Familia.Orden = Orden;
+                db.D_Familias.Add(Familia);
+                db.SaveChanges();
+                return Familia;
+            }
+            else
+            {
+                return null;
+            }
+
+
+
+        }
+        public static void BorrarFamilia(int id_familia)
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            D_Familias Familia = db.D_Familias.SingleOrDefault<D_Familias>(p => p.id == id_familia);
+            db.D_Familias.Remove(Familia);
+            db.SaveChanges();
+        }
+        #endregion
 
     }
 }

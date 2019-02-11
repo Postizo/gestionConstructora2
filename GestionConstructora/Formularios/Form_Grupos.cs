@@ -11,6 +11,7 @@ using Entidad;
 using Negocio;
 using Negocio.Gestion;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace GestionConstructora
 {
@@ -20,17 +21,17 @@ namespace GestionConstructora
         int id_subgrupo = 0;
         int estado = 0;
         int Id_tipo = 0;
+        int Id_tipoCoste = 0;
+
         string Tipo = "";
         bool visiblesubgrupo = false;
-        public Form_Grupos(int id_tipo)
-        {
-            Id_tipo = id_tipo;
+        public Form_Grupos()
+        {            
             InitializeComponent();
             DiseñoGrid();
             CargaPanel();
             pdatos.Visible = false;
         }
-
         #region BOTONES   
         private void bttAñadir_Click(object sender, EventArgs e)
         {
@@ -48,22 +49,20 @@ namespace GestionConstructora
                 {
                     MessageBox.Show(r.ErrorMessage,"Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-       
+            }       
         }
         private List<ValidationResult> Añadir()
         {
             Grupos Gr = new Grupos();
-            Gr = GruposCN.Añadir(txtnombre.Text, 0, Id_tipo, Tipo);
+            Gr = GruposCN.Añadir(txtnombre.Text, 0, Id_tipo, Tipo,Id_tipoCoste);
             return Gr.ValidationErrors;
 
         }
         private List<ValidationResult> Modifica()
         {
             Grupos Gr = new Grupos();
-            Gr = GruposCN.Modificar(id_grupo, txtnombre.Text, 0, Id_tipo, Tipo);     
-            return Gr.ValidationErrors;
-              
+            Gr = GruposCN.Modificar(id_grupo, txtnombre.Text, 0, Id_tipo, Tipo,Id_tipoCoste);     
+            return Gr.ValidationErrors;              
         }
 
         private void bttnuevo_Click(object sender, EventArgs e)
@@ -82,8 +81,7 @@ namespace GestionConstructora
            
         }
         private void bttborrar_Click(object sender, EventArgs e)
-        {
-   
+        {   
                 estado = 0;
                 List<ValidationResult> Errores = GruposCN.Borrar(id_grupo).ValidationErrors;
                 if (Errores.Count == 0)
@@ -126,18 +124,12 @@ namespace GestionConstructora
         }
         private void dgsubgrupos_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgsubgrupos.SelectedRows.Count == 0)
-            { bttborrarsubgrupo.Enabled = false; }
-            else
-            { bttborrarsubgrupo.Enabled = true; }
+          
             id_subgrupo = Convert.ToInt32(dgsubgrupos.Rows[e.RowIndex].Cells["Id_Subgrupos"].Value);
         }
         private void dgsubgrupos_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgsubgrupos.SelectedRows.Count == 0)
-            { bttborrarsubgrupo.Enabled = false; }
-            else
-            { bttborrarsubgrupo.Enabled = true; }
+            
         }
         #endregion
 
@@ -156,6 +148,13 @@ namespace GestionConstructora
         }
         public void DiseñoGrid()
         {
+            typeof(DataGridView).InvokeMember("DoubleBuffered", BindingFlags.NonPublic |
+               BindingFlags.Instance | BindingFlags.SetProperty, null,
+               dggrupos, new object[] { true });
+            typeof(DataGridView).InvokeMember("DoubleBuffered", BindingFlags.NonPublic |
+            BindingFlags.Instance | BindingFlags.SetProperty, null,
+            dgsubgrupos, new object[] { true });
+
             dggrupos.AutoGenerateColumns = false;
             dggrupos.EnableHeadersVisualStyles = false;
             dggrupos.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
@@ -184,23 +183,9 @@ namespace GestionConstructora
             dgsubgrupos.DataSource = SubGruposCN.ListarporGrupo(id_grupo);
      
             txtnombre.Text = string.Empty;
-            switch (Id_tipo)
-            {
-                case -1:
-                    prbtipos.Visible = false ;
-                    dggrupos.DataSource = GruposCN.Listar_solocontructora ();
-                    break;
-                case -2:
-                    prbtipos.Visible = false;
-                    dggrupos.DataSource = GruposCN.Listar_soloelectrica ();
-                    break;
-                default:
-                    prbtipos.Visible = true;
-                    dggrupos.DataSource = GruposCN.Listar_solocontabilidad();
-                    break;
+            prbtipos.Visible = true;
+            dggrupos.DataSource = GruposCN.Listar_solocontabilidad().Where(p => p.Id_Tipo == 0 || p.Id_Tipo == 1).ToList();
 
-            }
-          
             //Colores
             txtnombre.BackColor = Color.Ivory;
             // Enable
@@ -215,11 +200,12 @@ namespace GestionConstructora
                 psubgrupos.Visible = true;
                 dgsubgrupos.Visible = true;
                 dgsubgrupos.DataSource = SubGruposCN.ListarporGrupo(id_grupo);
-            }
-          
-           
+            }                     
             txtnombre.Text = Gru.Nombre;
-            Establecervalorcheck(prbtipos, Gru.Id_Tipo);
+            Establecervalorcheck(Gru);
+            Id_tipo = Gru.Id_Tipo;
+            Id_tipoCoste = Gru.Id_TipoCoste;
+            Tipo = Gru.Tipo;
             //Colores
             txtnombre.BackColor = Color.Ivory;
             // Enable
@@ -243,21 +229,24 @@ namespace GestionConstructora
             }
         }
        
-        public void Establecervalorcheck(FlowLayoutPanel p,int valor)
+        public void Establecervalorcheck(Grupos Gru)
         {
-            int i = 0;
-            foreach (Control c in p.Controls)
+            switch (Gru.Id_TipoCoste)
             {
-                if (c is RadioButton)
-                {
-                    var rb = (RadioButton)c;
-                    if (valor == i)
-                    {
-                        rb.Checked = true;
-                    }
-                i += 1;
-                }     
+                case 1:
+                    Rbingresos.Checked = true;
+                    break;
+                case 2:
+                    rbgastocontribuciondirecta.Checked = true;
+                    break;
+                case 3:
+                    rbgastos.Checked = true;
+
+                    break;
+                default:
+                    break;
             }
+            
         }
 
         #endregion
@@ -335,6 +324,40 @@ namespace GestionConstructora
             else { bttañadirsubgrupo.Enabled = true; }
         }
 
-      
+        private void rbgastos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbgastos.Checked) Cambioestado();
+        }
+
+        private void Rbingresos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Rbingresos.Checked) Cambioestado();
+        }
+
+        private void rbgastocontribuciondirecta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbgastocontribuciondirecta.Checked) Cambioestado();
+        }
+        public void Cambioestado()
+        {
+            if (Rbingresos.Checked)
+            {
+                Id_tipo = 0;
+                Id_tipoCoste = 1;
+                Tipo = "Ingresos";
+            }
+            if (rbgastos.Checked)
+            {
+                Id_tipo = 1;
+                Id_tipoCoste = 3;
+                Tipo = "Gastos";
+            }
+            if (rbgastocontribuciondirecta.Checked)
+            {
+                Id_tipo = 1;
+                Id_tipoCoste = 2;
+                Tipo = "Gastos";
+            }
+        }
     }
 }

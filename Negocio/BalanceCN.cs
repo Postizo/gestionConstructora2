@@ -48,6 +48,10 @@ namespace Negocio
         {
             return Obr.Balance.Where(p => p.Cuentas.Id_Grupo == id_grupo).Where(p => p.Id_Informe == id_infor).Sum(d => d.Imp_debe);
         }
+        public static decimal Debe_CuentaSubgrupo(Obras Obr, int id_subgrupo, string id_infor)
+        {
+            return Obr.Balance.Where(p => p.Cuentas.Id_SubGrupo == id_subgrupo).Where(p => p.Id_Informe == id_infor).Sum(d => d.Imp_debe);
+        }
         public static decimal Haber_Cuenta(Obras Obr, int id_grupo, string id_infor)
         {
             return Obr.Balance.Where(p => p.Cuentas.Id_Grupo == id_grupo).Where(p => p.Id_Informe == id_infor).Sum(d => d.Imp_Haber);
@@ -171,6 +175,44 @@ namespace Negocio
             return list;
 
         }
+
+        public static List<Balance_Fijos> ListarFijos()
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            return db.Balance_Fijos.ToList();
+        }
+        public static Balance_Fijos ListarFijos(int id)
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            return db.Balance_Fijos.SingleOrDefault<Balance_Fijos>(p => p.Id_Gasto == id);
+        }
+        public static void BorrarFijos(int Id_Gasto)
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            db.Balance_Fijos.Remove(db.Balance_Fijos.SingleOrDefault<Balance_Fijos>(p => p.Id_Gasto == Id_Gasto));
+            db.SaveChanges();
+        }
+        public static void EditarFijos(Balance_Fijos GastoFijo)
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            Balance_Fijos GastoFijodb = db.Balance_Fijos.SingleOrDefault<Balance_Fijos>(p => p.Id_Gasto == GastoFijo.Id_Gasto);
+            GastoFijodb.Concepto = GastoFijo.Concepto;
+            GastoFijodb.Año = GastoFijo.Año;
+            GastoFijodb.Importe = GastoFijo.Importe;
+            GastoFijodb.Comentario = GastoFijo.Comentario;         
+            db.SaveChanges();
+        }
+        public static Balance_Fijos AñadirFijos(Balance_Fijos GastoFijo)
+        {
+            GestionConstructoraEntities db = new GestionConstructoraEntities();
+            db.Balance_Fijos.Add(GastoFijo);
+            db.SaveChanges();
+            return GastoFijo;
+        }
+
+
+
+
 
     }
   

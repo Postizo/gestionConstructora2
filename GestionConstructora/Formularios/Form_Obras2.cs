@@ -108,6 +108,7 @@ namespace GestionConstructora
         {
             Emp = EmpresasCN.Listar(Emp.Id_Empresa);
             txtnombre.Text = string.Empty;
+            if (Emp.Obras.Count  == 0) return;
             if (Emp.Obras.OrderBy(p => p.Id_Obra).ThenByDescending(p => p.Id_Obra).Select(p => p.Id_Obra).ToList()[0] > 0)
             {
                 txtidobra.Text = Convert.ToString(-1);
@@ -121,7 +122,6 @@ namespace GestionConstructora
             txtm_construido.Text = "0";
             rbestudio.Checked = true;
             dgobras.DataSource = Emp.Obras.ToList();
-
 
             //Colores
             txtnombre.BackColor = Color.Ivory;
@@ -150,9 +150,8 @@ namespace GestionConstructora
             {
                 rbestudio.Checked = true;
             }
-
-                //Colores
-                txtnombre.BackColor = Color.Ivory;
+             //Colores
+            txtnombre.BackColor = Color.Ivory;
             txt_idsigrid.BackColor = Color.Ivory;
             txtm_construido.BackColor = Color.Ivory;
 
@@ -216,8 +215,9 @@ namespace GestionConstructora
 
         private void bttañadir_Click_1(object sender, EventArgs e)
         {
-            Cambiarestado();
+          
             List<ValidationResult> Errores = (estado == 1) ? Añadir() : Modifica();
+
             if (Errores.Count == 0)
             {
                 Pepara_Panel(pdatos, llegenda, false, "", false);
@@ -230,6 +230,7 @@ namespace GestionConstructora
                     MessageBox.Show(r.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            Cambiarestado();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

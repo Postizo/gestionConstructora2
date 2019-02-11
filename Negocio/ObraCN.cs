@@ -54,9 +54,9 @@ namespace Negocio
             Obr.M_Viviendas = m_construido;
             Obr.Ajuste = 0;
             Obr.Comentario_Ajuste = "";
-            Obr.M_Construidos = 0;
-            Obr.M_Escriturados = 0;
-            Obr.M_Utiles = 0;
+            Obr.M_Construidos = 1;
+            Obr.M_Escriturados = 1;
+            Obr.M_Utiles = 1;
             Obr.M_ZonasComunes =1;
             Obr.M_Rasante = 1;
             Obr.M_Viviendas = 1;
@@ -222,14 +222,18 @@ namespace Negocio
             }
 
         }
-        public static void ModificarAjuste(int id_Obra, int id_empresa, decimal importe, string comentario)
+        public static void ModificarAjuste(int id_Obra, int id_empresa, decimal importe, string comentario,decimal valorventa,decimal cobrado, decimal gastos)
         {
             GestionConstructoraEntities db = new GestionConstructoraEntities();
             Obras Obr = db.Empresas.Where(p => p.Id_Empresa == id_empresa).ToList()[0].Obras.Where(p => p.Id_Obra == id_Obra).ToList()[0];
             if (Obr != null)
             {
                 Obr.Ajuste = importe;
-                Obr.Comentario_Ajuste = comentario;                
+                Obr.Comentario_Ajuste = comentario;
+                Obr.ValorVenta = valorventa;
+                Obr.Cobrado2017 = cobrado;
+                Obr.Gastos2017 = gastos;
+
                 db.SaveChanges();
             }
         }

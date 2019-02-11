@@ -20,7 +20,6 @@ namespace Entidad
         public System.DateTime FechaInicio { get; set; }
         public System.DateTime FechaFin { get; set; }
         public decimal Coste { get; set; }
-    
-        public virtual F_MaestraSubPartidas F_MaestraSubPartidas { get; set; }
+        public int DiasEjecucion { get; set; }
     }
 }

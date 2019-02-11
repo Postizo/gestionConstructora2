@@ -53,6 +53,9 @@
     <Compile Include="Balance.cs">
       <DependentUpon>GestionConstructora.tt</DependentUpon>
     </Compile>
+    <Compile Include="Balance_Fijos.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
     <Compile Include="Certificaciones.cs">
       <DependentUpon>GestionConstructora.tt</DependentUpon>
     </Compile>
@@ -61,8 +64,10 @@
     </Compile>
     <Compile Include="CuentasMeta.cs" />
     <Compile Include="DbUpdateException.cs" />
-    <Compile Include="D_presuliMeta.cs" />
     <Compile Include="D_Equipos.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="D_Familias.cs">
       <DependentUpon>GestionConstructora.tt</DependentUpon>
     </Compile>
     <Compile Include="D_Presuca.cs">
@@ -71,6 +76,7 @@
     <Compile Include="D_Presuli.cs">
       <DependentUpon>GestionConstructora.tt</DependentUpon>
     </Compile>
+    <Compile Include="D_presuliMeta.cs" />
     <Compile Include="D_provee.cs">
       <DependentUpon>GestionConstructora.tt</DependentUpon>
     </Compile>
@@ -82,6 +88,12 @@
       <DependentUpon>GestionConstructora.tt</DependentUpon>
     </Compile>
     <Compile Include="Est_Financiero.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Est_Tesoreria.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Est_TesoreriaMes.cs">
       <DependentUpon>GestionConstructora.tt</DependentUpon>
     </Compile>
     <Compile Include="Facturas_ca.cs">
@@ -96,13 +108,16 @@
     <Compile Include="F_PlanigPartidas.cs">
       <DependentUpon>GestionConstructora.tt</DependentUpon>
     </Compile>
+    <Compile Include="F_Renta_MarKara.cs">
+      <DependentUpon>GestionConstructora.tt</DependentUpon>
+    </Compile>
     <Compile Include="Gastos_Fijos.cs">
       <DependentUpon>GestionConstructora.tt</DependentUpon>
     </Compile>
     <Compile Include="GestionConstructora.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>GestionConstructora.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Grupos.cs">
       <DependentUpon>GestionConstructora.tt</DependentUpon>
@@ -167,14 +182,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="GestionConstructora.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GestionConstructora.cs</LastGenOutput>
       <CustomToolNamespace>Entidad</CustomToolNamespace>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

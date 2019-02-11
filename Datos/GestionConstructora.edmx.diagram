@@ -4,47 +4,53 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3a778c2769fa45e9b476121c2f80ec63" Name="Diagram1">
-        <EntityTypeShape EntityType="GestionConstructoraModel.Albaran_li" Width="1.5" PointX="7.5" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Albaranes_ca" Width="1.5" PointX="5.25" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Balance" Width="1.5" PointX="13.25" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Cuentas" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
+      <Diagram DiagramId="2c2fffcd3d194f14b09ca1188bff1a8a" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionConstructoraModel.Albaran_li" Width="1.5" PointX="7.5" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Albaranes_ca" Width="1.5" PointX="5.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Balance" Width="1.5" PointX="13.25" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Balance_Fijos" Width="1.5" PointX="5.25" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Cuentas" Width="1.5" PointX="3" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionConstructoraModel.D_Equipos" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.D_Presuca" Width="1.5" PointX="5.25" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.D_Presuli" Width="1.5" PointX="7.5" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.D_Familias" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.D_Presuca" Width="1.5" PointX="5.25" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.D_Presuli" Width="1.5" PointX="7.5" PointY="26.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionConstructoraModel.D_provee" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Empresas" Width="1.5" PointX="0.75" PointY="20.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Est_Financiero" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Estados" Width="1.5" PointX="8" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.F_MaestraSubPartidas" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Facturas_ca" Width="1.5" PointX="5.25" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Facturas_li" Width="1.5" PointX="7.5" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Gastos_Fijos" Width="1.5" PointX="2.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Grupos" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Grupos_Rel" Width="1.5" PointX="10.25" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Log_Errores" Width="1.5" PointX="7.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Obras" Width="1.5" PointX="3" PointY="23.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Obras_Lineas" Width="1.5" PointX="10.25" PointY="17" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.ParteTrabajo" Width="1.5" PointX="5.25" PointY="35.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Calidad" Width="1.5" PointX="8" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Conta" Width="1.5" PointX="10.25" PointY="29.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Elem_Estan" Width="1.5" PointX="8" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Elementos" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Estancias" Width="1.5" PointX="5.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Presu_Ca" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Presu_li" Width="1.5" PointX="8" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Subgrupos" Width="1.5" PointX="0.75" PointY="25.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Aux_PrefCuentas" Width="1.5" PointX="9.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Certificaciones" Width="1.5" PointX="10.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.F_PlanigPartidas" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Produ_Alcosan" Width="1.5" PointX="10.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.Puertas" Width="1.5" PointX="11.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionConstructoraModel.TarifasProvee" Width="1.5" PointX="10.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Empresas" Width="1.5" PointX="0.75" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Est_Financiero" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Est_Tesoreria" Width="1.5" PointX="5.25" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Est_TesoreriaMes" Width="1.5" PointX="7.5" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Estados" Width="1.5" PointX="8" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Facturas_ca" Width="1.5" PointX="5.25" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Facturas_li" Width="1.5" PointX="7.5" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Gastos_Fijos" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Grupos" Width="1.5" PointX="0.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Grupos_Rel" Width="1.5" PointX="10.25" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Log_Errores" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Obras" Width="1.5" PointX="3" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Obras_Lineas" Width="1.5" PointX="10.25" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.ParteTrabajo" Width="1.5" PointX="5.25" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Calidad" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Conta" Width="1.5" PointX="10.25" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Elem_Estan" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Elementos" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Estancias" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Presu_Ca" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Presu_Presu_li" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Subgrupos" Width="1.5" PointX="0.75" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Aux_PrefCuentas" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Certificaciones" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.F_MaestraSubPartidas" Width="1.5" PointX="9.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.F_PlanigPartidas" Width="1.5" PointX="9.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.F_Renta_MarKara" Width="1.5" PointX="11.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Produ_Alcosan" Width="1.5" PointX="11.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.Puertas" Width="1.5" PointX="11.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionConstructoraModel.TarifasProvee" Width="1.5" PointX="13.75" PointY="2" IsExpanded="true" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Albaran_li_Albaranes_ca" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Albaranes_ca_Obras" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Balance_Obras" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Informe_Cuentas" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionConstructoraModel.FK_Balance_Fijos_Balance_Fijos" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Cuentas_Empresas" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Cuentas_Grupos" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Cuentas_Subgrupos" ManuallyRouted="false" />
@@ -53,9 +59,9 @@
         <AssociationConnector Association="GestionConstructoraModel.FK_D_Presuca_Obras" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_D_Presuli_D_Presuca" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Obra_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionConstructoraModel.FK_Est_Tesoreria_Obras" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionConstructoraModel.FK_Est_TesoreriaMes_Est_Tesoreria" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Lineas_Obras_Estados" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionConstructoraModel.FK_F_MaestraSubPartidas_F_MaestraSubPartidas" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionConstructoraModel.FK_F_PlanigPartidas_F_MaestraSubPartidas" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Facturas_ca_Obras" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Facturas_li_Facturas_ca" ManuallyRouted="false" />
         <AssociationConnector Association="GestionConstructoraModel.FK_Facturas_li_Grupos" ManuallyRouted="false" />

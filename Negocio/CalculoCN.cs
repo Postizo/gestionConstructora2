@@ -21,7 +21,7 @@ namespace Negocio
             CuentasConstructora = (List<Cuentas>)Empresa.Cuentas.ToList();
             //Cogemos las cuentas que tenemos en la base de datos de CONTAWIN
             Conexion.IniciarSesion(Empresa.Servidor_ContaWin , Empresa.BBDD_ContaWin , Empresa.Usuario_ContaWin , Empresa.Pwd_ContaWin );
-            DataTable dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT a.Cuenta, canal, p.titulo FROM Apuntes a LEFT JOIN Plan_cuentas p ON p.Cuenta = a.Cuenta WHERE canal in(" + Canales_Obras + ") AND Diario <>'B' AND Diario <> 'E'  AND Diario <>'C' AND (a.cuenta like '6%' or a.cuenta like '7%' or a.cuenta like '43%' or a.cuenta like '5%') GROUP BY a.Cuenta,a.Canal, p.titulo");
+            DataTable dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT a.Cuenta, canal, p.titulo FROM Apuntes a LEFT JOIN Plan_cuentas p ON p.Cuenta = a.Cuenta WHERE ejercicio >=2018  AND canal in(" + Canales_Obras + ") AND Diario <>'B' AND Diario <> 'E'  AND Diario <>'C' AND (a.cuenta like '6%' or a.cuenta like '7%' or a.cuenta like '43%' or a.cuenta like '41%' or a.cuenta like '440%' or a.cuenta like '5%') GROUP BY a.Cuenta,a.Canal, p.titulo");
             foreach (DataRow row in dtcuentasConta.Rows)
             {
                 Cuentas Cuenta = new Cuentas(Convert.ToString(row[0]));
@@ -44,7 +44,7 @@ namespace Negocio
         {
             List<int> l_canalaes = new List<int>();
             Conexion.IniciarSesion(Empresa.Servidor_ContaWin, Empresa.BBDD_ContaWin, Empresa.Usuario_ContaWin, Empresa.Pwd_ContaWin);
-            DataTable dtcanales = Conexion.GDatos.TraerDataTableSql("SELECT a.Canal FROM Apuntes  a WHERE Ejercicio = " + Ejercicio.ToString() + " AND Diario <>'B' AND Diario <> 'E' AND Diario <>'C' AND (a.cuenta like '6%' or a.cuenta like '7%' or a.cuenta like '5%') GROUP BY a.Canal");
+            DataTable dtcanales = Conexion.GDatos.TraerDataTableSql("SELECT a.Canal FROM Apuntes  a WHERE ejercicio >=2018  AND Ejercicio = " + Ejercicio.ToString() + " AND Diario <>'B' AND Diario <> 'E' AND Diario <>'C' AND (a.cuenta like '6%' or a.cuenta like '7%' or a.cuenta like '5%'  or a.cuenta like '4%') GROUP BY a.Canal");
             Conexion.FinalizarSesion();
             foreach (DataRow row in dtcanales.Rows)
             {
@@ -59,11 +59,11 @@ namespace Negocio
             Conexion.IniciarSesion(Empresa.Servidor_ContaWin, Empresa.BBDD_ContaWin, Empresa.Usuario_ContaWin, Empresa.Pwd_ContaWin);
             if (ejercicio == 0)
             {
-                DtDetalles = Conexion.GDatos.TraerDataTableSql("SELECT Fecha,Asiento,Cuenta,Descripcion, debe as 'Debe', haber as 'Haber' FROM Apuntes  WHERE Cuenta in(" + cuentas +") AND canal = " + Id_Obra + " AND Diario <>'B' AND Diario <> 'E' AND   Diario <>'C' AND Fecha <='" + fecha + "'");
+                DtDetalles = Conexion.GDatos.TraerDataTableSql("SELECT Fecha,Asiento,Cuenta,Descripcion, debe as 'Debe', haber as 'Haber' FROM Apuntes  WHERE ejercicio >=2018  AND Cuenta in(" + cuentas +") AND canal = " + Id_Obra + " AND Diario <>'B' AND Diario <> 'E' AND   Diario <>'C' AND Fecha <='" + fecha + "'");
             }
             else
            {
-                DtDetalles = Conexion.GDatos.TraerDataTableSql("SELECT Fecha,Asiento,Cuenta,Descripcion, debe as 'Debe', haber as 'Haber'  FROM Apuntes  WHERE Cuenta in(" + cuentas + ")  AND Ejercicio = " + ejercicio + " AND canal =" + Id_Obra + " AND Diario <>'B' AND Diario <> 'E'  AND  Diario <>'C' AND Fecha <='" + fecha + "'");
+                DtDetalles = Conexion.GDatos.TraerDataTableSql("SELECT Fecha,Asiento,Cuenta,Descripcion, debe as 'Debe', haber as 'Haber'  FROM Apuntes  WHERE ejercicio >=2018  AND Cuenta in(" + cuentas + ")  AND Ejercicio = " + ejercicio + " AND canal =" + Id_Obra + " AND Diario <>'B' AND Diario <> 'E'  AND  Diario <>'C' AND Fecha <='" + fecha + "'");
             }
             Conexion.FinalizarSesion();
             return DtDetalles;
@@ -72,7 +72,7 @@ namespace Negocio
         {
             DataTable DtDetalles = new DataTable();
             Conexion.IniciarSesion(Empresa.Servidor_ContaWin, Empresa.BBDD_ContaWin, Empresa.Usuario_ContaWin, Empresa.Pwd_ContaWin);
-            DtDetalles = Conexion.GDatos.TraerDataTableSql("SELECT Fecha,Asiento,Cuenta,Descripcion, debe as 'Debe', haber as 'Haber' FROM Apuntes  WHERE Cuenta in(" + cuentas + ") AND canal = " + Id_Obra + " AND Diario <>'B' AND Diario <> 'E'  AND Diario <>'C' AND Fecha >='" + fechaini + "' AND Fecha <='" + fechafin + "'"); 
+            DtDetalles = Conexion.GDatos.TraerDataTableSql("SELECT Fecha,Asiento,Cuenta,Descripcion, debe as 'Debe', haber as 'Haber' FROM Apuntes  WHERE ejercicio >=2018  AND Cuenta in(" + cuentas + ") AND canal = " + Id_Obra + " AND Diario <>'B' AND Diario <> 'E'  AND Diario <>'C' AND Fecha >='" + fechaini + "' AND Fecha <='" + fechafin + "'"); 
             Conexion.FinalizarSesion();
             return DtDetalles; 
         }
@@ -109,7 +109,7 @@ namespace Negocio
                 //Cogemos las cuentas que tenemos en la base de datos de CONTAWIN           
                 Conexion.IniciarSesion(Empresa.Servidor_ContaWin, Empresa.BBDD_ContaWin, Empresa.Usuario_ContaWin, Empresa.Pwd_ContaWin);
                 string Canales_Obras = Empresa.Obras.ToList().Select(i => i.Id_Obra.ToString(CultureInfo.InvariantCulture)).Aggregate((s1, s2) => s1 + ", " + s2);
-                dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT cuenta,canal,Sum(debe) as 'debe',sum(haber) as 'haber' FROM Apuntes  WHERE   Diario <>'B' AND Diario <> 'E' AND Diario <>'C' AND Fecha >='" + fechaini + "' AND Fecha <='" + fechafin + "' GROUP BY Cuenta,canal");
+                dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT cuenta,canal,Sum(debe) as 'debe',sum(haber) as 'haber' FROM Apuntes  WHERE ejercicio >=2018  AND   Diario <>'B' AND Diario <> 'E' AND Diario <>'C' AND Fecha >='" + fechaini + "' AND Fecha <='" + fechafin + "' GROUP BY Cuenta,canal");
                 //dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT *  FROM Apuntes  WHERE   Diario <>'B' AND Diario <> 'E' AND Diario <>'C' AND Fecha >='" + fechaini + "' AND Fecha <='" + fechafin + "'");
 
                 string usu = WindowsIdentity.GetCurrent().Name.ToString();
@@ -167,22 +167,22 @@ namespace Negocio
             {
                 if (ejercicio == 0)
                 {
-                    dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT * FROM Apuntes  WHERE canal in(" + Canales_Obras + ") AND Diario <>'B' AND Diario <> 'E'  AND Diario <>'C'  AND Fecha <='" + fecha +"'");
+                    dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT * FROM Apuntes  WHERE ejercicio >=2018  AND canal in(" + Canales_Obras + ") AND Diario <>'B' AND Diario <> 'E'  AND Diario <>'C'  AND Fecha <='" + fecha +"'");
                 }
                 else
                 {
-                    dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT * FROM Apuntes  WHERE Ejercicio = " + ejercicio + " AND canal in(" + Canales_Obras + ") AND Diario <>'B' AND Diario <> 'E'  AND Diario <>'C' AND Fecha <='" + fecha + "'");
+                    dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT * FROM Apuntes  WHERE ejercicio >=2018  AND Ejercicio = " + ejercicio + " AND canal in(" + Canales_Obras + ") AND Diario <>'B' AND Diario <> 'E'  AND Diario <>'C' AND Fecha <='" + fecha + "'");
                 }
             }
             else
             {
                 if (ejercicio == 0)
                 {
-                    dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT Cuenta, SUM(debe) as 'Debe' , SUM(haber) as 'Haber',canal,ISNULL(Ejercicio,0) as 'ejercicio' FROM Apuntes  WHERE canal in(" + Canales_Obras + ") AND (Diario <>'B' AND Diario <> 'E'  AND Diario <>'C') AND Fecha <='" + fecha + "' GROUP BY Cuenta,canal, Ejercicio ");
+                    dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT Cuenta, SUM(debe) as 'Debe' , SUM(haber) as 'Haber',canal,ISNULL(Ejercicio,0) as 'ejercicio' FROM Apuntes  WHERE ejercicio >=2018  AND canal in(" + Canales_Obras + ") AND (Diario <>'B' AND Diario <> 'E'  AND Diario <>'C') AND Fecha <='" + fecha + "' GROUP BY Cuenta,canal, Ejercicio ");
                 }
                 else
                 {
-                    dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT Cuenta, SUM(debe) as 'Debe' , SUM(haber) as 'Haber',canal,ISNULL(Ejercicio,0)  as 'ejercicio'  FROM Apuntes  WHERE Ejercicio = " + ejercicio + " AND canal in(" + Canales_Obras + ") AND (Diario <>'B' AND Diario <> 'E' AND Diario <>'C' ) AND Fecha <='" + fecha + "' GROUP BY Cuenta,canal, Ejercicio");
+                    dtcuentasConta = Conexion.GDatos.TraerDataTableSql("SELECT Cuenta, SUM(debe) as 'Debe' , SUM(haber) as 'Haber',canal,ISNULL(Ejercicio,0)  as 'ejercicio'  FROM Apuntes  WHERE ejercicio >=2018  AND Ejercicio = " + ejercicio + " AND canal in(" + Canales_Obras + ") AND (Diario <>'B' AND Diario <> 'E' AND Diario <>'C' ) AND Fecha <='" + fecha + "' GROUP BY Cuenta,canal, Ejercicio");
                 }
 
             }
@@ -242,7 +242,7 @@ namespace Negocio
         {
             Conexion.IniciarSesion(Empresa.Servidor_ContaWin, Empresa.BBDD_ContaWin, Empresa.Usuario_ContaWin, Empresa.Pwd_ContaWin);
             DataTable dt = new DataTable();
-            dt = Conexion.GDatos.TraerDataTableSql("SELECT Apuntes.Cuenta, Apuntes.Fecha, Apuntes.Descripcion, Debe, Haber FROM Apuntes, Plan_Cuentas WHERE Apuntes.Cuenta = Plan_Cuentas.Cuenta AND(Diario <> 'B' AND Diario <> 'E') AND Apuntes.Cuenta = '" + Cta + "' AND Apuntes.Ejercicio = "+ ejer +" ORDER By Apuntes.Fecha");
+            dt = Conexion.GDatos.TraerDataTableSql("SELECT Apuntes.Cuenta, Apuntes.Fecha, Apuntes.Descripcion, Debe, Haber FROM Apuntes, Plan_Cuentas WHERE Apuntes.ejercicio >=2018  AND Apuntes.Cuenta = Plan_Cuentas.Cuenta AND(Diario <> 'B' AND Diario <> 'E') AND Apuntes.Cuenta = '" + Cta + "' AND Apuntes.Ejercicio = "+ ejer +" ORDER By Apuntes.Fecha");
             Conexion.FinalizarSesion();
             return dt;
           

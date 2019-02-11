@@ -59,7 +59,7 @@ namespace Negocio
 
         }
      
-        public static Grupos Añadir(string nombre,int orden,int id_tipo,string tipo)
+        public static Grupos Añadir(string nombre,int orden,int id_tipo,string tipo,int id_tipocoste)
         {
             GestionConstructoraEntities db = new GestionConstructoraEntities();
             Grupos Gru = new Grupos();
@@ -67,7 +67,9 @@ namespace Negocio
             Gru.Orden  = orden;
             Gru.Id_Tipo = id_tipo;  
             Gru.Tipo = tipo;
-        
+            Gru.Id_TipoCoste = id_tipocoste;
+
+
             if (!Gru.IsValid) return Gru; //Validacion
             db.Grupos.Add(Gru);
             db.SaveChanges();
@@ -146,7 +148,7 @@ namespace Negocio
         }
                     
           
-        public static Grupos Modificar(int id_grupo, string nombre, int orden, int id_tipo, string tipo)
+        public static Grupos Modificar(int id_grupo, string nombre, int orden, int id_tipo, string tipo,int id_tipocoste)
         {
             GestionConstructoraEntities db = new GestionConstructoraEntities();
             Grupos Gru = db.Grupos.SingleOrDefault<Grupos>(p => p.Id_Grupo == id_grupo);
@@ -156,6 +158,7 @@ namespace Negocio
                 Gru.Orden = orden;
                 Gru.Id_Tipo = id_tipo;
                 Gru.Tipo = tipo;
+                Gru.Id_TipoCoste = id_tipocoste;
                 if (!Gru.IsValid) return Gru; //Validacion
                 db.SaveChanges();
                 return Gru;

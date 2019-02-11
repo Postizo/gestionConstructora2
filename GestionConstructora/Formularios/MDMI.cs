@@ -43,7 +43,7 @@ namespace GestionConstructora
 
         private void gruposToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form_Grupos f = new Form_Grupos(-2);
+            Form_Grupos f = new Form_Grupos();
             f.MdiParent = this;
             f.Show();
             f.FormClosed += new FormClosedEventHandler(f_FormClosed);
@@ -332,6 +332,14 @@ namespace GestionConstructora
         private void presupuestoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Form_DpresuElegir f = new Form_DpresuElegir();
+            f.MdiParent = this;
+            f.Show();
+            f.FormClosed += new FormClosedEventHandler(f_FormClosed);
+        }
+
+        private void tesoreriaFinancieraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_TesoreriaFinanciera f = new Form_TesoreriaFinanciera();
             f.MdiParent = this;
             f.Show();
             f.FormClosed += new FormClosedEventHandler(f_FormClosed);

@@ -19,6 +19,7 @@ namespace GestionConstructora
         Guid id_infr = new Guid();
         Empresas Emp = new Empresas();
         int fase = 0;
+        DataTable dtresumen = new DataTable();
         public Form_Segumiento(Empresas Empresa)
         {
             Emp = Empresa;
@@ -28,7 +29,7 @@ namespace GestionConstructora
         }
 
         #region "Botones"
- 
+
 
         public void linea_Ingresos()
         {
@@ -169,12 +170,16 @@ namespace GestionConstructora
             listObras.DataSource = Emp.Obras.Where(p => p.Id_Sigrid != 0 && p.Finalizada == false).ToList();
             listObras.DisplayMember = "Nombre";
             listObras.ValueMember = "id_Obra";
-           
+            dtresumen.Columns.Add("Obra");
+            dtresumen.Columns.Add("Coste Real", Type.GetType("System.Double"));
+            dtresumen.Columns.Add("Facturado Real", Type.GetType("System.Double"));
+            dtresumen.Columns.Add("Diferencia", Type.GetType("System.Double"));
+
         }
         public void Cargar_y_Vista_tree()
         {
-            Publico.CargaTree(Obr, treeobra, imageList1, 0, true, false, true, true, null,fase);
-            Publico.CargaTree(Obr, treemetros, imageList1, 0, true, false, false, true, null,fase);
+            Publico.CargaTree(Obr, treeobra, imageList1, 0, true, false, true, true, null, fase);
+            Publico.CargaTree(Obr, treemetros, imageList1, 0, true, false, false, true, null, fase);
 
         }
         #endregion
@@ -193,7 +198,7 @@ namespace GestionConstructora
             if (treeobra.SelectedNode == null) return;
             int id_Grupo = Convert.ToInt32(treeobra.SelectedNode.SubItems[Publico.Busca("id_grupo", treeobra)].Value);
             int id_subgrupo = Convert.ToInt32(treeobra.SelectedNode.SubItems[Publico.Busca("id_subgrupo", treeobra)].Value);
-            Form_PartidasFactu f = new Form_PartidasFactu(Obr, id_Grupo, id_subgrupo,fase);
+            Form_PartidasFactu f = new Form_PartidasFactu(Obr, id_Grupo, id_subgrupo, fase);
             f.ShowDialog();
         }
 
@@ -212,26 +217,26 @@ namespace GestionConstructora
             treeobra.Columns[Publico.Busca("Presupuestado", treeobra)].Visible = true;
             treeobra.Columns[Publico.Busca("%Presupuesto", treeobra)].Visible = true;
             treeobra.Columns[Publico.Busca("Presu_Venta", treeobra)].Visible = true;
-            treeobra.Columns[Publico.Busca("%Presu_Venta", treeobra)].Visible = true;
+           // treeobra.Columns[Publico.Busca("%Presu_Venta", treeobra)].Visible = true;
 
             treeobra.Columns[Publico.Busca("CostePrevisto", treeobra)].Visible = false;
             treeobra.Columns[Publico.Busca("%Costeprevisto", treeobra)].Visible = false;
             treeobra.Columns[Publico.Busca("VentaPrevista", treeobra)].Visible = false;
-            treeobra.Columns[Publico.Busca("%Ventaprevista", treeobra)].Visible = false;
+           // treeobra.Columns[Publico.Busca("%Ventaprevista", treeobra)].Visible = false;
 
         }
 
         private void rbincurrido_CheckedChanged(object sender, EventArgs e)
         {
-            treeobra.Columns[Publico.Busca("Presupuestado", treeobra)].Visible = false;
+            treeobra.Columns[Publico.Busca("Presupuestado", treeobra)].Visible = true;
             treeobra.Columns[Publico.Busca("%Presupuesto", treeobra)].Visible = false;
             treeobra.Columns[Publico.Busca("Presu_Venta", treeobra)].Visible = false;
-            treeobra.Columns[Publico.Busca("%Presu_Venta", treeobra)].Visible = false;
+          //  treeobra.Columns[Publico.Busca("%Presu_Venta", treeobra)].Visible = false;
 
             treeobra.Columns[Publico.Busca("CostePrevisto", treeobra)].Visible = true;
             treeobra.Columns[Publico.Busca("%Costeprevisto", treeobra)].Visible = true;
             treeobra.Columns[Publico.Busca("VentaPrevista", treeobra)].Visible = true;
-            treeobra.Columns[Publico.Busca("%Ventaprevista", treeobra)].Visible = true;
+           //  treeobra.Columns[Publico.Busca("%Ventaprevista", treeobra)].Visible = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -249,7 +254,7 @@ namespace GestionConstructora
             Facturas = Publico.DevuelveFactuli(Obr, nodoselect, "", id_Grupo, id_subgrupo);
             Albaranes = Publico.DevuelveAlbaranes(Obr, nodoselect, "", id_Grupo, id_subgrupo);
             Partetrabajo = Publico.DevuelveParteTrabajo(Obr, nodoselect, "", id_Grupo, id_subgrupo);
-            Form_PartidasFactu_Det f = new Form_PartidasFactu_Det(Facturas, Albaranes, Partetrabajo, (nodoselect == 1) ? Obr.Obras_Lineas.Where(p=> p.Id_Fase == fase).Where(p => p.Id_Grupo == id_Grupo).ToList() : Obr.Obras_Lineas.Where(p => p.Id_Fase == fase).Where(p => p.Id_Grupo == id_Grupo && p.Id_Subgrupo == id_subgrupo).ToList());
+            Form_PartidasFactu_Det f = new Form_PartidasFactu_Det(Facturas, Albaranes, Partetrabajo, (nodoselect == 1) ? Obr.Obras_Lineas.Where(p => p.Id_Fase == fase).Where(p => p.Id_Grupo == id_Grupo).ToList() : Obr.Obras_Lineas.Where(p => p.Id_Fase == fase).Where(p => p.Id_Grupo == id_Grupo && p.Id_Subgrupo == id_subgrupo).ToList());
             this.Cursor = Cursors.Default;
             f.ShowDialog();
 
@@ -337,7 +342,7 @@ namespace GestionConstructora
             cbfases.DataSource = ObraCN.CargarFasesObra(Emp, Obr);
             cbfases.DisplayMember = "res";
             cbfases.ValueMember = "fasnum";
-          
+            cbfases.SelectedIndex = cbfases.Items.Count - 2;
             id_infr = Guid.NewGuid();
             BalanceCN.Añadir(CalculoCN.Creacion_Informe(id_infr.ToString(), Emp, Emp.Obras.Where(t => t.Id_Obra == Obr.Id_Obra).ToList(), false, fase, DateTime.Today));
             linea_Ingresos();
@@ -349,7 +354,7 @@ namespace GestionConstructora
 
         private void cbini_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void cbfases_SelectionChangeCommitted(object sender, EventArgs e)
@@ -357,11 +362,61 @@ namespace GestionConstructora
             this.Cursor = Cursors.WaitCursor;
             Obr = Emp.Obras.Where(t => Obras_Selecionadas_int().Contains(t.Id_Obra)).ToList()[0];
             fase = Convert.ToInt32(cbfases.SelectedValue);
-                   
+
             Mostrar_Inform();
             Emp = EmpresasCN.Listar(Emp.Id_Empresa);
             rbpresuactual.Checked = true;
             this.Cursor = Cursors.Default;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            Calculoresumen();
+            pderecha.Visible = true;
+            tabControl1.SelectedIndex  = 2;
+            this.Cursor = Cursors.Default;
+        }
+        public void Calculoresumen()
+        {
+            foreach (Obras Obr in Emp.Obras.Where(p => p.Id_Sigrid != 0 && p.Finalizada == false).ToList())
+            {
+                DataRow dr = dtresumen.NewRow();
+                dr["Obra"] = Obr.Nombre;
+                dr["Coste Real"] = Obr.Obras_Lineas.Where(p => p.Id_Fase == 0).Sum(p => p.Importe_CosteReal);
+                dr["Facturado Real"] = Obr.Obras_Lineas.Where(p => p.Id_Fase == 0).Sum(p => p.Importe_Certificado);
+                dr["Diferencia"] = Convert.ToDouble(dr["Facturado Real"]) - Convert.ToDouble(dr["Coste Real"]);
+                dtresumen.Rows.Add(dr);
+            }
+            Form_Caja.AgregaTotales(dtresumen, 0);
+          
+            dgresumen.DataSource = dtresumen;
+            formatoresumen();
+            Form_Caja.Grid_Diseño(dgresumen, dgresumen.Font);
+            dgresumen.Refresh();
+        }
+        public void formatoresumen()
+        {
+            dgresumen.Columns["Obra"].Width = 300;
+            dgresumen.Columns["Coste Real"].DefaultCellStyle.BackColor = Color.LavenderBlush;
+            dgresumen.Columns["Facturado Real"].DefaultCellStyle.BackColor = Color.AliceBlue;
+            dgresumen.Columns["Diferencia"].DefaultCellStyle.BackColor = Color.WhiteSmoke;
+            foreach (DataGridViewColumn Col in dgresumen.Columns)
+            {
+                if (Col.ValueType.Name == "Double" || Col.ValueType.Name == "Decimal")
+                {
+                    Col.Width = 70;
+                    Col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    Col.DefaultCellStyle.Format = "#,0";
+                }
+            }
+            foreach (DataGridViewRow Row in dgresumen.Rows)
+            {
+                foreach (DataGridViewCell cell in Row.Cells)
+                {
+                    if (cell.ValueType.Name != "String" && cell.Value != null) if (Convert.ToDecimal(cell.Value) < 0) cell.Style.ForeColor = Color.Red;
+                }
+            }
         }
     }
 }

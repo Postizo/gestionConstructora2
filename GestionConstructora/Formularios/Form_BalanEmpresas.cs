@@ -86,12 +86,27 @@ namespace GestionConstructora
         }
         public void fechas()
         {
-            fini = new DateTime(Convert.ToInt32(cbaño.Text), Convert.ToInt32(cbini.SelectedIndex) + 1, 1);
-            ffin = new DateTime(Convert.ToInt32(cbaño.Text), Convert.ToInt32(cbfin.SelectedIndex) + 2, 1).AddDays(-1);
+            fini = new DateTime(Convert.ToInt32(cbañoini.Text), Convert.ToInt32(cbini.SelectedIndex) + 1, 1);
+            ffin = (cbfin.SelectedIndex ==11)?new DateTime(Convert.ToInt32(cbañofin.Text) +1, 1, 1).AddDays(-1): new DateTime(Convert.ToInt32(cbañofin.Text), Convert.ToInt32(cbfin.SelectedIndex) + 2, 1).AddDays(-1);
+        
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dgempresas.SelectedRows)
+            {
+                if (Convert.ToInt32(row.Cells["Id_Empresa"].Value) == 18 || Convert.ToInt32(row.Cells["Id_Empresa"].Value) == 19)
+                {
+                    gontraseña.Visible = true;
+                    if (txtcontraseña.Text != "Conan8080") return;                   
+                }
+                else
+                {
+                    gontraseña.Visible = false;
+                }
+            }
+           
+
             this.Cursor = Cursors.WaitCursor;
             id_infr = Guid.NewGuid();
             Empresas.Clear();
@@ -99,13 +114,14 @@ namespace GestionConstructora
             {
                 Empresas.Add(EmpresasCN.Listar(Convert.ToInt32(row.Cells["Id_Empresa"].Value)));
             }
+            
 
             foreach (Empresas Emp in Empresas)
             {
                 Check_Cuentas(Emp.Obras.ToList(), Emp);
             }
             fechas();
-            this.Text = "Balance de las Empresas: " + string.Join(" , ", Empresas.Select(p => p.Nombre.ToUpper()).ToArray()) + " DESDE: " + cbini.Text.ToUpper() + " HASTA: " + cbfin.Text.ToUpper();
+            this.Text = "Balance de las Empresas: " + string.Join(" , ", Empresas.Select(p => p.Nombre.ToUpper()).ToArray()) + " DESDE: " + fini.ToShortDateString().ToUpper() + " HASTA: " + ffin.ToShortDateString().ToUpper();
             BalanceCN.Añadir(CalculoCN.Creacion_Informe(id_infr.ToString(), Empresas, false, 0, fini, ffin));
 
             CargarInforme();
@@ -183,12 +199,15 @@ namespace GestionConstructora
             foreach (Obras Ob in Obraspart)
             {
                 Form_Caja.Cosas_CW(Ob, id_infr);
-                if (Ob.D_Presuca.ToList().Count > 0) {
+                if (Ob.D_Presuca.ToList().Count > 0)
+                {
                     Ob.D_Presuca.ToList()[0].D_Presuli.Clear();
                     Ob.D_Presuca.ToList()[0].D_Presuli = DEquiposCN.ListarLineas(Ob.D_Presuca.ToList()[0].id_presu);                   
                 } 
             }
 
+           
+          
             CargaGridContable(Obraspart);
 
 
@@ -261,8 +280,6 @@ namespace GestionConstructora
             //{
             //    linfo.Text += Emp.Nombre + " ,";
             //}
-
-
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -369,22 +386,61 @@ namespace GestionConstructora
 
         private void button2_Click(object sender, EventArgs e)
         {
+            bool solototal = false;
             dgresumen.DataSource = null;
             dgresumen.Rows.Clear();
             Obrselec.Clear();
-
             DataTable dta = new DataTable();
-
+            List<int> Ejercicios = new List<int>();
+            for (int i = fini.Year; i <= ffin.Year; i++) Ejercicios.Add(i);
 
             foreach (DataGridViewRow Row in dgobraspart.SelectedRows)
             {
                 Obrselec.Add(Obraspart.Where(p => p.Id_Obra == Convert.ToInt32(Row.Cells["Id_Obras"].Value)).Where(p => p.Id_Empresa == Convert.ToInt32(Row.Cells["Id_empres"].Value)).ToList()[0]);
             }
-         
-            Form_Balance2.Mostrar_Inform2(Obrselec, false, dta, dgresumen, id_infr);
+            if (Obrselec.Count == dgobraspart.Rows.Count) solototal = true;
+            bool MostrarAjuste = (Obrselec.Where(p => p.Id_Empresa == 18 || p.Id_Empresa == 19).Count() > 0) ? false : true;
+
+            // CALCULAR  Y REPRTIR EL AJUSTE GENERAL
+            if (MostrarAjuste)
+            {
+                foreach (Obras Obr in Obrselec)
+                {
+                    Obr.PorcentajeSobeGenerales = 0;
+                    Obr.RepercutidoGeneral19 = 0;
+                }
+                if (Obrselec.Where(x => x.Nombre.Contains(@"GENERAL")).ToList().Count > 0)
+                {
+                    decimal TotalGastosSinGeneral = Obrselec.Where(x => !x.Nombre.Contains(@"GENERAL")).ToList().Sum(p => p.Total_GastosContribuciondirecta2_Conta) + Obrselec.Where(x => !x.Nombre.Contains(@"GENERAL")).ToList().Sum(p => p.Total_Gastosdirectos3_Conta);
+                    decimal TotalGastosGeneral = Obrselec.Where(x => x.Nombre.Contains(@"GENERAL")).ToList()[0].Total_GastosContribuciondirecta2_Conta + Obrselec.Where(x => x.Nombre.Contains(@"GENERAL")).ToList()[0].Total_Gastosdirectos3_Conta;
+                    foreach (Obras Ob in Obrselec)
+                    {
+                        if (!Ob.Nombre.Contains(@"GENERAL"))
+                        {
+                            Ob.PorcentajeSobeGenerales = (Ob.Total_GastosContribuciondirecta2_Conta + Ob.Total_Gastosdirectos3_Conta) * 100 / TotalGastosSinGeneral;
+                            Ob.RepercutidoGeneral19 = (Ob.PorcentajeSobeGenerales * TotalGastosGeneral) / 100;
+                        }
+                        else
+                        {
+                            Ob.RepercutidoGeneral19 = TotalGastosGeneral * -1;
+                        }
+                    }
+                }
+            }
+            if (MostrarAjuste)
+            {
+                Form_Balance2.Mostrar_Inform2(Obrselec, false, dta, dgresumen, id_infr, Ejercicios);
+            }
+            else
+            {                
+                Form_Balance2.Mostrar_InformBATOR(Obrselec, false, dta, dgresumen, id_infr, Ejercicios, true);
+
+            } 
+
+            rbsolototales.Checked = (solototal)? true : false;
             dgresumen.Visible = true;
             rbimporte.Checked = true;
-            Soloverpresu(true);
+            Soloverpresu(true, rbsolototales.Checked);
             button3.Visible = true;
             button4.Visible = true;
             bttircaja.Visible = true;
@@ -433,17 +489,17 @@ namespace GestionConstructora
             {
                 if (dgsubgrupos.Visible)
                     SoloverpresuSubgrupos(true);
-                Soloverpresu(true);
+                Soloverpresu(true, rbsolototales.Checked);
 
             }
             else
             {
                 if (dgsubgrupos.Visible)
                     SoloverpresuSubgrupos(false);
-                Soloverpresu(false);
+                Soloverpresu(false, rbsolototales.Checked);
             }
         }
-        private void Soloverpresu(bool flag)
+        private void Soloverpresu(bool flag,bool sologenerales)
         {
             if (flag)
             {
@@ -454,6 +510,11 @@ namespace GestionConstructora
                     {
                         Col.Visible = false;
                     }
+                    if (sologenerales)
+                    {
+                        if (Col.Name != "TOTAL CIA") Col.Visible = false;
+                    }
+
                 }
 
 
@@ -466,7 +527,9 @@ namespace GestionConstructora
                     if (Col.Name.Substring(0, 1) == "_")
                     {
                         Col.Visible = true;
+                        //if (sologenerales) if (Col.Name != "_TOTAL CIA") Col.Visible = false;
                     }
+                   
                 }
             }
             dgresumen.Columns["Concepto"].Visible = true;
@@ -509,12 +572,10 @@ namespace GestionConstructora
         }
 
         private void dgresumen_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            this.Cursor = Cursors.WaitCursor;
+        {           
             Guid id_inforusar = new Guid();
             DateTime finilocal, ffinlocal;
             List<Obras> Obrasusar = new List<Obras>();
-
             if (button5.Text == "COMPLETA")
             {
                 id_inforusar = id_infr;
@@ -529,30 +590,29 @@ namespace GestionConstructora
                 ffinlocal = DateTime.Today;
                 Obrasusar = ObrselecLocal;
             }
-
             if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
-            if (Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 50 && (dgresumen[e.ColumnIndex, e.RowIndex].OwningColumn.HeaderText != "TOTAL CIA")) return;
-            if (Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 13)
+            if (dgresumen[e.ColumnIndex, e.RowIndex].OwningColumn.HeaderText == "TOTAL SELEC") return;
+            this.Cursor = Cursors.WaitCursor;
+            // PARA MODIFICAR LOS AJUSTES
+            if (Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 13 || Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 130 ||  Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 31 || Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 320 || Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 330)
             {
                 Obras Obrrr = ObraCN.Listar(dgresumen.Columns[e.ColumnIndex].HeaderText);
                 Form_AjusteGasto f = new Form_AjusteGasto(Obrrr);
-                f.ShowDialog();             
-                Obraspart.Where(p => p.Id_Empresa == Obrrr.Id_Empresa && p.Id_Obra == Obrrr.Id_Obra).ToList()[0].Ajuste = f.Obr.Ajuste;
-                Obraspart.Where(p => p.Id_Empresa == Obrrr.Id_Empresa && p.Id_Obra == Obrrr.Id_Obra).ToList()[0].Comentario_Ajuste  = f.Obr.Comentario_Ajuste;
-                button2.PerformClick();
+                f.ShowDialog();            
+                button3.PerformClick();
+                button3.PerformClick();
                 this.Cursor = Cursors.Default;
                 return;
             }
-
-            if (Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 11)
+            // PARA LOS TOTALES DE INGRESOS
+            if (Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 11 )
             {
                 DataTable Dtdetalles = new DataTable();
                 List<int> id_gruposIngresos = new List<int>();
                 List<Cuentas> lcuentas = new List<Cuentas>();
                 Obras Obr = ObraCN.Listar(dgresumen.Columns[e.ColumnIndex].HeaderText);
+                this.Cursor = Cursors.Default;
                 if (Obr == null) return;
-
-
                 List<Grupos> l = GruposCN.Listar_solocontabilidad().ToList().Where(p => p.Id_Tipo == 0 || p.Id_Tipo == 7).ToList();
 
                 foreach (Grupos id in l)
@@ -576,6 +636,8 @@ namespace GestionConstructora
                 this.Cursor = Cursors.Default;
                 return;
             }
+
+            // Para lo del Banco 
             if (Convert.ToInt32(dgresumen["id_tipo", e.RowIndex].Value) == 18)
             {
                 Obras Obr = Obraspart.Where(p=> p.Nombre == dgresumen.Columns[e.ColumnIndex].HeaderText).ToList()[0] ;
@@ -756,9 +818,10 @@ namespace GestionConstructora
                     BalanceCN.Añadir(CalculoCN.Creacion_Informe(id_infrlocal.ToString(), EmpresasCN.Listar(Obr.Id_Empresa), lisobr, true, 0, DateTime.Today));
                     Form_Caja.Cosas_CW(Obr, id_infrlocal);
                 }
+             
                 dgresumen.DataSource = null;
-                Form_Balance2.Mostrar_Inform2(ObrselecLocal, false, dt, dgresumen, id_infrlocal);
-                Soloverpresu(true);
+                Form_Balance2.Mostrar_Inform2(ObrselecLocal, false, dt, dgresumen, id_infrlocal,new List<int>());
+                Soloverpresu(true, rbsolototales.Checked);
                 dgresumen.Refresh();
                 button5.Text = "PERIODO SELECCIONADO";
             }
@@ -772,8 +835,9 @@ namespace GestionConstructora
                 {
                     Obrselec.Add(Obraspart.Where(p => p.Id_Obra == Convert.ToInt32(Row.Cells["Id_Obras"].Value)).Where(p => p.Id_Empresa == Convert.ToInt32(Row.Cells["Id_empres"].Value)).ToList()[0]);
                 }
-                Form_Balance2.Mostrar_Inform2(Obrselec, false, dta, dgresumen, id_infr);
-                Soloverpresu(true);
+              //  bool MostrarAjuste = (Obrselec.Where(p => p.Id_Empresa == 18).Count() > 0) ? false : true;
+                Form_Balance2.Mostrar_Inform2(Obrselec, false, dta, dgresumen, id_infr,new List<int>());
+                Soloverpresu(true, rbsolototales.Checked);
                 button5.Text = "COMPLETA";
             }
 
@@ -847,17 +911,22 @@ namespace GestionConstructora
             if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
             try
             {
-                if (Convert.ToInt32(dgresumen["Id_Tipo", e.RowIndex].Value) == 13)
+                if (Convert.ToInt32(dgresumen["Id_Tipo", e.RowIndex].Value) == 13 || Convert.ToInt32(dgresumen["Id_Tipo", e.RowIndex].Value) == 130)
                 {
                     DataGridViewCell cell = this.dgresumen.Rows[e.RowIndex].Cells[e.ColumnIndex];
                     Obras Obr = ObraCN.Listar(dgresumen.Columns[e.ColumnIndex].Name);
-                    cell.ToolTipText = "COMENTARIO AJUSTES OBRA:  \n" + Obr.Comentario_Ajuste;
+                    cell.ToolTipText = "COMENTARIO AJUSTES OBRA:  \n" + Obr.Balance_Fijos.Where(p=> p.id_TipoCoste == 4).ToList()[0].Comentario;
                 }
             }
             catch
             {
 
             }
+        }
+        public void  compruebaContraseña()
+        {
+           
+         
         }
         public DataTable  CargaGridbanco(Obras Obr)
         {
@@ -903,6 +972,25 @@ namespace GestionConstructora
             dtcontabilidad.Rows.Add(dr);
             return dtcontabilidad;
     
+        }
+
+        private void txtcontraseña_TextChanged(object sender, EventArgs e)
+        {
+            button1.PerformClick();
+        }
+
+        private void rbtodas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtodas.Checked) Soloverpresu(rbimporte.Checked, rbsolototales.Checked);
+        }
+
+        private void rbsolototales_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbsolototales.Checked) Soloverpresu(rbimporte.Checked, rbsolototales.Checked);
+        }
+        public void OcultaMuetsraTodas()
+        {
+           
         }
     }
 }

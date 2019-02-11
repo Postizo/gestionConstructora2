@@ -35,7 +35,7 @@ namespace AutomaticosConstructora
                 Guid id_infr = new Guid();
                 id_infr = Guid.NewGuid();
 
-                foreach (Obras Obr in Empresa.Obras.Where(p => p.Id_Sigrid != 0 && p.Finalizada == false && p.Id_Obra == 56).ToList())
+                foreach (Obras Obr in Empresa.Obras.Where(p => p.Id_Sigrid != 0 && p.Finalizada == false && p.Id_Obra == 55).ToList())
                 {
                     if (Obr.Importado_presu == false) continue;
                     AlbaranesCN.Borrar_Albaranres(Empresa.Id_Empresa, Obr.Id_Obra);

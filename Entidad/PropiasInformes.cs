@@ -54,4 +54,21 @@ namespace Entidad
         public double Total_compa { get; set; }
         public double Total { get; set; }
     }
+
+    public class LineasEstFinanciera
+    {
+        public int Id_Mes { get; set; }
+        public string MesAño { get; set; }
+        public string NombreObra { get; set; }
+        public decimal Saldo { get; set; }
+        public decimal GastoFijo { get; set; }
+        public decimal GastoHipoetas { get; set; }
+        public decimal GastoObra { get; set; }
+        public decimal TotGasto { get; set; }
+        public decimal Venta { get; set; }
+        public decimal pagoxcompra { get; set; }
+        public decimal HiotecaPendiente { get; set; }
+
+    }
+
 }

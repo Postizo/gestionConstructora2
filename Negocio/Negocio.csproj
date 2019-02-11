@@ -37,6 +37,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="Interop.Contawin2009">
+      <HintPath>..\ContaWIN\obj\Debug\Interop.Contawin2009.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -59,6 +63,7 @@
     <Compile Include="CalculoCN.cs" />
     <Compile Include="DEquiposCN.cs" />
     <Compile Include="Est_FinancieroCN.cs" />
+    <Compile Include="Est_TesoreriaCN.cs" />
     <Compile Include="FacturasCN.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="CuentasCn.cs" />
@@ -91,17 +96,6 @@
       <Project>{2321f759-e1d6-4920-a24a-6b62759f38d0}</Project>
       <Name>Entidad</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="Contawin2009">
-      <Guid>{31FE5EC4-CBA9-440B-B625-F5BDFA830A29}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

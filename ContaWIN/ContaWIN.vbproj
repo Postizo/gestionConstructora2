@@ -54,6 +54,10 @@
     <Reference Include="Ai.Control">
       <HintPath>..\..\..\..\..\Downloads\Ai\Ai\Control\bin\Debug\Ai.Control.dll</HintPath>
     </Reference>
+    <Reference Include="Interop.Contawin2009">
+      <HintPath>obj\Debug\Interop.Contawin2009.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -127,15 +131,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="Contawin2009">
-      <Guid>{31FE5EC4-CBA9-440B-B625-F5BDFA830A29}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

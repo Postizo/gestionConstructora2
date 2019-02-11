@@ -17,16 +17,19 @@ namespace GestionConstructora
     {
         List<D_Equipos> Equipos = new List<D_Equipos>();
         List<D_provee> Proveedores = new List<D_provee>();
-       
+        List<D_Familias> Familias = new List<D_Familias>();
+
         public Form_Dequipos()
         {
             InitializeComponent();
             ini();
             Equipos = DEquiposCN.ListarEquipos();
             Proveedores = DEquiposCN.ListarProveedores();
+            Familias = DEquiposCN.ListarFamilias();
             dgequipos.DataSource = Equipos;
             dgproveedores.DataSource = Proveedores;
-           
+            dgfamilias.DataSource = Familias;
+
             cbproveeauto.DataSource = Proveedores;
             cbproveeauto.DisplayMember = "Proveedor";
             cbproveeauto.ValueMember = "id_proveedor";
@@ -62,10 +65,22 @@ namespace GestionConstructora
             dgproveedores.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
             dgproveedores.ColumnHeadersDefaultCellStyle.Font = new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold);
 
+            dgfamilias.AutoGenerateColumns = false;
+            dgfamilias.EnableHeadersVisualStyles = false;
+            dgfamilias.ColumnHeadersDefaultCellStyle.BackColor = Color.Honeydew;
+            dgfamilias.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dgfamilias.ColumnHeadersDefaultCellStyle.Font = new Font(FontFamily.GenericSansSerif, 9.0F, FontStyle.Bold);
+
 
             e_proveedor.DataSource = DEquiposCN.ListarProveedores();
             e_proveedor.DisplayMember = "Proveedor";
             e_proveedor.ValueMember = "id_proveedor";
+
+
+            e_grupo.DataSource = DEquiposCN.ListarFamilias();
+            e_grupo.DisplayMember = "Nombre";
+            e_grupo.ValueMember = "Nombre";
+
             cbprove.DataSource = DEquiposCN.ListarProveedores();
             cbprove.DisplayMember = "Proveedor";
             cbprove.ValueMember = "id_proveedor";
@@ -390,6 +405,41 @@ namespace GestionConstructora
         {
             chtiempos.Checked = chtiempost.Checked;
             refresca();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            button8.Enabled = false;
+            button7.Visible = true;
+            Familias.Clear();
+            Familias.Add(new D_Familias());
+            dgfamilias.DataSource = null;
+            dgfamilias.DataSource = Familias;
+           
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (dgfamilias["F_Nombre", 0].Value == null) return;
+            if (dgfamilias["F_Orden", 0].Value == null) return;
+            DEquiposCN.AñadirFamilia(dgfamilias["F_Nombre", 0].Value.ToString(), dgfamilias["F_Orden", 0].Value.ToString().PadLeft(2, Convert.ToChar("0")));
+
+            Familias = DEquiposCN.ListarFamilias();
+            dgfamilias.DataSource = Familias;
+            //dgfamilias.Columns["F_id_Familia"].ReadOnly = false;
+            button8.Enabled = true;
+            button7.Visible = false;
+        }
+
+        private void dgfamilias_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (button8.Enabled == true)
+            {
+                if (dgfamilias["F_id_Familia", e.RowIndex].Value == null) return;
+                if (dgfamilias["F_Nombre", e.RowIndex].Value == null) return;
+                if (dgfamilias["F_Orden", e.RowIndex].Value == null) return;
+                DEquiposCN.ModificarFamilias(Convert.ToInt32(dgfamilias["F_id_Familia", e.RowIndex].Value.ToString()), dgfamilias["F_Nombre", e.RowIndex].Value.ToString(), dgfamilias["F_Orden", e.RowIndex].Value.ToString().PadLeft(2,Convert.ToChar("0")));
+            }
         }
     }
 }

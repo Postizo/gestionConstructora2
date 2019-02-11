@@ -14,20 +14,9 @@ namespace Entidad
     
     public partial class F_MaestraSubPartidas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public F_MaestraSubPartidas()
-        {
-            this.F_PlanigPartidas = new HashSet<F_PlanigPartidas>();
-        }
-    
         public int Id_PartidaMadre { get; set; }
         public int Id_Partida { get; set; }
         public string Denominacion { get; set; }
         public double Color { get; set; }
-    
-        public virtual F_MaestraSubPartidas F_MaestraSubPartidas1 { get; set; }
-        public virtual F_MaestraSubPartidas F_MaestraSubPartidas2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<F_PlanigPartidas> F_PlanigPartidas { get; set; }
     }
 }

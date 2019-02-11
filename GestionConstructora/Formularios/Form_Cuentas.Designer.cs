@@ -42,10 +42,6 @@
             this.btteditar = new System.Windows.Forms.Button();
             this.bttborrar = new System.Windows.Forms.Button();
             this.dgcuentas = new System.Windows.Forms.DataGridView();
-            this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cuentas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tratar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pdatos = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.cbempresa = new System.Windows.Forms.ComboBox();
@@ -59,6 +55,11 @@
             this.txtbuscar = new System.Windows.Forms.TextBox();
             this.chbuscatrata = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cuentas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Grupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tratar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pbotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgcuentas)).BeginInit();
             this.pdatos.SuspendLayout();
@@ -149,9 +150,9 @@
             this.pbotones.Controls.Add(this.btteditar);
             this.pbotones.Controls.Add(this.bttborrar);
             this.pbotones.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pbotones.Location = new System.Drawing.Point(463, 505);
+            this.pbotones.Location = new System.Drawing.Point(672, 505);
             this.pbotones.Name = "pbotones";
-            this.pbotones.Size = new System.Drawing.Size(302, 82);
+            this.pbotones.Size = new System.Drawing.Size(311, 82);
             this.pbotones.TabIndex = 2;
             // 
             // bttnuevo
@@ -194,6 +195,7 @@
             this.Empresa,
             this.Cuentas,
             this.Nombre,
+            this.Grupo,
             this.Tratar});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.MintCream;
@@ -209,43 +211,10 @@
             this.dgcuentas.ReadOnly = true;
             this.dgcuentas.RowHeadersVisible = false;
             this.dgcuentas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgcuentas.Size = new System.Drawing.Size(454, 435);
+            this.dgcuentas.Size = new System.Drawing.Size(663, 434);
             this.dgcuentas.TabIndex = 1;
             this.dgcuentas.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgcuentas_ColumnHeaderMouseClick);
             this.dgcuentas.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgempresas_RowEnter);
-            // 
-            // Empresa
-            // 
-            this.Empresa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Empresa.DataPropertyName = "Id_Empresa";
-            this.Empresa.HeaderText = "Empresa";
-            this.Empresa.Name = "Empresa";
-            this.Empresa.ReadOnly = true;
-            this.Empresa.Visible = false;
-            // 
-            // Cuentas
-            // 
-            this.Cuentas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Cuentas.DataPropertyName = "cuenta";
-            this.Cuentas.HeaderText = "Cuenta";
-            this.Cuentas.Name = "Cuentas";
-            this.Cuentas.ReadOnly = true;
-            // 
-            // Nombre
-            // 
-            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Nombre.DataPropertyName = "nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Tratar
-            // 
-            this.Tratar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Tratar.DataPropertyName = "tratacuenta";
-            this.Tratar.HeaderText = "Tratar";
-            this.Tratar.Name = "Tratar";
-            this.Tratar.ReadOnly = true;
             // 
             // pdatos
             // 
@@ -265,9 +234,9 @@
             this.pdatos.Controls.Add(this.bttAñadir);
             this.pdatos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pdatos.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pdatos.Location = new System.Drawing.Point(463, 3);
+            this.pdatos.Location = new System.Drawing.Point(672, 3);
             this.pdatos.Name = "pdatos";
-            this.pdatos.Size = new System.Drawing.Size(302, 435);
+            this.pdatos.Size = new System.Drawing.Size(311, 434);
             this.pdatos.TabIndex = 0;
             // 
             // label1
@@ -333,8 +302,8 @@
             // pcontenedor
             // 
             this.pcontenedor.ColumnCount = 2;
-            this.pcontenedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.pcontenedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.pcontenedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.95132F));
+            this.pcontenedor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.04868F));
             this.pcontenedor.Controls.Add(this.pbuscar, 0, 1);
             this.pcontenedor.Controls.Add(this.pdatos, 1, 0);
             this.pcontenedor.Controls.Add(this.dgcuentas, 0, 0);
@@ -345,7 +314,7 @@
             this.pcontenedor.RowCount = 2;
             this.pcontenedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.74577F));
             this.pcontenedor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.25424F));
-            this.pcontenedor.Size = new System.Drawing.Size(768, 590);
+            this.pcontenedor.Size = new System.Drawing.Size(986, 590);
             this.pcontenedor.TabIndex = 2;
             // 
             // pbuscar
@@ -357,9 +326,9 @@
             this.pbuscar.Controls.Add(this.button1);
             this.pbuscar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbuscar.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pbuscar.Location = new System.Drawing.Point(3, 444);
+            this.pbuscar.Location = new System.Drawing.Point(3, 443);
             this.pbuscar.Name = "pbuscar";
-            this.pbuscar.Size = new System.Drawing.Size(454, 143);
+            this.pbuscar.Size = new System.Drawing.Size(663, 144);
             this.pbuscar.TabIndex = 3;
             // 
             // label5
@@ -406,11 +375,55 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // Empresa
+            // 
+            this.Empresa.DataPropertyName = "Id_Empresa";
+            this.Empresa.HeaderText = "Empresa";
+            this.Empresa.Name = "Empresa";
+            this.Empresa.ReadOnly = true;
+            this.Empresa.Visible = false;
+            this.Empresa.Width = 80;
+            // 
+            // Cuentas
+            // 
+            this.Cuentas.DataPropertyName = "cuenta";
+            this.Cuentas.FillWeight = 141.1765F;
+            this.Cuentas.HeaderText = "Cuenta";
+            this.Cuentas.Name = "Cuentas";
+            this.Cuentas.ReadOnly = true;
+            this.Cuentas.Width = 120;
+            // 
+            // Nombre
+            // 
+            this.Nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Nombre.DataPropertyName = "nombre";
+            this.Nombre.FillWeight = 58.82353F;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Grupo
+            // 
+            this.Grupo.DataPropertyName = "Grupos";
+            this.Grupo.FillWeight = 250F;
+            this.Grupo.HeaderText = "Grupo";
+            this.Grupo.Name = "Grupo";
+            this.Grupo.ReadOnly = true;
+            this.Grupo.Width = 250;
+            // 
+            // Tratar
+            // 
+            this.Tratar.DataPropertyName = "tratacuenta";
+            this.Tratar.HeaderText = "Tratar";
+            this.Tratar.Name = "Tratar";
+            this.Tratar.ReadOnly = true;
+            this.Tratar.Width = 80;
+            // 
             // Form_Cuentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(768, 590);
+            this.ClientSize = new System.Drawing.Size(986, 590);
             this.Controls.Add(this.pcontenedor);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Cuentas";
@@ -457,6 +470,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Empresa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cuentas;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Grupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tratar;
     }
 }

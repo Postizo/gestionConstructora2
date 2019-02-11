@@ -29,6 +29,11 @@ namespace GestionConstructora
         }
         public void ini()
         {
+
+            Grupo.DataSource = DEquiposCN.ListarFamilias();
+            Grupo.DisplayMember = "Nombre";
+            Grupo.ValueMember = "Nombre";
+
             cbobra.DataSource = ObraCN.Listar(12);
             cbobra.DisplayMember = "Nombre";
             cbobra.ValueMember = "id_Obra";
@@ -182,8 +187,8 @@ namespace GestionConstructora
             }
             if (dglineas.Columns[e.ColumnIndex].Name == "Grupo")
             {  
-                DEquiposCN.Modificargrup(dglineas["ref", e.RowIndex].Value.ToString(), Presu.id_presu ,dglineas["Grupo", e.RowIndex].Value.ToString());
-                refresca();
+                DEquiposCN.Modificargrup(dglineas["ref", e.RowIndex].Value.ToString(), Presu.id_presu , dglineas["Grupo", e.RowIndex].Value.ToString());
+               // refresca();
                 dglineas.CurrentCell = dglineas[cellcol, cellrow];
 
             }

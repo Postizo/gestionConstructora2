@@ -15,7 +15,8 @@ namespace Entidad
     public partial class Empresas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-          
+       
+    
         public int Id_Empresa { get; set; }
         public string Nombre { get; set; }
         public string BBDD_Sigrid { get; set; }

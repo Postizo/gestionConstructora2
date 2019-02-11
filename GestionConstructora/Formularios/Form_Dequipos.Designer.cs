@@ -31,11 +31,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -92,6 +94,15 @@
             this.button4 = new System.Windows.Forms.Button();
             this.txtbuscar2 = new System.Windows.Forms.TextBox();
             this.instru = new System.Windows.Forms.RichTextBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.dgfamilias = new System.Windows.Forms.DataGridView();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.F_id_Familia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.F_Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.F_Orden = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.E_ref = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.E_Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.E_alias = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -115,12 +126,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgfamilias)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -447,14 +463,14 @@
             this.T_Volcado,
             this.T_Instalacion,
             this.T_puestamarcha});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgtiempos.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgtiempos.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgtiempos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgtiempos.Location = new System.Drawing.Point(3, 3);
             this.dgtiempos.Name = "dgtiempos";
@@ -481,37 +497,37 @@
             // T_programacion
             // 
             this.T_programacion.DataPropertyName = "T_programacion";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.T_programacion.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = null;
+            this.T_programacion.DefaultCellStyle = dataGridViewCellStyle8;
             this.T_programacion.HeaderText = "Programacion";
             this.T_programacion.Name = "T_programacion";
             // 
             // T_Volcado
             // 
             this.T_Volcado.DataPropertyName = "T_volcado";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N0";
-            this.T_Volcado.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N0";
+            this.T_Volcado.DefaultCellStyle = dataGridViewCellStyle9;
             this.T_Volcado.HeaderText = "Volcado";
             this.T_Volcado.Name = "T_Volcado";
             // 
             // T_Instalacion
             // 
             this.T_Instalacion.DataPropertyName = "T_instalacion";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N0";
-            this.T_Instalacion.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N0";
+            this.T_Instalacion.DefaultCellStyle = dataGridViewCellStyle10;
             this.T_Instalacion.HeaderText = "Instalacion";
             this.T_Instalacion.Name = "T_Instalacion";
             // 
             // T_puestamarcha
             // 
             this.T_puestamarcha.DataPropertyName = "T_puestamarcha";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N0";
-            this.T_puestamarcha.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            this.T_puestamarcha.DefaultCellStyle = dataGridViewCellStyle11;
             this.T_puestamarcha.HeaderText = "En Marcha";
             this.T_puestamarcha.Name = "T_puestamarcha";
             // 
@@ -734,6 +750,111 @@
             this.instru.TabIndex = 49;
             this.instru.Text = "";
             // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage5.Controls.Add(this.tableLayoutPanel4);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1050, 521);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Grupos";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Controls.Add(this.dgfamilias, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.groupBox6, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1050, 521);
+            this.tableLayoutPanel4.TabIndex = 2;
+            // 
+            // dgfamilias
+            // 
+            this.dgfamilias.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgfamilias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgfamilias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.F_id_Familia,
+            this.F_Nombre,
+            this.F_Orden});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgfamilias.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgfamilias.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgfamilias.Location = new System.Drawing.Point(3, 3);
+            this.dgfamilias.Name = "dgfamilias";
+            this.dgfamilias.Size = new System.Drawing.Size(1044, 420);
+            this.dgfamilias.TabIndex = 0;
+            this.dgfamilias.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgfamilias_CellEndEdit);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.button7);
+            this.groupBox6.Controls.Add(this.button8);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.Location = new System.Drawing.Point(3, 429);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(1044, 89);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Buscar";
+            // 
+            // button7
+            // 
+            this.button7.Image = global::GestionConstructora.Properties.Resources.comprobado_1_;
+            this.button7.Location = new System.Drawing.Point(54, 19);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(44, 41);
+            this.button7.TabIndex = 5;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Image = global::GestionConstructora.Properties.Resources.mas;
+            this.button8.Location = new System.Drawing.Point(4, 19);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(44, 41);
+            this.button8.TabIndex = 4;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // F_id_Familia
+            // 
+            this.F_id_Familia.DataPropertyName = "id";
+            this.F_id_Familia.HeaderText = "Id";
+            this.F_id_Familia.Name = "F_id_Familia";
+            this.F_id_Familia.Visible = false;
+            // 
+            // F_Nombre
+            // 
+            this.F_Nombre.DataPropertyName = "Nombre";
+            this.F_Nombre.HeaderText = "Grupo";
+            this.F_Nombre.Name = "F_Nombre";
+            this.F_Nombre.Width = 300;
+            // 
+            // F_Orden
+            // 
+            this.F_Orden.DataPropertyName = "Orden";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "P2";
+            this.F_Orden.DefaultCellStyle = dataGridViewCellStyle6;
+            this.F_Orden.HeaderText = "Orden";
+            this.F_Orden.Name = "F_Orden";
+            // 
             // E_ref
             // 
             this.E_ref.DataPropertyName = "Referencia";
@@ -769,22 +890,6 @@
             // 
             this.e_grupo.DataPropertyName = "Grupo";
             this.e_grupo.HeaderText = "Grupo";
-            this.e_grupo.Items.AddRange(new object[] {
-            "01- Pantallas - Pulsadores",
-            "02- Web Server",
-            "03- Detectores de presencia",
-            "04- Control de persianas",
-            "05- Entradas binarias - Conmutación",
-            "06- Control de iluminación",
-            "07- Control de clima",
-            "08- Detectores Técnicos",
-            "09- Alimentación",
-            "10- Sonido",
-            "11- Wifi - PAU",
-            "12- Videoportero",
-            "",
-            "",
-            " "});
             this.e_grupo.Name = "e_grupo";
             this.e_grupo.Width = 150;
             // 
@@ -829,6 +934,10 @@
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgfamilias)).EndInit();
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -889,6 +998,15 @@
         private System.Windows.Forms.CheckBox chaliast;
         private System.Windows.Forms.Label linfo;
         private System.Windows.Forms.Label linfot;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.DataGridView dgfamilias;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn F_id_Familia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn F_Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn F_Orden;
         private System.Windows.Forms.DataGridViewTextBoxColumn E_ref;
         private System.Windows.Forms.DataGridViewTextBoxColumn E_Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn E_alias;

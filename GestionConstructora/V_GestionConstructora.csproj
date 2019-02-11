@@ -14,7 +14,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>\\roma\APLICACIONES\Gestion\</PublishUrl>
+    <PublishUrl>\\192.0.150.188\APLICACIONES\Gestion\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,7 +26,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>167</ApplicationRevision>
+    <ApplicationRevision>195</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -131,7 +131,12 @@
     <Compile Include="Formularios Informes\R_InformeTecnico.Designer.cs">
       <DependentUpon>R_InformeTecnico.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\Clssass1.cs" />
+    <Compile Include="Formularios Informes\R_TesoreriaFinanciera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios Informes\R_TesoreriaFinanciera.Designer.cs">
+      <DependentUpon>R_TesoreriaFinanciera.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Form_AñadirCuentas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -354,6 +359,18 @@
     <Compile Include="Formularios\Form_Tesoreria.Designer.cs">
       <DependentUpon>Form_Tesoreria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Form_TesoreriaFinanciera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_TesoreriaFinanciera.Designer.cs">
+      <DependentUpon>Form_TesoreriaFinanciera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form_TesoreriaMes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form_TesoreriaMes.Designer.cs">
+      <DependentUpon>Form_TesoreriaMes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\MDMI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -412,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios Informes\R_InformeTecnico.resx">
       <DependentUpon>R_InformeTecnico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios Informes\R_TesoreriaFinanciera.resx">
+      <DependentUpon>R_TesoreriaFinanciera.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Form_AñadirCuentas.resx">
       <DependentUpon>Form_AñadirCuentas.cs</DependentUpon>
@@ -524,6 +544,12 @@
     <EmbeddedResource Include="Formularios\Form_Tesoreria.resx">
       <DependentUpon>Form_Tesoreria.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_TesoreriaFinanciera.resx">
+      <DependentUpon>Form_TesoreriaFinanciera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form_TesoreriaMes.resx">
+      <DependentUpon>Form_TesoreriaMes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\MDMI.resx">
       <DependentUpon>MDMI.cs</DependentUpon>
     </EmbeddedResource>
@@ -548,9 +574,12 @@
     <EmbeddedResource Include="Formularios\Form_AjusteGasto.resx">
       <DependentUpon>Form_AjusteGasto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Informes\I_Balance.rdlc" />
+    <EmbeddedResource Include="Informes\I_Balance.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Informes\I_Presu.rdlc" />
     <EmbeddedResource Include="Informes\I_Tecnico1.rdlc" />
+    <EmbeddedResource Include="Informes\I_TesoreriaFinanciera.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -564,6 +593,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Entidad.D_Presuca.datasource" />
     <None Include="Properties\DataSources\Entidad.D_Presuli.datasource" />
+    <None Include="Properties\DataSources\Entidad.LineasEstFinanciera.datasource" />
     <None Include="Properties\DataSources\Entidad.ResumenTipos.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -600,9 +630,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\calendar-interface-symbol-tool.png" />
+    <None Include="Resources\anadir.png" />
+    <None Include="Resources\boton-de-borrar.png" />
     <Content Include="Resources\cancelar.png" />
     <Content Include="Resources\comprobado%281%29.png" />
     <Content Include="Resources\editar.png" />
+    <None Include="Resources\periodico%281%29.png" />
+    <None Include="Resources\marcar.png" />
+    <None Include="Resources\ordenador.png" />
+    <None Include="Resources\editar1.png" />
+    <Content Include="Resources\periodico.png" />
+    <None Include="Resources\periodico1.png" />
     <None Include="Resources\refresh-button.png" />
     <None Include="Resources\participacion%282%29.png" />
     <None Include="Resources\participacion%281%29.png" />

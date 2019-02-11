@@ -173,7 +173,7 @@ namespace GestionConstructora
             List<Obras> lOb = new List<Obras>();
             lOb.Add(Obr);
             dtresumencontabilidad.Rows.Clear();
-            Form_Balance2.Mostrar_Inform(lOb, false, dtresumencontabilidad, dgresumencontable, id_infr);
+            Form_Balance2.Mostrar_Inform(lOb, false, dtresumencontabilidad, dgresumencontable, id_infr,new List<int>());
 
             foreach (DataGridViewColumn col in dgresumencontable.Columns){col.Visible = false;}
             foreach (DataGridViewColumn col in dgresumencontable.Columns) { if (col.HeaderText == Obr.Nombre || col.HeaderText == "%" || col.HeaderText == "Concepto") col.Visible = true; }

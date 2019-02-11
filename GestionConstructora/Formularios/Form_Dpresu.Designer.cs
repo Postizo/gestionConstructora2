@@ -462,19 +462,6 @@
             // 
             this.Grupo.DataPropertyName = "Grupo";
             this.Grupo.HeaderText = "Grupo";
-            this.Grupo.Items.AddRange(new object[] {
-            "01- Pantallas - Pulsadores",
-            "02- Web Server",
-            "03- Detectores de presencia",
-            "04- Control de persianas",
-            "05- Entradas binarias - Conmutación",
-            "06- Control de iluminación",
-            "07- Control de clima",
-            "08- Detectores Técnicos",
-            "09- Alimentación",
-            "10- Sonido",
-            "11- Wifi - PAU",
-            "12- Videoportero"});
             this.Grupo.Name = "Grupo";
             this.Grupo.Width = 150;
             // 

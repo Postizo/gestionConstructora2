@@ -36,12 +36,12 @@
             this.empresasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.obrasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gruposToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.subGruposToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cuentasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.obrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.evoluciónDeGastosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.presupuestoIngresosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estudioFinancieroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tesoreriaFinancieraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.balanceOtraVezToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tesoreriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionObrasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +111,6 @@
             this.empresasToolStripMenuItem1,
             this.obrasToolStripMenuItem1,
             this.gruposToolStripMenuItem1,
-            this.subGruposToolStripMenuItem1,
             this.cuentasToolStripMenuItem1});
             this.empresasToolStripMenuItem.Name = "empresasToolStripMenuItem";
             this.empresasToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
@@ -120,35 +119,28 @@
             // empresasToolStripMenuItem1
             // 
             this.empresasToolStripMenuItem1.Name = "empresasToolStripMenuItem1";
-            this.empresasToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.empresasToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.empresasToolStripMenuItem1.Text = "Empresas";
             this.empresasToolStripMenuItem1.Click += new System.EventHandler(this.empresasToolStripMenuItem1_Click);
             // 
             // obrasToolStripMenuItem1
             // 
             this.obrasToolStripMenuItem1.Name = "obrasToolStripMenuItem1";
-            this.obrasToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.obrasToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.obrasToolStripMenuItem1.Text = "Obras";
             this.obrasToolStripMenuItem1.Click += new System.EventHandler(this.obrasToolStripMenuItem1_Click);
             // 
             // gruposToolStripMenuItem1
             // 
             this.gruposToolStripMenuItem1.Name = "gruposToolStripMenuItem1";
-            this.gruposToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.gruposToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.gruposToolStripMenuItem1.Text = "Grupos";
             this.gruposToolStripMenuItem1.Click += new System.EventHandler(this.gruposToolStripMenuItem1_Click);
-            // 
-            // subGruposToolStripMenuItem1
-            // 
-            this.subGruposToolStripMenuItem1.Name = "subGruposToolStripMenuItem1";
-            this.subGruposToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
-            this.subGruposToolStripMenuItem1.Text = "SubGrupos";
-            this.subGruposToolStripMenuItem1.Click += new System.EventHandler(this.subGruposToolStripMenuItem1_Click);
             // 
             // cuentasToolStripMenuItem1
             // 
             this.cuentasToolStripMenuItem1.Name = "cuentasToolStripMenuItem1";
-            this.cuentasToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.cuentasToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.cuentasToolStripMenuItem1.Text = "Cuentas";
             this.cuentasToolStripMenuItem1.Click += new System.EventHandler(this.cuentasToolStripMenuItem1_Click);
             // 
@@ -158,6 +150,7 @@
             this.evoluciónDeGastosToolStripMenuItem,
             this.presupuestoIngresosToolStripMenuItem,
             this.estudioFinancieroToolStripMenuItem,
+            this.tesoreriaFinancieraToolStripMenuItem,
             this.balanceOtraVezToolStripMenuItem,
             this.tesoreriaToolStripMenuItem});
             this.obrasToolStripMenuItem.Name = "obrasToolStripMenuItem";
@@ -184,6 +177,13 @@
             this.estudioFinancieroToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.estudioFinancieroToolStripMenuItem.Text = "Estudio Financiero";
             this.estudioFinancieroToolStripMenuItem.Click += new System.EventHandler(this.estudioFinancieroToolStripMenuItem_Click);
+            // 
+            // tesoreriaFinancieraToolStripMenuItem
+            // 
+            this.tesoreriaFinancieraToolStripMenuItem.Name = "tesoreriaFinancieraToolStripMenuItem";
+            this.tesoreriaFinancieraToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.tesoreriaFinancieraToolStripMenuItem.Text = "Tesoreria Financiera";
+            this.tesoreriaFinancieraToolStripMenuItem.Click += new System.EventHandler(this.tesoreriaFinancieraToolStripMenuItem_Click);
             // 
             // balanceOtraVezToolStripMenuItem
             // 
@@ -488,7 +488,6 @@
         private System.Windows.Forms.ToolStripMenuItem empresasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem obrasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem gruposToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem subGruposToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cuentasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem gestionObrasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem facturasToolStripMenuItem;
@@ -527,5 +526,6 @@
         private System.Windows.Forms.ToolStripMenuItem domoticaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mantenimientoToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem presupuestoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tesoreriaFinancieraToolStripMenuItem;
     }
 }

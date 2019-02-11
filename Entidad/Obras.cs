@@ -19,7 +19,9 @@ namespace Entidad
         {
             this.Albaranes_ca = new HashSet<Albaranes_ca>();
             this.Balance = new HashSet<Balance>();
+            this.Balance_Fijos = new HashSet<Balance_Fijos>();
             this.D_Presuca = new HashSet<D_Presuca>();
+            this.Est_Tesoreria = new HashSet<Est_Tesoreria>();
             this.Facturas_ca = new HashSet<Facturas_ca>();
             this.Grupos_Rel = new HashSet<Grupos_Rel>();
             this.Obras_Lineas = new HashSet<Obras_Lineas>();
@@ -49,14 +51,21 @@ namespace Entidad
         public decimal Ajuste { get; set; }
         public string Comentario_Ajuste { get; set; }
         public Nullable<int> F_Stado_Planig { get; set; }
+        public Nullable<decimal> ValorVenta { get; set; }
+        public Nullable<decimal> Cobrado2017 { get; set; }
+        public Nullable<decimal> Gastos2017 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Albaranes_ca> Albaranes_ca { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Balance> Balance { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Balance_Fijos> Balance_Fijos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<D_Presuca> D_Presuca { get; set; }
         public virtual Empresas Empresas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Est_Tesoreria> Est_Tesoreria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Facturas_ca> Facturas_ca { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

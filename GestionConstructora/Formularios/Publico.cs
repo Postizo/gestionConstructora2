@@ -11,6 +11,7 @@ using Entidad;
 using Negocio;
 using System.Configuration;
 using System.Data.OleDb;
+using System.Globalization;
 
 namespace GestionConstructora
 {
@@ -83,21 +84,32 @@ namespace GestionConstructora
                 tn.BackColor = Color.LightGray;
                 AddColumnsNode(tn, Multicolumn, LineaTotalesSegumi, img,Obr);
                 Multicolumn.Nodes.Add(tn);
+
+                //AGREGAMOS LA LIENA DE TOTALES Resultado
+                Obras_Lineas LineaTotalesresul = LineaResultado(Obr, 0, Multicolumn);
+                tn = new Ai.Control.TreeNode();
+                Elige_Icono(LineaTotalesresul.Id_TipoCoste, tn, img);
+                tn.Text = "Total Resultado";
+                tn.NodeFont = new Font("Verdana", 8.00F, FontStyle.Bold);
+                tn.BackColor = Color.AliceBlue;
+                AddColumnsNode(tn, Multicolumn, LineaTotalesresul, img, Obr);
+                Multicolumn.Nodes.Add(tn);
+                
             }
+
+
+
             if (lineaconta)
             {
                 //AGREGAMOS LA LIENA DE TOTALES CONTA
                 Obras_Lineas LineaTotalesCont = LineaTotalesConta(Obr, Multicolumn);
                 tn = new Ai.Control.TreeNode();
                 Elige_Icono(LineaTotalesCont.Id_TipoCoste, tn, img);
-                tn.Text = "Total Contabilizado / Facturado";
+                tn.Text = "Total Facturado";
                 tn.NodeFont = new Font("Verdana", 8.00F, FontStyle.Bold);
                 tn.BackColor = Color.AntiqueWhite;
                 AddColumnsNode(tn, Multicolumn, LineaTotalesCont, img,Obr);
                 Multicolumn.Nodes.Add(tn);
-              
-              
-
 
             }
 
@@ -144,10 +156,25 @@ namespace GestionConstructora
             lin.Importe_presu = Obr.P_Total_Gastosdirectos3_Conta + Obr.P_Total_GastosContribuciondirecta2_Conta ;
             lin.Importe_CostePrevisto = Obr.P_Total_Gastosdirectos3_Conta + Obr.P_Total_GastosContribuciondirecta2_Conta;
             lin.Importe_Facturado = Obr.Total_Gastosdirectos3_Conta + Obr.Total_GastosContribuciondirecta2_Conta;
-            lin.Importe_CosteReal  = Obr.Total_Gastosdirectos3_Conta + Obr.Total_GastosContribuciondirecta2_Conta;
+            lin.Importe_CosteReal = 0; // Obr.Total_Gastosdirectos3_Conta + Obr.Total_GastosContribuciondirecta2_Conta;
             lin.Importe_P_venta = Obr.P_Total_Ingresos1_Conta;
             lin.Importe_VentaPrevista = Obr.P_Total_Ingresos1_Conta;
             lin.Importe_Certificado  = Obr.Total_Ingresos1_Conta;
+            return lin;
+        }
+        public static Obras_Lineas LineaResultado(Obras Obr, int id_fase, Ai.Control.MultiColumnTree Multicolumn)
+        {
+            Obras_Lineas lin = new Obras_Lineas();
+            lin.Nombre = "TotalesConta";
+            lin.Medidas = 1;
+            lin.Id_TipoCoste = 256;
+            lin.Importe_presu = 0; // Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_presu);
+            lin.Importe_CostePrevisto = 0;// Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_CostePrevisto);
+            lin.Importe_Facturado = 0; // Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_Facturado);
+            lin.Importe_CosteReal = 0; // Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_CosteReal) - Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_CostePrevisto);
+            lin.Importe_P_venta = Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_P_venta) - Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_presu);
+            lin.Importe_VentaPrevista = Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_VentaPrevista) - Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_CostePrevisto);
+            lin.Importe_Certificado = Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_Certificado) - Obr.Obras_Lineas.Where(p => p.Id_Fase == id_fase).Sum(p => p.Importe_CosteReal);
             return lin;
         }
         public static Obras_Lineas LineaTotalesCobrado(Obras Obr, Ai.Control.MultiColumnTree Multicolumn)
@@ -195,13 +222,20 @@ namespace GestionConstructora
                 for (int a = 0; a < Multicolumn.Columns.Count ; a++)
                 {
                     double number;
-                    bool result = double.TryParse(Multicolumn.Nodes[i].SubItems[a].Value.ToString(), out number);
-                    if (result)            
-                        if (Convert.ToDouble(Multicolumn.Nodes[i].SubItems[a].Value) < 0)                        
-                            Multicolumn.Nodes[i].SubItems[a].Color = Color.Red;
+                    bool result = false;
+                    if (Multicolumn.Nodes[i].SubItems[a].Value != null)
+                    {
+                        result = double.TryParse(Multicolumn.Nodes[i].SubItems[a].Value.ToString(), out number);
+                        if (result)
+                            if (Convert.ToDouble(Multicolumn.Nodes[i].SubItems[a].Value) < 0)
+                                Multicolumn.Nodes[i].SubItems[a].Color = Color.Red;
+                    }
+                
                     if ((index = Busca("TipoCoste", Multicolumn)) != -1) if (Multicolumn.Nodes[i].SubItems[Publico.Busca("TipoCoste", Multicolumn)].Value.ToString() == "250") Multicolumn.Nodes[i].SubItems[a].BackColor = Color.AntiqueWhite;
                     if ((index = Busca("TipoCoste", Multicolumn)) != -1) if (Multicolumn.Nodes[i].SubItems[Publico.Busca("TipoCoste", Multicolumn)].Value.ToString() == "251") Multicolumn.Nodes[i].SubItems[a].BackColor = Color.LightGray;
                     if ((index = Busca("TipoCoste", Multicolumn)) != -1) if (Multicolumn.Nodes[i].SubItems[Publico.Busca("TipoCoste", Multicolumn)].Value.ToString() == "252") Multicolumn.Nodes[i].SubItems[a].BackColor  = Color.FloralWhite;
+                    if ((index = Busca("TipoCoste", Multicolumn)) != -1) if (Multicolumn.Nodes[i].SubItems[Publico.Busca("TipoCoste", Multicolumn)].Value.ToString() == "256") Multicolumn.Nodes[i].SubItems[a].BackColor = Color.AliceBlue;
+                    if ((index = Busca("TipoCoste", Multicolumn)) != -1) if (Multicolumn.Nodes[i].SubItems[Publico.Busca("TipoCoste", Multicolumn)].Value.ToString() == "256") if (result) if (Convert.ToDouble(Multicolumn.Nodes[i].SubItems[a].Value) >= 0) Multicolumn.Nodes[i].SubItems[a].Color = Color.Green; 
 
                 }
 
@@ -236,22 +270,8 @@ namespace GestionConstructora
         {
             //Elige_Icono(lin.Id_TipoCoste, tn, img);
             tn.UseNodeStyleForSubItems = false;
-            double metros = 1;
-            switch (GruposCN.Listar(lin.Id_Grupo).Zona_imputada)
-            {
-                case "ZC":
-                    metros = Ob.M_ZonasComunes;
-                    break;
-                case "V":
-                    metros = Ob.M_Viviendas;
-                    break;
-                case "G":
-                    metros = Ob.M_Rasante;
-                    break;
-                case "T":
-                    metros = Ob.M_Rasante + Ob.M_Viviendas + Ob.M_ZonasComunes;
-                    break;
-            }
+            double metros = (Ob.M_Construidos !=0)?Ob.M_Construidos:1;
+                       
 
             for (int i = 0; i < Multicolumn.Columns.Count; i++)
             {
@@ -412,9 +432,13 @@ namespace GestionConstructora
                     tn.Image = img.Images[3];
                     tn.ExpandedImage = img.Images[3];
                     break;
+                case 256:
+                    tn.Image = img.Images[2];
+                    tn.ExpandedImage = img.Images[2];
+                    break;
             }
         }
-        public static void CargaTree_ComparaObras(List<Obras> Obrs, Ai.Control.MultiColumnTree Multicolumn, ImageList img, bool repercutido, string campo,string metros_s,int fase)
+        public static void CargaTree_ComparaObras(List<Obras> Obrs, Ai.Control.MultiColumnTree Multicolumn, ImageList img, bool repercutido,string metros_s,int fase)
         {
             double metros = 1;
             List<Grupos> Grups = new List<Grupos>();
@@ -470,13 +494,13 @@ namespace GestionConstructora
                     if (lin != null)
                     {
                         Elige_Icono(lin.Id_TipoCoste, tn, img);
-                        switch (campo)
+                        switch (Obr.campocompara)
                         {
                             case "CstRealm":
                                 Valor = lin.Importe_CosteReal / Convert.ToDecimal(metros);
                                 break;
                             case "Certm":
-                                Valor = lin.Importe_Certificado / Convert.ToDecimal(metros);
+                                Valor = lin.Importe_P_venta / Convert.ToDecimal(metros);
                                 break;
                             case "CostePrevistom":
                                 Valor = lin.Importe_CostePrevisto / Convert.ToDecimal(metros);
@@ -517,13 +541,13 @@ namespace GestionConstructora
                             Obras_Lineas linsub = (Obr.Capitulos.Where(p => p.Id_Fase == fase).Where(p => p.Id_Grupo == Grup.Id_Grupo).ToList()[0].Subcapitulos.Where(p => p.Id_Fase == fase).Where(p => p.Id_Subgrupo == sub.Id_Subgrupo).Count() > 0) ? Obr.Capitulos.Where(p => p.Id_Fase == fase).Where(p => p.Id_Grupo == Grup.Id_Grupo).ToList()[0].Subcapitulos.Where(p => p.Id_Fase == fase).Where(p => p.Id_Subgrupo == sub.Id_Subgrupo).ToList()[0] : null;
                             if (linsub != null)
                             {
-                                switch (campo)
+                                switch (Obr.campocompara)
                                 {
                                     case "CstRealm":
                                         valorsub = linsub.Importe_CosteReal / Convert.ToDecimal(metros);
                                         break;
                                     case "Certm":
-                                        valorsub = linsub.Importe_Certificado / Convert.ToDecimal(metros);
+                                        valorsub = linsub.Importe_P_venta / Convert.ToDecimal(metros);
                                         break;
                                     case "CostePrevistom":
                                         valorsub = linsub.Importe_CostePrevisto / Convert.ToDecimal(metros);
@@ -550,17 +574,29 @@ namespace GestionConstructora
             tt.BackColor = Color.LightGray;
             foreach (Obras Obr in Obrs)
             {
+                switch (metros_s)
+                {
+                    case "m_escriturados":
+                        metros = Obr.M_Escriturados;
+                        break;
+                    case "m_construidos":
+                        metros = Obr.M_Construidos;
+                        break;
+                    case "m_utiles":
+                        metros = Obr.M_Utiles;
+                        break;
+                }
                 decimal valorsub = 0;
-                switch (campo)
+                switch (Obr.campocompara)
                 {
                     case "CstRealm":
-                        valorsub = Obr.Obras_Lineas.Sum(p=> p.Importe_CosteReal) / Convert.ToDecimal(Obr.M_Viviendas);
+                        valorsub = Obr.Obras_Lineas.Sum(p=> p.Importe_CosteReal) / Convert.ToDecimal(metros);
                         break;
                     case "Certm":
-                        valorsub = Obr.Obras_Lineas.Sum(p => p.Importe_Certificado) / Convert.ToDecimal(Obr.M_Viviendas);
+                        valorsub = Obr.Obras_Lineas.Sum(p => p.Importe_Certificado) / Convert.ToDecimal(metros);
                         break;
                     case "CostePrevistom":
-                        valorsub = Obr.Obras_Lineas.Sum(p => p.Importe_CostePrevisto) / Convert.ToDecimal(Obr.M_Viviendas);
+                        valorsub = Obr.Obras_Lineas.Sum(p => p.Importe_CostePrevisto) / Convert.ToDecimal(metros);
                         break;
                 }
                 tt.SubItems.Add(valorsub);               
@@ -722,7 +758,16 @@ namespace GestionConstructora
             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
             da.Fill(dt);
         }
-
+        public static string MonthName(int month)
+        {
+            DateTimeFormatInfo dtinfo = new CultureInfo("es-ES", false).DateTimeFormat;
+            return dtinfo.GetMonthName(month);
+        }
+        public static int GetMonthDifference(DateTime startDate, DateTime endDate)
+        {
+            int monthsApart = 12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month;
+            return Math.Abs(monthsApart);
+        }
 
         #endregion
 

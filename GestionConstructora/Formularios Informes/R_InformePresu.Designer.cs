@@ -37,12 +37,12 @@
             this.reportViewer2.LocalReport.ReportEmbeddedResource = "GestionConstructora.Informes.I_Presu.rdlc";
             this.reportViewer2.Location = new System.Drawing.Point(0, 0);
             this.reportViewer2.Name = "reportViewer2";
-            this.reportViewer2.Size = new System.Drawing.Size(884, 661);
+            this.reportViewer2.Size = new System.Drawing.Size(681, 661);
             this.reportViewer2.TabIndex = 0;
             // 
             // R_InformePresu
             // 
-            this.ClientSize = new System.Drawing.Size(884, 661);
+            this.ClientSize = new System.Drawing.Size(681, 661);
             this.Controls.Add(this.reportViewer2);
             this.Name = "R_InformePresu";
             this.Load += new System.EventHandler(this.R_InformeTecnico_Load);

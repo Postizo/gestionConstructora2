@@ -138,9 +138,9 @@ namespace GestionConstructora
            
         }
   
-        public DataTable  TablaAmortizacion(double Cantidad_del_prestamo, double tasa_interes_anual,int Plazo)
+        public static void  TablaAmortizacion(double Cantidad_del_prestamo, double tasa_interes_anual,int Plazo,DataTable dt)
         {
-            DataTable dt = new DataTable();
+         
             dt.Columns.Add("N", typeof(Int32));
             dt.Columns.Add("Cuota", Type.GetType("System.Double"));
             dt.Columns.Add("Capital", Type.GetType("System.Double"));
@@ -159,36 +159,15 @@ namespace GestionConstructora
             pago = tasa_interes_mensual / pago;
             pago = tasa_interes_mensual + pago;
             pago = Cantidad_del_prestamo * pago;
-
-
-
-
-            Console.WriteLine();
+                       
             fila = 1;
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.Write(" Numero de pago \t");
-            Console.Write("Pago \t\t");
-            Console.Write("Intereses Pagados \t\t");
-            Console.Write("Capital Pagado \t\t");
-            Console.Write("Monto del prestamo \t");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.Write("\t0");
-            Console.WriteLine("\t\t\t\t\t\t\t\t\t\t\t{0}", Cantidad_del_prestamo);
-
 
             for (i = 1; i <= Plazo; i++)
             {
-                DataRow dr = dt.NewRow();
-                Console.Write("\t{0}\t\t", fila);                               
-                Console.Write("{0}\t", pago);
-                Interes_pagado = tasa_interes_mensual * Cantidad_del_prestamo;
-                Console.Write("{0}\t\t", Interes_pagado);
-                Capital_pagado = pago - Interes_pagado;
-                Console.Write("\t{0}\t", Capital_pagado);
-                Cantidad_del_prestamo = Cantidad_del_prestamo - Capital_pagado;
-                Console.Write("\t{0}\t", Cantidad_del_prestamo);
+                DataRow dr = dt.NewRow();               
+                Interes_pagado = tasa_interes_mensual * Cantidad_del_prestamo;             
+                Capital_pagado = pago - Interes_pagado;              
+                Cantidad_del_prestamo = Cantidad_del_prestamo - Capital_pagado;             
 
                 dr["N"] = fila ;
                 dr["Cuota"] = pago;
@@ -198,7 +177,7 @@ namespace GestionConstructora
                 fila = fila + 1;
                 dt.Rows.Add(dr);
             }
-          return dt;
+         
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -208,7 +187,7 @@ namespace GestionConstructora
         public void PorcesCalcular()
         {
             DataTable dt = new DataTable();
-            dt = TablaAmortizacion(Convert.ToDouble(txtimphipoteca.Text), Convert.ToDouble(txttipointeres.Text.Replace("%", "")), Convert.ToInt32(txtmesamortizacion.Text) * 12);
+            TablaAmortizacion(Convert.ToDouble(txtimphipoteca.Text), Convert.ToDouble(txttipointeres.Text.Replace("%", "")), Convert.ToInt32(txtmesamortizacion.Text) * 12, dt);
             dgamortizacion.DataSource = dt;
             txtintereses.Text = calculoitereses(0, Convert.ToInt32(txtmesdif.Text)).ToString();
             jaj();
@@ -306,7 +285,7 @@ namespace GestionConstructora
         public double calculoitereses(int mesinicia, int mespara)
         {
             DataTable dt = new DataTable();
-            dt = TablaAmortizacion(Convert.ToDouble(txtimphipoteca.Text), Convert.ToDouble(txttipointeres.Text.Replace("%", "")), Convert.ToInt32(txtmesamortizacion.Text) * 12);
+            TablaAmortizacion(Convert.ToDouble(txtimphipoteca.Text), Convert.ToDouble(txttipointeres.Text.Replace("%", "")), Convert.ToInt32(txtmesamortizacion.Text) * 12, dt);
             dgamortizacion.DataSource = dt;
             double intereses=0 ;
             for (int i = mesinicia; i < mespara; i++)
@@ -318,7 +297,7 @@ namespace GestionConstructora
         public double calculocuotapasgadas(int mesinicia, int mespara)
         {
             DataTable dt = new DataTable();
-            dt = TablaAmortizacion(Convert.ToDouble(txtimphipoteca.Text), Convert.ToDouble(txttipointeres.Text.Replace("%", "")), Convert.ToInt32(txtmesamortizacion.Text) * 12);
+            TablaAmortizacion(Convert.ToDouble(txtimphipoteca.Text), Convert.ToDouble(txttipointeres.Text.Replace("%", "")), Convert.ToInt32(txtmesamortizacion.Text) * 12, dt);
             dgamortizacion.DataSource = dt;
             double intereses = 0;
             for (int i = mesinicia; i < mespara; i++)

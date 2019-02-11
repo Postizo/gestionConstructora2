@@ -25,6 +25,7 @@ namespace Entidad
     [MetadataType(typeof(ObrasMeta))]
     public partial class Obras :IValidable
     {
+        public string campocompara { get; set; }
         public decimal Solo_Man_Obra { get; set; }
         public  decimal Total_Ingresos1_Conta { get; set; }
         public decimal  P_Total_Ingresos1_Conta { get; set; }
@@ -40,7 +41,11 @@ namespace Entidad
         public decimal C_Total_Facturado { get; set; }
         public decimal C_RetencionGarantia { get; set; }
         public decimal Confirming_Aceptado { get; set; }
-        public decimal Confirming_Pendiente { get; set; }        
+        public decimal Confirming_Pendiente { get; set; }
+        public decimal RepercutidoGeneral19 { get; set; }
+        public decimal PorcentajeSobeGenerales { get; set; }
+
+
         public List<Obras_Lineas> Capitulos { get; set; }
         private List<ValidationResult> _ValidationErrors;
                

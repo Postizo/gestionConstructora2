@@ -153,7 +153,7 @@ namespace GestionConstructora
                 id_infr = id_informemellegadelotro;
                 Check_Cuentas(L_Obras_Selecionadas);
                 //Rellenamos el grid de las Obras en Curso
-                foreach (Obras Obr in L_Obras_Selecionadas.Where(p => p.Id_Obra >= 0 && p.Finalizada == false).ToList())
+                foreach (Obras Obr in L_Obras_Selecionadas.ToList())
                 {
                     //BalanceCN.Añadir(CalculoCN.Creacion_Informe(id_infr.ToString(), Emp, Emp.Obras.Where(t => t.Id_Obra == Obr.Id_Obra).ToList(), false, 0, DateTime.Today));
                     Cosas_CW(Obr, id_infr);
@@ -270,7 +270,7 @@ namespace GestionConstructora
             dtcomprobacion.Rows.Clear();
             DataRow dr = dtcomprobacion.NewRow();
             dr["Concepto"] = "CERTIFICACIONES";
-            dr["Sigrid"] = Obr.Obras_Lineas.Sum(p => p.Importe_Certificado);
+            dr["Sigrid"] = Obr.Obras_Lineas.Where(p=> p.Id_Fase ==0).Sum(p => p.Importe_Certificado);
             dr["CW"] = Obr.Total_Ingresos1_Conta;
             dtcomprobacion.Rows.Add(dr);          
 
@@ -293,7 +293,7 @@ namespace GestionConstructora
             List<Obras> lOb = new List<Obras>();
             lOb.Add(Obr);
             dtresumencontabilidad.Rows.Clear();
-            Form_Balance2.Mostrar_Inform(lOb, false, dtresumencontabilidad, dgresumencontable, id_infr);
+            Form_Balance2.Mostrar_Inform(lOb, false, dtresumencontabilidad, dgresumencontable, id_infr, new List<int>());
 
             foreach (DataGridViewColumn col in dgresumencontable.Columns){col.Visible = false;}
             foreach (DataGridViewColumn col in dgresumencontable.Columns) { if (col.HeaderText == Obr.Nombre || col.HeaderText == "%" || col.HeaderText == "Concepto") col.Visible = true; }
@@ -375,14 +375,14 @@ namespace GestionConstructora
             dr["Nombre"] = Obr.Nombre;
             dr["Tipo"] = Obr.Tipo_Obra;
             dr["P_Inicial"] = Obr.P_Total_GastosContribuciondirecta2_Conta + Obr.P_Total_Gastosdirectos3_Conta;
-            dr["P_Obra"] = Obr.Obras_Lineas.Sum(p => p.Importe_CostePrevisto);
+            dr["P_Obra"] = Obr.Obras_Lineas.Where(p=> p.Id_Fase ==0).Sum(p => p.Importe_CostePrevisto);
             dr["Desvio_P"] =Convert.ToDecimal(dr["P_Obra"]) - Convert.ToDecimal(dr["P_Inicial"]);
-            dr["Imp_CosteReal"] = Obr.Obras_Lineas.Sum(p => p.Importe_CosteReal);
+            dr["Imp_CosteReal"] = Obr.Obras_Lineas.Where(p => p.Id_Fase == 0).Sum(p => p.Importe_CosteReal);
             dr["P_I_Venta"] =  Obr.P_Total_Ingresos1_Conta;
-            dr["P_Venta"] = Obr.Obras_Lineas.Sum(p => p.Importe_VentaPrevista);
+            dr["P_Venta"] = Obr.Obras_Lineas.Where(p => p.Id_Fase == 0).Sum(p => p.Importe_VentaPrevista);
             dr["B_Inicial"] = Convert.ToDecimal(dr["P_I_Venta"]) - Convert.ToDecimal(dr["P_Inicial"]);
             dr["B_Obra"] = Convert.ToDecimal(dr["P_Venta"]) - Convert.ToDecimal(dr["P_Obra"]);
-            dr["Certificaciones"] =  Obr.Obras_Lineas.Sum(p => p.Importe_Certificado);
+            dr["Certificaciones"] =  Obr.Obras_Lineas.Where(p => p.Id_Fase == 0).Sum(p => p.Importe_Certificado);
             dr["Cobro"] = (Obr.C_Total_Facturado) - (Obr.C_RetencionGarantia + Obr.Confirming_Aceptado + Obr.Confirming_Pendiente);
             dr["Pendiente_Cobro"] = Convert.ToDecimal(dr["Certificaciones"]) - Convert.ToDecimal(dr["Cobro"]);
             if (Obr.iva == false)
@@ -423,6 +423,7 @@ namespace GestionConstructora
             // Ingresos no repartir
             foreach (Grupos Grup in lgrupos.Where(p => p.Id_TipoCoste == 7 && p.Id_Tipo == 7))
             {
+                
                 Importe = BalanceCN.IngresosObra_Conta(Obr, Grup.Id_Grupo, id_infr.ToString());
                 presupuestado = (Obr.Presu_Conta.Where(p => p.id_Grupo == Grup.Id_Grupo).ToList().Count > 0) ? Obr.Presu_Conta.Where(p => p.id_Grupo == Grup.Id_Grupo).ToList()[0].Presupuestado : 0;
                 Obr.Total_restoIngresos7_Conta += Importe;
@@ -431,6 +432,7 @@ namespace GestionConstructora
             //Gastos de contribucion directa
             foreach (Grupos Grup in lgrupos.Where(p => p.Id_Tipo == 1 && p.Id_TipoCoste == 2))
             {
+             
                 Importe = BalanceCN.GastosObra_Conta(Obr, Grup.Id_Grupo, id_infr.ToString());
                 presupuestado = (Obr.Presu_Conta.Where(p => p.id_Grupo == Grup.Id_Grupo).ToList().Count > 0) ? Obr.Presu_Conta.Where(p => p.id_Grupo == Grup.Id_Grupo).ToList()[0].Presupuestado : 0;
                 Obr.Total_GastosContribuciondirecta2_Conta += Importe;
@@ -439,7 +441,8 @@ namespace GestionConstructora
             //Gastos directos
             foreach (Grupos Grup in lgrupos.Where(p => p.Id_Tipo == 1 && p.Id_TipoCoste == 3))
             {
-                Importe = BalanceCN.GastosObra_Conta(Obr, Grup.Id_Grupo, id_infr.ToString());
+                Importe = (Grup.Id_Grupo == 188) ? BalanceCN.Debe_Cuenta(Obr, Grup.Id_Grupo, id_infr.ToString()) : BalanceCN.GastosObra_Conta(Obr, Grup.Id_Grupo, id_infr.ToString());
+                
                 presupuestado = (Obr.Presu_Conta.Where(p => p.id_Grupo == Grup.Id_Grupo).ToList().Count > 0) ? Obr.Presu_Conta.Where(p => p.id_Grupo == Grup.Id_Grupo).ToList()[0].Presupuestado : 0;
                 Obr.Total_Gastosdirectos3_Conta += Importe;
                 Obr.P_Total_Gastosdirectos3_Conta += presupuestado;
@@ -450,7 +453,7 @@ namespace GestionConstructora
                 Importe = BalanceCN.Debe_Cuenta(Obr, Grup.Id_Grupo, id_infr.ToString());
                 presupuestado = (Obr.Presu_Conta.Where(p => p.id_Grupo == Grup.Id_Grupo).ToList().Count > 0) ? Obr.Presu_Conta.Where(p => p.id_Grupo == Grup.Id_Grupo).ToList()[0].Presupuestado : 0;
                 Obr.Total_Hipotecas += Importe;
-                Obr.P_Total_Gastosdirectos3_Conta += presupuestado;
+                //Obr.Total_Hipotecas += presupuestado;
             }
 
 
